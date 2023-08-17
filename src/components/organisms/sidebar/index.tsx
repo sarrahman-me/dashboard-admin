@@ -16,8 +16,8 @@ const menuItems = [
 
 const listMenu = [
   {
-    label: "Merk",
-    href: "/dashboard/data/merk",
+    label: "Brand",
+    href: "/dashboard/data/brand",
   },
   {
     label: "Kategori Barang",

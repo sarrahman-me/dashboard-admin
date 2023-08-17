@@ -35,13 +35,13 @@ export default function FormBarang() {
         Loading.remove();
       } else {
         seterror(response.error);
-        Notify.failure(response.error.message);
+        Notify.failure(response.message);
         Loading.remove();
       }
-    } catch (error) {
-      Notify.failure("Terjadi kesalahan saat menyimpan data");
-      Loading.remove();
+    } catch (error: any) {
+      Notify.failure("Terjadi kesalahan saat menambahkan data");
     }
+    Loading.remove();
   };
 
   const formInput = [
