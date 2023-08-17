@@ -4,9 +4,9 @@ export default async function KategoriBarang() {
   return (
     <ReadDataTableApi
       title={"Kategori Barang"}
-      dataKey={["nama"]}
+      dataKey={["nama_kategori"]}
       titleColumns={["Nama Kategori Barang"]}
-      dataEndpoint={"/kategori-barang?page=1&limit=25"}
+      dataEndpoint={"/products/kategori?page=1&limit=25"}
     />
   );
 }

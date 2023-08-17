@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 // Menyimpan metadata website seperti judul dan deskripsi yang akan digunakan untuk SEO dan social sharing.
 export const metadata = {
-  title: "Dunia Keramik",
-  description: "Dashboard Admin",
+  title: "Sarrahman Bangunan",
+  description: "Admin for sarrahman bangunan",
 };
 
 // Mendefinisikan fungsi RootLayout yang akan digunakan sebagai layout utama aplikasi.

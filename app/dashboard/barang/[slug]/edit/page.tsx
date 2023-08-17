@@ -23,7 +23,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       const fetchData = async () => {
         try {
           const response = await GetDataApi(
-            `${process.env.NEXT_PUBLIC_HOST}/barang/${slug}`
+            `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
           );
           setData(response.data);
           setHargaBeli(response.data.harga);
@@ -47,7 +47,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
 
     try {
       const response = await PatchDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/barang/${slug}`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`,
         payload
       );
       if (response.status === 200 || response.status === 201) {
@@ -72,42 +72,42 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       type: "select-api",
       label: "Kategori Barang",
       name: "kategori",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/kategori-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kategori`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Merk",
       name: "merk",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/merk-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/merk`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Ukuran",
       name: "ukuran",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/ukuran-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/ukuran`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Motif",
       name: "motif",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/motif-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/motif`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Tekstur",
       name: "tekstur",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/tekstur-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/tekstur`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Kualitas",
       name: "kualitas",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/kualitas-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kualitas`,
       keyValue: ["slug", "nama"],
     },
     {

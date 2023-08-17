@@ -10,7 +10,7 @@ export default function EditKategoriBarang({
     {
       type: "text",
       label: "Nama Kategori Barang",
-      name: "nama",
+      name: "nama_kategori",
     },
   ];
 
@@ -18,7 +18,7 @@ export default function EditKategoriBarang({
     <div>
       <HeaderAndBackIcon title="Edit Kategori Barang" />
       <FormEditData
-        submitEndpoint={`/kategori-barang/${params.slug}`}
+        submitEndpoint={`/products/kategori/${params.slug}`}
         formInput={form}
       />
     </div>

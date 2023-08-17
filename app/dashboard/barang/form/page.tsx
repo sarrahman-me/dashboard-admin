@@ -26,7 +26,7 @@ export default function FormBarang() {
 
     try {
       const response = await PostDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/barang`,
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
         payload
       );
       if (response.status === 200 || response.status === 201) {
@@ -55,42 +55,42 @@ export default function FormBarang() {
       type: "select-api",
       label: "Kategori Barang",
       name: "kategori",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/kategori-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kategori`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Merk",
       name: "merk",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/merk-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/brand`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Ukuran",
       name: "ukuran",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/ukuran-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/ukuran`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Motif",
       name: "motif",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/motif-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/motif`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Tekstur",
       name: "tekstur",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/tekstur-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/tekstur`,
       keyValue: ["slug", "nama"],
     },
     {
       type: "select-api",
       label: "Kualitas",
       name: "kualitas",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/kualitas-barang`,
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kualitas`,
       keyValue: ["slug", "nama"],
     },
     {

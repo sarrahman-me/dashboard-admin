@@ -6,7 +6,7 @@ export default function EditMotif({ params }: { params: { slug: string } }) {
     {
       type: "text",
       label: "Nama Motif",
-      name: "nama",
+      name: "nama_motif",
     },
   ];
 
@@ -14,7 +14,7 @@ export default function EditMotif({ params }: { params: { slug: string } }) {
     <div>
       <HeaderAndBackIcon title="Edit Motif" />
       <FormEditData
-        submitEndpoint={`/motif-barang/${params.slug}`}
+        submitEndpoint={`/products/motif/${params.slug}`}
         formInput={form}
       />
     </div>

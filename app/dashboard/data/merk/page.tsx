@@ -1,12 +1,12 @@
 import { ReadDataTableApi } from "@/src/template";
 
-export default function Merk() {
+export default function Brand() {
   return (
     <ReadDataTableApi
-      title={"Merk"}
-      dataKey={["nama"]}
-      titleColumns={["Nama Merk"]}
-      dataEndpoint={"/merk-barang?page=1&limit=25"}
+      title={"Brand"}
+      dataKey={["nama_brand"]}
+      titleColumns={["Nama Brand"]}
+      dataEndpoint={"/suplier/brand?page=1&limit=25"}
     />
   );
 }

@@ -6,7 +6,7 @@ export default function FormUkuran() {
     {
       type: "text",
       label: "Nama Ukuran",
-      name: "nama",
+      name: "nama_ukuran",
       autoFocus: true,
     },
   ];
@@ -14,7 +14,7 @@ export default function FormUkuran() {
   return (
     <div>
       <HeaderAndBackIcon title="Tambah Ukuran" />
-      <FormData submitEndpoint={"/ukuran-barang"} formInput={form} />
+      <FormData submitEndpoint={"/products/ukuran"} formInput={form} />
     </div>
   );
 }

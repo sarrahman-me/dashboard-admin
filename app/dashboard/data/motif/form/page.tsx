@@ -6,7 +6,7 @@ export default function FormMotif() {
     {
       type: "text",
       label: "Nama Motif",
-      name: "nama",
+      name: "nama_motif",
       autoFocus: true,
     },
   ];
@@ -14,7 +14,7 @@ export default function FormMotif() {
   return (
     <div>
       <HeaderAndBackIcon title="Tambah Motif" />
-      <FormData submitEndpoint={"/motif-barang"} formInput={form} />
+      <FormData submitEndpoint={"/products/motif"} formInput={form} />
     </div>
   );
 }

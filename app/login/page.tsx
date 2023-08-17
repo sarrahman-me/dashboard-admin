@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 import { useState } from "react";
 import { Button, Heading } from "@/src/components/atoms";
 import { Loading, Notify } from "notiflix";
@@ -19,14 +18,12 @@ export default function Login() {
     setLoading(true);
     Loading.hourglass();
     const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/users/masuk`,
+      `${process.env.NEXT_PUBLIC_HOST}/auth/user/login`,
       data
     );
 
     if (response.success) {
       Notify.success(response.message);
-      // Set cookie token
-      Cookies.set("tx", response.data.token, { expires: 1 });
       router.push("/dashboard");
       Loading.remove();
     } else {

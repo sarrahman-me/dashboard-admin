@@ -15,7 +15,7 @@ import { Confirm, Notify } from "notiflix";
 
 async function fetchBarangData(slug: string) {
   const response = await GetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/barang/${slug}`
+    `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
   );
   return response.data;
 }
@@ -47,7 +47,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
 
         try {
           const response = await PatchDataApi(
-            `${process.env.NEXT_PUBLIC_HOST}/barang/${slug}`,
+            `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`,
             payload
           );
           if (response.status === 200 || response.status === 201) {
@@ -78,7 +78,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
 
         try {
           const response = await PatchDataApi(
-            `${process.env.NEXT_PUBLIC_HOST}/barang/${slug}`,
+            `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`,
             payload
           );
           if (response.status === 200 || response.status === 201) {

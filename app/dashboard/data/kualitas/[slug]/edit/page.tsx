@@ -6,7 +6,7 @@ export default function EditKualitas({ params }: { params: { slug: string } }) {
     {
       type: "text",
       label: "Nama Kualitas",
-      name: "nama",
+      name: "nama_kualitas",
     },
   ];
 
@@ -14,7 +14,7 @@ export default function EditKualitas({ params }: { params: { slug: string } }) {
     <div>
       <HeaderAndBackIcon title="Edit Kualitas" />
       <FormEditData
-        submitEndpoint={`/kualitas-barang/${params.slug}`}
+        submitEndpoint={`/products/kualitas/${params.slug}`}
         formInput={form}
       />
     </div>

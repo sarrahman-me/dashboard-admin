@@ -7,12 +7,12 @@ export default async function detailMotif({
 }) {
   return (
     <DetailDataApi
-      dataEndpoint={`/motif-barang/${params.slug}`}
+      dataEndpoint={`/products/motif/${params.slug}`}
       title={"Motif"}
       keyValueData={[
         {
           key: "Nama",
-          value: "nama",
+          value: "nama_motif",
         },
       ]}
     />

@@ -12,7 +12,7 @@ export default function Barang() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/barang?page=1&limit=25`
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang?page=1&limit=25`
       );
       setBarang(data?.data);
     };

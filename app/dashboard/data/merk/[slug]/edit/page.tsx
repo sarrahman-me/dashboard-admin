@@ -5,8 +5,8 @@ export default function EditBrand({ params }: { params: { slug: string } }) {
   const form = [
     {
       type: "text",
-      label: "Nama Merk",
-      name: "nama",
+      label: "Nama Brand",
+      name: "nama_brand",
     },
   ];
 
@@ -14,7 +14,7 @@ export default function EditBrand({ params }: { params: { slug: string } }) {
     <div>
       <HeaderAndBackIcon title="Edit Brand" />
       <FormEditData
-        submitEndpoint={`/merk-barang/${params.slug}`}
+        submitEndpoint={`/suplier/brand/${params.slug}`}
         formInput={form}
       />
     </div>

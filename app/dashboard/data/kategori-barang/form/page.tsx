@@ -6,7 +6,7 @@ export default function FormKategoriBarang() {
     {
       type: "text",
       label: "Nama Kategori Barang",
-      name: "nama",
+      name: "nama_kategori",
       autoFocus: true,
     },
   ];
@@ -14,7 +14,7 @@ export default function FormKategoriBarang() {
   return (
     <div>
       <HeaderAndBackIcon title="Tambah Kategori Barang" />
-      <FormData submitEndpoint={"/kategori-barang"} formInput={form} />
+      <FormData submitEndpoint={"/products/kategori"} formInput={form} />
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function AppBar() {
     const fetchData = async () => {
       try {
         const response = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/users/auth/profile`
+          `${process.env.NEXT_PUBLIC_HOST}/auth/user/profile`
         );
         if (response?.status === 401) {
           window.location.reload();

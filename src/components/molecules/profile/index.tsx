@@ -1,6 +1,5 @@
 "use client";
 import { Confirm, Loading } from "notiflix";
-import Cookies from "js-cookie";
 import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -26,25 +25,20 @@ export default function ProfileAppBar(props: { user: any }) {
 
   const handleLogout = async () => {
     Loading.circle();
-    const token = Cookies.get("tx") || "";
     Confirm.show(
       "Konfirmasi",
       "Yakin Untuk Keluar ?",
       "Keluar",
       "Batal",
-      async () => {
+      () => {
         try {
-          fetch(`${process.env.NEXT_PUBLIC_HOST}/users/keluar`, {
+          fetch(`${process.env.NEXT_PUBLIC_HOST}/auth/user/logout`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              authorization: `Bearer ${token}`,
             },
             credentials: "include",
           }).then(() => {
-            Cookies.remove("tx");
-            Cookies.remove("rtx");
             router.push("/login");
             Loading.remove();
           });

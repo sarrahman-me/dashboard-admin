@@ -1,20 +1,20 @@
 import { FormEditData } from "@/src/template";
 import { HeaderAndBackIcon } from "@/src/components/molecules";
 
-export default function EditUkuran({ params }: { params: { slug: string } }) {
+export default function EditWarna({ params }: { params: { slug: string } }) {
   const form = [
     {
       type: "text",
-      label: "Nama Ukuran",
-      name: "nama_ukuran",
+      label: "Nama Warna",
+      name: "nama_warna",
     },
   ];
 
   return (
     <div>
-      <HeaderAndBackIcon title="Edit Ukuran" />
+      <HeaderAndBackIcon title="Edit Warna" />
       <FormEditData
-        submitEndpoint={`/products/ukuran/${params.slug}`}
+        submitEndpoint={`/products/warna/${params.slug}`}
         formInput={form}
       />
     </div>

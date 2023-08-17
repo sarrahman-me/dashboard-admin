@@ -4,9 +4,9 @@ export default function Kualitas() {
   return (
     <ReadDataTableApi
       title={"Kualitas"}
-      dataKey={["nama"]}
+      dataKey={["nama_kualitas"]}
       titleColumns={["Nama Kualitas"]}
-      dataEndpoint={"/kualitas-barang?page=1&limit=25"}
+      dataEndpoint={"/products/kualitas?page=1&limit=25"}
     />
   );
 }

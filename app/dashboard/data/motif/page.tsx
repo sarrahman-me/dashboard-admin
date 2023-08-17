@@ -4,9 +4,9 @@ export default async function Motif() {
   return (
     <ReadDataTableApi
       title={"Motif"}
-      dataKey={["nama"]}
+      dataKey={["nama_motif"]}
       titleColumns={["Nama Motif"]}
-      dataEndpoint={"/motif-barang?page=1&limit=25"}
+      dataEndpoint={"/products/motif?page=1&limit=25"}
     />
   );
 }

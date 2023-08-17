@@ -4,9 +4,9 @@ export default async function Tekstur() {
   return (
     <ReadDataTableApi
       title={"Tekstur"}
-      dataKey={["nama"]}
+      dataKey={["nama_tekstur"]}
       titleColumns={["Nama Tekstur"]}
-      dataEndpoint={"/tekstur-barang?page=1&limit=25"}
+      dataEndpoint={"/products/tekstur?page=1&limit=25"}
     />
   );
 }

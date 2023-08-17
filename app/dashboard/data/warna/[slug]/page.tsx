@@ -1,18 +1,18 @@
 import { DetailDataApi } from "@/src/template";
 
-export default async function detailTekstur({
+export default async function detailWarna({
   params,
 }: {
   params: { slug: string };
 }) {
   return (
     <DetailDataApi
-      dataEndpoint={`/products/tekstur/${params.slug}`}
-      title={"Tekstur"}
+      dataEndpoint={`/products/warna/${params.slug}`}
+      title={"Warna"}
       keyValueData={[
         {
           key: "Nama",
-          value: "nama_tekstur",
+          value: "nama_warna",
         },
       ]}
     />

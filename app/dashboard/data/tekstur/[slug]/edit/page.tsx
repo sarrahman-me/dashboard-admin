@@ -6,7 +6,7 @@ export default function EditTekstur({ params }: { params: { slug: string } }) {
     {
       type: "text",
       label: "Nama Tekstur",
-      name: "nama",
+      name: "nama_tekstur",
     },
   ];
 
@@ -14,7 +14,7 @@ export default function EditTekstur({ params }: { params: { slug: string } }) {
     <div>
       <HeaderAndBackIcon title="Edit Tekstur" />
       <FormEditData
-        submitEndpoint={`/tekstur-barang/${params.slug}`}
+        submitEndpoint={`/products/tekstur/${params.slug}`}
         formInput={form}
       />
     </div>

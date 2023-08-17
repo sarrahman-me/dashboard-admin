@@ -7,12 +7,12 @@ export default async function detailUkuran({
 }) {
   return (
     <DetailDataApi
-      dataEndpoint={`/ukuran-barang/${params.slug}`}
+      dataEndpoint={`/products/ukuran/${params.slug}`}
       title={"Ukuran"}
       keyValueData={[
         {
           key: "Nama",
-          value: "nama",
+          value: "nama_ukuran",
         },
       ]}
     />

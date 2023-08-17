@@ -2,8 +2,8 @@ import { TextFooter } from "@/src/components/molecules";
 import { Sidebar, BottomBar, AppBar } from "@/src/components/organisms";
 
 export const metadata = {
-  title: "Dashboard - Dunia Keramik",
-  description: "Dunia Keramik",
+  title: "Dashboard - sarrahman bangunan",
+  description: "Sarrahman bangunan",
 };
 
 export default function DashboardLayout({

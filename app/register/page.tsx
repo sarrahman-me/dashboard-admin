@@ -17,7 +17,7 @@ export default function Register() {
     setLoading(true);
     Loading.circle();
     const response = await PostDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/users/daftar`,
+      `${process.env.NEXT_PUBLIC_HOST}/auth/user/register`,
       data
     );
     if (response.success) {
@@ -37,16 +37,31 @@ export default function Register() {
       type: "text",
       label: "Nama",
       name: "nama",
+      placeholder: "eg. Jhon Doe",
     },
     {
       type: "text",
       label: "Username",
       name: "username",
+      placeholder: "@username",
+    },
+    {
+      type: "email",
+      label: "Email",
+      name: "email",
+      placeholder: "yourMail@example.com",
+    },
+    {
+      type: "number",
+      label: "Whatsapp",
+      name: "no_whatsapp",
+      placeholder: "08123456789",
     },
     {
       type: "password",
       label: "Password",
       name: "password",
+      placeholder: "******",
     },
   ];
 
@@ -54,7 +69,7 @@ export default function Register() {
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="mb-3">
-          <Heading>Dunia Bangunan</Heading>
+          <Heading>Sarrahman Bangunan</Heading>
         </div>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <form

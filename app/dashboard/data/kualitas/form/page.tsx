@@ -6,7 +6,7 @@ export default function FormKualitas() {
     {
       type: "text",
       label: "Nama Kualitas",
-      name: "nama",
+      name: "nama_kualitas",
       autoFocus: true,
     },
   ];
@@ -14,7 +14,7 @@ export default function FormKualitas() {
   return (
     <div>
       <HeaderAndBackIcon title="Form Kualitas" />
-      <FormData submitEndpoint={"/kualitas-barang"} formInput={form} />
+      <FormData submitEndpoint={"/products/kualitas"} formInput={form} />
     </div>
   );
 }

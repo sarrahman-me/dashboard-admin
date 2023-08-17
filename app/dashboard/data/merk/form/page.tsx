@@ -1,20 +1,20 @@
 import { FormData } from "@/src/template";
 import { HeaderAndBackIcon } from "@/src/components/molecules";
 
-export default function FormMerk() {
+export default function FormBrand() {
   const form = [
     {
       type: "text",
-      label: "Nama Merk",
-      name: "nama",
+      label: "Nama Brand",
+      name: "nama_brand",
       autoFocus: true,
     },
   ];
 
   return (
     <div>
-      <HeaderAndBackIcon title="Form Merk" />
-      <FormData submitEndpoint={"/merk-barang"} formInput={form} />
+      <HeaderAndBackIcon title="Form Brand" />
+      <FormData submitEndpoint={"/suplier/brand"} formInput={form} />
     </div>
   );
 }

@@ -1,20 +1,20 @@
 import { HeaderAndBackIcon } from "@/src/components/molecules";
 import { FormData } from "@/src/template";
 
-export default function FormTekstur() {
+export default function FormWarna() {
   const form = [
     {
       type: "text",
-      label: "Nama Tekstur",
-      name: "nama_tekstur",
+      label: "Nama Warna",
+      name: "nama_warna",
       autoFocus: true,
     },
   ];
 
   return (
     <div>
-      <HeaderAndBackIcon title="Tambah Tekstur" />
-      <FormData submitEndpoint={"/products/tekstur"} formInput={form} />
+      <HeaderAndBackIcon title="Tambah Warna" />
+      <FormData submitEndpoint={"/products/warna"} formInput={form} />
     </div>
   );
 }

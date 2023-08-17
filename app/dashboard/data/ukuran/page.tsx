@@ -4,9 +4,9 @@ export default async function Ukuran() {
   return (
     <ReadDataTableApi
       title={"Ukuran"}
-      dataKey={["nama"]}
+      dataKey={["nama_ukuran"]}
       titleColumns={["Nama Ukuran"]}
-      dataEndpoint={"/ukuran-barang?page=1&limit=25"}
+      dataEndpoint={"/products/ukuran?page=1&limit=25"}
     />
   );
 }

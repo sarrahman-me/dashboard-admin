@@ -3,12 +3,12 @@ import { DetailDataApi } from "@/src/template";
 const DetailBrand = ({ params }: { params: { slug: string } }) => {
   return (
     <DetailDataApi
-      dataEndpoint={`/merk-barang/${params.slug}`}
+      dataEndpoint={`/suplier/brand/${params.slug}`}
       title={params.slug}
       keyValueData={[
         {
           key: "Nama",
-          value: "nama",
+          value: "nama_brand",
         },
       ]}
     />

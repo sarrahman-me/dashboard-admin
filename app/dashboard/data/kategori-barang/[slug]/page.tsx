@@ -7,12 +7,12 @@ export default async function detailKategoriBarang({
 }) {
   return (
     <DetailDataApi
-      dataEndpoint={`/kategori-barang/${params.slug}`}
+      dataEndpoint={`/products/kategori/${params.slug}`}
       title={"Kategori Barang"}
       keyValueData={[
         {
           key: "Nama",
-          value: "nama",
+          value: "nama_kategori",
         },
       ]}
     />

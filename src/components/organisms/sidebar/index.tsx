@@ -39,6 +39,10 @@ const listMenu = [
     label: "Ukuran",
     href: "/dashboard/data/ukuran",
   },
+  {
+    label: "Warna",
+    href: "/dashboard/data/warna",
+  },
 ];
 
 export default function Sidebar() {
