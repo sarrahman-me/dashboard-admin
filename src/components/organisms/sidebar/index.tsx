@@ -8,7 +8,7 @@ const menuItems = [
   {
     label: "Barang",
     icon: (
-      <FaCube className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+      <FaCube className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/barang",
   },
@@ -49,10 +49,10 @@ export default function Sidebar() {
   return (
     <aside
       id="default-sidebar"
-      className="bg-gray-50 fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 select-none"
+      className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 select-none"
       aria-label="Sidebar"
     >
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-slate-800">
+      <div className="h-full px-3 py-4 overflow-y-auto">
         <div className="justify-center flex">
           <Image className="h-28 w-28" src={logo} alt="logo" />
         </div>
@@ -62,7 +62,7 @@ export default function Sidebar() {
             href={"/dashboard"}
             text={"Dashboard"}
             iconComponent={
-              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
             }
           />
           {menuItems.map((item) => (
@@ -75,7 +75,7 @@ export default function Sidebar() {
           ))}
           <DropdownList
             iconComponent={
-              <BsDatabase className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+              <BsDatabase className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
             }
             title="Master Data"
             listMenu={listMenu}

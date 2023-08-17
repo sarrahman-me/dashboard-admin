@@ -35,7 +35,7 @@ export default function AppBar() {
   }, [router]);
 
   return (
-    <div className="select-none p-6 px-8 md:p-12 md:px-16 flex justify-end sm:justify-between items-center">
+    <div className="select-none p-2 px-4 md:p-4 md:px-8 flex justify-end sm:justify-between items-center">
       <div className="hidden sm:flex divide-x-8 divide-transparent">
         <ResizeLayarButton />
         <ToggleDarkMode />

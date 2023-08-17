@@ -12,12 +12,12 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-slate-950 dark:text-slate-50 min-h-screen">
+    <div className="bg-white dark:bg-slate-800 dark:text-slate-50 min-h-screen">
       <Sidebar />
       <div className="sm:ml-64">
-        <AppBar />
-        <div className="p-4">
-          {children}
+        <div className="bg-gray-50 min-h-screen dark:bg-gray-900">
+          <AppBar />
+          <div className="p-4">{children}</div>
           <TextFooter />
         </div>
         <BottomBar />
