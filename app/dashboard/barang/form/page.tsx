@@ -60,8 +60,8 @@ export default function FormBarang() {
     },
     {
       type: "select-api",
-      label: "Merk",
-      name: "merk",
+      label: "Brand",
+      name: "brand",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/brand`,
       keyValue: ["slug", "nama_brand"],
     },
@@ -119,7 +119,7 @@ export default function FormBarang() {
         <Heading>Tambah Barang</Heading>
       </div>
       <form className="mt-5" onSubmit={handleSubmit}>
-        <div className="shadow p-2 rounded mb-4">
+        <div className="shadow p-2 rounded mb-4 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Barang :</p>
           <TextfieldGroup
             error={error}
@@ -128,7 +128,7 @@ export default function FormBarang() {
             data={data}
           />
         </div>
-        <div className="shadow p-2 rounded mt-5">
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Harga :</p>
           <Input
             label="Harga"
@@ -138,7 +138,7 @@ export default function FormBarang() {
             onChange={(event) => setHargaBeli(event.target.value)}
           />
         </div>
-        <div className="shadow p-2 rounded mt-5">
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Gambar :</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
         </div>

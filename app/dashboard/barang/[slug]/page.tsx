@@ -114,7 +114,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
         </div>
         <div className="flex flex-col justify-around">
           <p className="text-xl font-bold">{barang.nama_barang}</p>
-          <ListData label="Brand" value={barang.merk} />
+          <ListData label="Brand" value={barang.brand} />
           <span className="inline-flex items-center">
             <ListData label="Stok" value={barang.stok} />
             <FaPen
@@ -136,7 +136,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
           </span>
         </div>
         <EditDataIcon />
-        <RemoveDataIcon url={`/barang/${params.slug}`} />
+        <RemoveDataIcon url={`/products/barang/${params.slug}`} />
       </div>
       {/* bagian keterangan */}
       <div className="shadow rounded my-3 p-2 dark:bg-slate-800">

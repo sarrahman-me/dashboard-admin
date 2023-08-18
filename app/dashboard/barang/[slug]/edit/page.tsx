@@ -67,48 +67,61 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       type: "text",
       label: "Nama Barang",
       name: "nama_barang",
+      autoFocus: true,
     },
     {
       type: "select-api",
       label: "Kategori Barang",
       name: "kategori",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kategori`,
-      keyValue: ["slug", "nama"],
+      keyValue: ["slug", "nama_kategori"],
     },
     {
       type: "select-api",
-      label: "Merk",
-      name: "merk",
-      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/merk`,
-      keyValue: ["slug", "nama"],
+      label: "Brand",
+      name: "brand",
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/brand`,
+      keyValue: ["slug", "nama_brand"],
     },
     {
       type: "select-api",
       label: "Ukuran",
       name: "ukuran",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/ukuran`,
-      keyValue: ["slug", "nama"],
+      keyValue: ["slug", "nama_ukuran"],
     },
     {
       type: "select-api",
       label: "Motif",
       name: "motif",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/motif`,
-      keyValue: ["slug", "nama"],
+      keyValue: ["slug", "nama_motif"],
     },
     {
       type: "select-api",
       label: "Tekstur",
       name: "tekstur",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/tekstur`,
-      keyValue: ["slug", "nama"],
+      keyValue: ["slug", "nama_tekstur"],
     },
     {
       type: "select-api",
       label: "Kualitas",
       name: "kualitas",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kualitas`,
-      keyValue: ["slug", "nama"],
+      keyValue: ["slug", "nama_kualitas"],
+    },
+    {
+      type: "select-api",
+      label: "Warna",
+      name: "warna",
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/warna`,
+      keyValue: ["slug", "nama_warna"],
+    },
+    {
+      type: "number",
+      label: "Berat barang",
+      name: "berat",
     },
     {
       type: "number",
@@ -124,7 +137,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       </div>
       <form className="mt-5" onSubmit={handleSubmit}>
         {/* Form input untuk mengedit data barang */}
-        <div className="shadow p-2 rounded mb-4">
+        <div className="shadow p-2 rounded mb-4 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Barang:</p>
           <TextfieldGroup
             error={error}
@@ -136,7 +149,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Form input untuk mengedit harga */}
-        <div className="shadow p-2 rounded mt-5">
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Harga:</p>
           <Input
             type="number"
@@ -150,7 +163,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Form input untuk mengedit gambar */}
-        <div className="shadow p-2 rounded mt-5">
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Gambar:</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
         </div>

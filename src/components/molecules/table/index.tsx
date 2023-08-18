@@ -38,7 +38,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
                 className={`${
                   notClickable
                     ? "cursor-default"
-                    : "cursor-pointer hover:bg-gray-50 dark:hover:bg-amber-700"
+                    : "cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-400"
                 } bg-white border-b dark:bg-slate-500 dark:border-slate-50`}
               >
                 <td className="px-6 py-4">{index + 1}</td>
