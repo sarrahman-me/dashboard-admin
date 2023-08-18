@@ -1,5 +1,4 @@
 "use client"; // Error components must be Client Components
-import { Button } from "@/src/components/atoms";
 import Image from "next/image";
 import { useEffect } from "react";
 import errorImage from "@/public/error.jpg";

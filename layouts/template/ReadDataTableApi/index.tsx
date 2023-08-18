@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { TableWithAddButton } from "@/src/components/organisms";
-import { GetDataApi } from "@/src/utils";
+import { TableWithAddButton } from "@/layouts/components/organisms";
+import { GetDataApi } from "@/utils";
 
 const ReadDataTableApi = (props: {
   dataEndpoint: string;

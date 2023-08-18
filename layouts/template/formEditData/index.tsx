@@ -1,12 +1,12 @@
 "use client";
-import { Button } from "@/src/components/atoms";
+import { Button } from "@/layouts/components/atoms";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { PostDataApi } from "@/src/utils";
+import { useState, useEffect } from "react";
+import { GetDataApi, PatchDataApi } from "@/utils";
 import { Notify } from "notiflix";
-import { TextfieldGroup } from "@/src/components/organisms";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
-export default function FormData(props: {
+export default function FormEditData(props: {
   submitEndpoint: string;
   formInput: any;
 }) {
@@ -14,12 +14,31 @@ export default function FormData(props: {
   const [data, setdata] = useState({} as any);
   const [error, seterror] = useState({} as any);
 
+  // Mengambil data yang akan diedit
+  useEffect(() => {
+    const getData = async () => {
+      const response = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}${props.submitEndpoint}`
+      );
+      const data = response.data;
+      props.formInput.map((input: any, i: any) => {
+        setdata({
+          ...data,
+          [input.name]: data[input.name],
+        });
+      });
+    };
+    getData();
+  }, [props.submitEndpoint, props.formInput]);
+
+  // Mengirim Permintaan edit ke server
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const response = await PostDataApi(
+    const response = await PatchDataApi(
       `${process.env.NEXT_PUBLIC_HOST}${props.submitEndpoint}`,
       data
     );
+    console.log(response);
     if (response.success) {
       Notify.success(response.message);
       router.back();

@@ -1,10 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Heading } from "@/src/components/atoms";
+import { Button, Heading } from "@/layouts/components/atoms";
 import { Loading, Notify } from "notiflix";
-import { PostDataApi } from "@/src/utils";
-import { TextfieldGroup } from "@/src/components/organisms";
+import { PostDataApi } from "@/utils";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function Register() {
   const router = useRouter();

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaTachometerAlt, FaCube } from "react-icons/fa";
-import { BsDatabase } from "react-icons/bs";
-import { DropdownList, ListIcon } from "@/src/components/molecules";
+import { FaTachometerAlt, FaCube, FaUsers } from "react-icons/fa";
+import { BsFillDatabaseFill } from "react-icons/bs";
+import { DropdownList, ListIcon } from "@/layouts/components/molecules";
 
 const menuItems = [
   {
@@ -11,6 +11,13 @@ const menuItems = [
       <FaCube className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/barang",
+  },
+  {
+    label: "Suplier",
+    icon: (
+      <FaUsers className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+    ),
+    href: "/dashboard/suplier",
   },
 ];
 
@@ -75,7 +82,7 @@ export default function Sidebar() {
           ))}
           <DropdownList
             iconComponent={
-              <BsDatabase className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+              <BsFillDatabaseFill className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
             }
             title="Master Data"
             listMenu={listMenu}

@@ -1,5 +1,5 @@
 "use client";
-import { DeleteDataApi } from "@/src/utils";
+import { DeleteDataApi } from "@/utils";
 import { useRouter } from "next/navigation";
 import { Confirm, Notify } from "notiflix";
 import { FaTrash } from "react-icons/fa";

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { GetDataApi } from "@/src/utils";
+import { GetDataApi } from "@/utils";
 
 export default function SelectApi(props: {
   apiUrl: string;

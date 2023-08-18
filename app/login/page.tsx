@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Heading } from "@/src/components/atoms";
+import { Button, Heading } from "@/layouts/components/atoms";
 import { Loading, Notify } from "notiflix";
-import { TextFooter } from "@/src/components/molecules";
-import { PostDataApi } from "@/src/utils";
-import { TextfieldGroup } from "@/src/components/organisms";
+import { TextFooter } from "@/layouts/components/molecules";
+import { PostDataApi } from "@/utils";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function Login() {
   const router = useRouter();

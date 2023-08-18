@@ -1,5 +1,5 @@
-import { HeaderAndBackIcon } from "@/src/components/molecules";
-import { FormEditData } from "@/src/template";
+import { HeaderAndBackIcon } from "@/layouts/components/molecules";
+import { FormEditData } from "@/layouts/template";
 
 export default function EditBrand({ params }: { params: { slug: string } }) {
   const form = [

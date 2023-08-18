@@ -1,5 +1,5 @@
-import { FormData } from "@/src/template";
-import { HeaderAndBackIcon } from "@/src/components/molecules";
+import { FormData } from "@/layouts/template";
+import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 
 export default function FormKualitas() {
   const form = [

@@ -1,5 +1,5 @@
-import { HeaderAndBackIcon } from "@/src/components/molecules";
-import { FormData } from "@/src/template";
+import { HeaderAndBackIcon } from "@/layouts/components/molecules";
+import { FormData } from "@/layouts/template";
 
 export default function FormKategoriBarang() {
   const form = [

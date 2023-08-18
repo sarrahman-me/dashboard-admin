@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { GetDataApi } from "@/src/utils";
+import { GetDataApi } from "@/utils";
 import { ProfileAppBar } from "../../molecules";
 import { ResizeLayarButton, ToggleDarkMode } from "../../atoms";
 import { Report } from "notiflix";

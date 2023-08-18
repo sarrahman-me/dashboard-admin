@@ -4,9 +4,9 @@ import {
   EditDataIcon,
   ListData,
   RemoveDataIcon,
-} from "@/src/components/atoms";
+} from "@/layouts/components/atoms";
 import { useState, useEffect } from "react";
-import { GetDataApi } from "@/src/utils";
+import { GetDataApi } from "@/utils";
 
 const DetailDataApi = (props: {
   dataEndpoint: string;
@@ -33,7 +33,7 @@ const DetailDataApi = (props: {
         <h2 className="font-bold text-lg">Detail {props.title}</h2>
       </div>
       <div className="md:flex mt-4">
-        <div className="m-2 p-2 border rounded-lg shadow-lg md:w-full dark:bg-slate-800">
+        <div className="m-2 p-2 border rounded-lg shadow-lg md:w-full bg-white dark:bg-slate-800">
           {/* section list data */}
           {props.keyValueData.map((item: any, i) => (
             <div key={i}>

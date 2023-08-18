@@ -1,11 +1,11 @@
 "use client";
-import { BackIcon, Button, Heading, Input } from "@/src/components/atoms";
+import { BackIcon, Button, Heading, Input } from "@/layouts/components/atoms";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { PostDataApi } from "@/src/utils";
+import { PostDataApi } from "@/utils";
 import { Loading, Notify } from "notiflix";
-import { ImageInputWithPreview } from "@/src/components/molecules";
-import { TextfieldGroup } from "@/src/components/organisms";
+import { ImageInputWithPreview } from "@/layouts/components/molecules";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function FormBarang() {
   const router = useRouter();

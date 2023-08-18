@@ -1,5 +1,5 @@
-import { FormEditData } from "@/src/template";
-import { HeaderAndBackIcon } from "@/src/components/molecules";
+import { FormEditData } from "@/layouts/template";
+import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 
 export default function EditWarna({ params }: { params: { slug: string } }) {
   const form = [

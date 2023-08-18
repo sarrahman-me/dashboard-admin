@@ -1,5 +1,5 @@
 import react from "react";
-import { DetailDataApi } from "@/src/template";
+import { DetailDataApi } from "@/layouts/template";
 
 export default async function detailUkuran({
   params,

@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import { TableWithAddButton } from "@/src/components/organisms";
+import { TableWithAddButton } from "@/layouts/components/organisms";
 import { RiSearchLine } from "react-icons/ri";
-import { GetDataApi } from "@/src/utils";
+import { GetDataApi } from "@/utils";
 import { Block, Notify } from "notiflix";
 
 export default function Barang() {

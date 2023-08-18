@@ -53,7 +53,7 @@ export default function DropdownList(props: {
                 onClick={() => router.push(item.href)}
                 className={`cursor-pointer rounded-lg hover:underline block px-4 text-amber-900 dark:text-slate-50 py-2 ${
                   currentPage
-                    ? "bg-amber-200 hover:bg-amber-200 dark:text-amber-50 dark:bg-amber-800 dark:border"
+                    ? "bg-amber-200 hover:bg-amber-200 dark:text-amber-50 dark:bg-amber-500 dark:border"
                     : "hover:bg-amber-100 dark:hover:text-amber-900"
                 }`}
               >

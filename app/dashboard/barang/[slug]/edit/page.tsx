@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Input } from "@/src/components/atoms";
-import { GetDataApi, PatchDataApi } from "@/src/utils";
+import { Button, Input } from "@/layouts/components/atoms";
+import { GetDataApi, PatchDataApi } from "@/utils";
 import { Notify } from "notiflix";
 import {
   HeaderAndBackIcon,
   ImageInputWithPreview,
-} from "@/src/components/molecules";
-import { TextfieldGroup } from "@/src/components/organisms";
+} from "@/layouts/components/molecules";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function EditBarang({ params }: { params: { slug: string } }) {
   const router = useRouter();

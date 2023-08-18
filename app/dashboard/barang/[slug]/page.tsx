@@ -7,8 +7,8 @@ import {
   Heading,
   ListData,
   RemoveDataIcon,
-} from "@/src/components/atoms";
-import { GetDataApi, PatchDataApi } from "@/src/utils";
+} from "@/layouts/components/atoms";
+import { GetDataApi, PatchDataApi } from "@/utils";
 import moment from "moment";
 import { FaPen } from "react-icons/fa";
 import { Confirm, Notify } from "notiflix";
@@ -104,7 +104,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
         <BackIcon />
         <Heading>Detail Barang</Heading>
       </div>
-      <div className="flex md:flex-row flex-col shadow rounded my-3 p-2 dark:bg-slate-800">
+      <div className="flex md:flex-row flex-col shadow rounded my-3 p-2 bg-white dark:bg-slate-800">
         <div className="w-1/3 flex justify-center">
           <img
             className="w-36 h-36 border"
@@ -139,7 +139,7 @@ function DetailBarang({ params }: { params: { slug: string } }) {
         <RemoveDataIcon url={`/products/barang/${params.slug}`} />
       </div>
       {/* bagian keterangan */}
-      <div className="shadow rounded my-3 p-2 dark:bg-slate-800">
+      <div className="shadow rounded my-3 p-2 dark:bg-slate-800 bg-white">
         <p className="font-bold">Informasi Barang:</p>
         <div className="md:pl-5 pl-2">
           <ListData label="Kategori" value={barang.kategori} />

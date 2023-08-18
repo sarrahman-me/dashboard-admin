@@ -1,4 +1,4 @@
-import { ReadDataTableApi } from "@/src/template";
+import { ReadDataTableApi } from "@/layouts/template";
 
 export default async function Ukuran() {
   return (

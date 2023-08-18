@@ -13,7 +13,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
   const pathname = usePathname();
 
   return (
-    <div className="relative overflow-x-auto p-1 shadow rounded">
+    <div className="relative overflow-x-auto p-1">
       <table className="w-full text-sm text-left">
         <thead className="text-xs text-black uppercase bg-gray-300 dark:bg-slate-800 dark:text-slate-50 rounded-t-md">
           <tr>

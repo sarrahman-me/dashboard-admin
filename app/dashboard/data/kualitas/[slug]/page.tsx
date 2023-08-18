@@ -1,4 +1,4 @@
-import { DetailDataApi } from "@/src/template";
+import { DetailDataApi } from "@/layouts/template";
 
 const DetailKualitas = ({ params }: { params: { slug: string } }) => {
   return (
