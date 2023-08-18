@@ -61,7 +61,7 @@ export default function Barang() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyPress}
-            className="w-full px-4 py-2 rounded-md shadow shadow-sky-200 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring focus:ring-sky-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500"
+            className="w-full px-4 py-2 rounded-md shadow shadow-amber-200 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring focus:ring-amber-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-amber-500 dark:focus:border-amber-500"
           />
           <button
             type="submit"

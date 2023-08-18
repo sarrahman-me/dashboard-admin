@@ -14,8 +14,8 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
 
   return (
     <div className="relative overflow-x-auto p-1 shadow rounded">
-      <table className="w-full text-sm text-left text-slate-500 dark:text-slate-400">
-        <thead className="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-900 dark:text-slate-400">
+      <table className="w-full text-sm text-left">
+        <thead className="text-xs text-black uppercase bg-gray-300 dark:bg-slate-800 dark:text-slate-50 rounded-t-md">
           <tr>
             <th>Nomor</th>
             {titleColumns.map((title: string, index: number) => (
@@ -38,8 +38,8 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
                 className={`${
                   notClickable
                     ? "cursor-default"
-                    : "cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700"
-                } bg-white border-b dark:bg-slate-800 dark:border-slate-700`}
+                    : "cursor-pointer hover:bg-gray-50 dark:hover:bg-amber-700"
+                } bg-white border-b dark:bg-slate-500 dark:border-slate-50`}
               >
                 <td className="px-6 py-4">{index + 1}</td>
                 {dataKey.map((key: string, index: number) => (
@@ -55,7 +55,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
             <tr>
               <td
                 colSpan={titleColumns.length + 1}
-                className="px-6 py-4 text-center text-slate-500 dark:text-slate-400"
+                className="px-6 py-4 text-center text-amber-500 dark:text-amber-400"
               >
                 Tidak ada data
               </td>
