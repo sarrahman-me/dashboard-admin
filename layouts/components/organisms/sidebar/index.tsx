@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaTachometerAlt, FaCube, FaUsers } from "react-icons/fa";
+import { FaTachometerAlt, FaCube, FaUsers, FaSitemap } from "react-icons/fa";
 import { BsFillDatabaseFill } from "react-icons/bs";
 import { DropdownList, ListIcon } from "@/layouts/components/molecules";
 
@@ -18,6 +18,13 @@ const menuItems = [
       <FaUsers className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/suplier",
+  },
+  {
+    label: "Mitra",
+    icon: (
+      <FaSitemap className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+    ),
+    href: "/dashboard/mitra",
   },
 ];
 
