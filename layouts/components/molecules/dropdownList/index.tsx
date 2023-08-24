@@ -21,11 +21,12 @@ export default function DropdownList(props: {
     <div>
       <li
         onClick={handleDropdownToggle}
-        className="flex hover:underline hover:cursor-pointer items-center p-2 text-indigo-900 rounded-lg
-        dark:text-white hover:bg-indigo-100 dark:hover:bg-indigo-700"
+        className="flex hover:cursor-pointer items-center p-2 text-indigo-500 rounded-lg"
       >
-       {props.iconComponent}
-        <span className="flex-1 ml-3 whitespace-nowrap">{props.title}</span>
+        {props.iconComponent}
+        <span className="flex-1 ml-3 whitespace-nowrap text-indigo-900 dark:text-white">
+          {props.title}
+        </span>
         <span>
           <FaArrowCircleUp className={`${isOpen ? "hidden" : ""}`} />
           <FaArrowCircleDown className={`${isOpen ? "" : "hidden"}`} />
@@ -38,7 +39,7 @@ export default function DropdownList(props: {
         }`}
       >
         <ul
-          className="py-2 text-sm text-indigo-700 dark:text-indigo-200"
+          className="py-2 text-sm text-indigo-900 dark:text-indigo-200"
           aria-labelledby="dropdownDefaultButton"
         >
           {props.listMenu.map((item: any, i: any) => {
@@ -51,10 +52,10 @@ export default function DropdownList(props: {
               <li
                 key={i}
                 onClick={() => router.push(item.href)}
-                className={`cursor-pointer rounded-lg hover:underline block px-4 text-indigo-900 dark:text-slate-50 py-2 ${
+                className={`cursor-pointer rounded-lg block px-4 text-indigo-900 dark:text-slate-50 py-2 ${
                   currentPage
-                    ? "bg-indigo-200 hover:bg-indigo-200 dark:text-indigo-50 dark:bg-indigo-500 dark:border"
-                    : "hover:bg-indigo-100 dark:hover:text-indigo-900"
+                    ? "border-l-2 border-indigo-500"
+                    : "hover:border-l-2 border-indigo-50"
                 }`}
               >
                 {item.label}

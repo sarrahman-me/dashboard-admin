@@ -1,29 +1,29 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import { FaTachometerAlt, FaCube, FaUsers, FaSitemap } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 import { BsFillDatabaseFill } from "react-icons/bs";
 import { DropdownList, ListIcon } from "@/layouts/components/molecules";
 
 const menuItems = [
   {
+    label: "Dashboard",
+    icon: <MdDashboard />,
+    href: "/dashboard",
+  },
+  {
     label: "Barang",
-    icon: (
-      <FaCube className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
+    icon: <FaCube />,
     href: "/dashboard/barang",
   },
   {
     label: "Suplier",
-    icon: (
-      <FaUsers className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
+    icon: <FaUsers />,
     href: "/dashboard/suplier",
   },
   {
     label: "Mitra",
-    icon: (
-      <FaSitemap className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-    ),
+    icon: <FaSitemap />,
     href: "/dashboard/mitra",
   },
 ];
@@ -68,17 +68,13 @@ export default function Sidebar() {
     >
       <div className="h-full px-3 py-4 overflow-y-auto">
         <div className="justify-center flex">
-          <Image className="h-28 w-28" src={logo} alt="logo" />
-        </div>
-        <ul className="space-y-2 m-2 pl-3 font-medium">
-          <ListIcon
-            key={"Dashboard"}
-            href={"/dashboard"}
-            text={"Dashboard"}
-            iconComponent={
-              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-            }
+          <Image
+            className="h-16 w-16 bg-indigo-500 dark:bg-transparent rounded-xl"
+            src={logo}
+            alt="logo"
           />
+        </div>
+        <ul className="space-y-3 mt-5 m-2 pl-3 font-medium">
           {menuItems.map((item) => (
             <ListIcon
               key={item.label}
@@ -88,9 +84,7 @@ export default function Sidebar() {
             />
           ))}
           <DropdownList
-            iconComponent={
-              <BsFillDatabaseFill className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
-            }
+            iconComponent={<BsFillDatabaseFill />}
             title="Master Data"
             listMenu={listMenu}
           />

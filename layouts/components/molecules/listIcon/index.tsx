@@ -20,11 +20,17 @@ export default function ListIcon({ text, iconComponent, href }: Props) {
       onClick={() => router.push(href)}
       className={`cursor-pointer ${
         currentPage
-          ? "bg-indigo-200 hover:bg-indigo-200 dark:text-indigo-50 dark:bg-indigo-500 dark:border"
-          : "hover:bg-indigo-100 dark:hover:text-indigo-900"
-      } flex hover:underline text-indigo-900 items-center p-2 rounded-lg dark:text-slate-50`}
+          ? "bg-indigo-200 hover:bg-indigo-200 dark:text-indigo-50 dark:bg-slate-800 dark:border"
+          : ""
+      } flex text-indigo-900 items-center p-2 rounded-lg dark:text-slate-50`}
     >
-      {iconComponent}
+      <div
+        className={`${
+          currentPage ? "text-white bg-indigo-500" : "text-indigo-500 bg-white dark:bg-slate-800"
+        } p-2 rounded-xl`}
+      >
+        {iconComponent}
+      </div>
       <span className="flex-1 ml-3 whitespace-nowrap">{text}</span>
     </li>
   );
