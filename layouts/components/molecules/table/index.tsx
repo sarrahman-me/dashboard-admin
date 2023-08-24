@@ -55,7 +55,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
             <tr>
               <td
                 colSpan={titleColumns.length + 1}
-                className="px-6 py-4 text-center text-amber-500 dark:text-amber-400"
+                className="px-6 py-4 text-center text-indigo-500 dark:text-indigo-400"
               >
                 Tidak ada data
               </td>

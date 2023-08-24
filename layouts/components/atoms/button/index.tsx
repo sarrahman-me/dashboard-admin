@@ -40,7 +40,7 @@ export default function Button(props: {
         disabled={props.isLoading}
         className={`${
           props.isFullWidth ? "w-full" : ""
-        } text-white ${color} hover:shadow-md bg-amber-600 hover:opacity-80 font-medium rounded-lg text-sm px-5 py-2.5 m-1 text-center ${
+        } text-white ${color} hover:shadow-md bg-indigo-600 hover:opacity-80 font-medium rounded-lg text-sm px-5 py-2.5 m-1 text-center ${
           props.className
         }`}
       >

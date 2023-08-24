@@ -69,7 +69,15 @@ export default function Login() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Masuk
             </Button>
-            <TextFooter />
+            <p className="text-center">
+              Belum punya akun{" "}
+              <span
+                onClick={() => router.push("/register")}
+                className="underline text-indigo-500 cursor-pointer"
+              >
+                Daftar
+              </span>
+            </p>
           </form>
         </div>
       </div>

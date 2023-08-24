@@ -18,7 +18,11 @@ export default function RootLayout({
   return (
     <html lang="id">
       {/* Bagian utama dari layout, berisi children yang merupakan konten utama dari aplikasi, dan className inter.className yang digunakan untuk menambahkan font Inter ke dalam aplikasi. */}
-      <body id="root" className={inter.className}>{children}</body>
+      <body id="root" className={inter.className}>
+        <div className="bg-slate-50 dark:bg-slate-900 dark:text-white text-black min-h-screen">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

@@ -24,7 +24,7 @@ export default function ResizeLayarButton() {
     <div>
       <button
         onClick={handleFullScreen}
-        className="flex items-center gap-2 p-2 rounded-lg transition-colors duration-300 focus:outline-none text-amber-500 focus:ring-amber-600"
+        className="flex items-center gap-2 p-2 rounded-lg transition-colors duration-300 focus:outline-none text-indigo-500 focus:ring-indigo-600"
       >
         {isFullscreen ? <FaCompress /> : <FaExpand />}
       </button>

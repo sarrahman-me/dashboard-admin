@@ -54,7 +54,7 @@ export default function Register() {
     {
       type: "number",
       label: "Whatsapp",
-      name: "no_whatsapp",
+      name: "whatsapp",
       placeholder: "08123456789",
     },
     {
@@ -85,6 +85,15 @@ export default function Register() {
             <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
               Daftar
             </Button>
+            <p className="text-center">
+              Sudah punya akun{" "}
+              <span
+                onClick={() => router.push("/login")}
+                className="underline text-indigo-500 cursor-pointer"
+              >
+                Masuk
+              </span>
+            </p>
           </form>
         </div>
       </div>

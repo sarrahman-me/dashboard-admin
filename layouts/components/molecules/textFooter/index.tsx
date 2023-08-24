@@ -6,7 +6,7 @@ export default function TextFooter() {
         href="https://github.com/sarrahman-me"
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium text-amber-600 hover:underline dark:text-amber-500"
+        className="font-medium text-indigo-600 hover:underline dark:text-indigo-500"
       >
         sarrahman.me
       </a>

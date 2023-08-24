@@ -8,21 +8,21 @@ const menuItems = [
   {
     label: "Barang",
     icon: (
-      <FaCube className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+      <FaCube className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/barang",
   },
   {
     label: "Suplier",
     icon: (
-      <FaUsers className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+      <FaUsers className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/suplier",
   },
   {
     label: "Mitra",
     icon: (
-      <FaSitemap className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+      <FaSitemap className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
     ),
     href: "/dashboard/mitra",
   },
@@ -76,7 +76,7 @@ export default function Sidebar() {
             href={"/dashboard"}
             text={"Dashboard"}
             iconComponent={
-              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+              <FaTachometerAlt className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
             }
           />
           {menuItems.map((item) => (
@@ -89,7 +89,7 @@ export default function Sidebar() {
           ))}
           <DropdownList
             iconComponent={
-              <BsFillDatabaseFill className="flex-shrink-0 w-5 h-5 text-amber-500 transition duration-75 dark:text-amber-400 group-hover:text-amber-900 dark:group-hover:text-white" />
+              <BsFillDatabaseFill className="flex-shrink-0 w-5 h-5 text-indigo-500 transition duration-75 dark:text-indigo-400 group-hover:text-indigo-900 dark:group-hover:text-white" />
             }
             title="Master Data"
             listMenu={listMenu}
