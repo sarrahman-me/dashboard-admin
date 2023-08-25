@@ -16,7 +16,7 @@ export default function FormSuplier() {
     {
       type: "number",
       label: "Whatsapp",
-      name: "no_whatsapp",
+      name: "whatsapp",
     },
     {
       type: "text",

@@ -1,8 +1,7 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { FaTachometerAlt, FaCube, FaUsers, FaSitemap } from "react-icons/fa";
-import { MdDashboard } from "react-icons/md";
-import { BsFillDatabaseFill } from "react-icons/bs";
+import { FaCube, FaUsers, FaSitemap, FaMoneyBill } from "react-icons/fa";
+import { MdDashboard, MdCardMembership } from "react-icons/md";
 import { DropdownList, ListIcon } from "@/layouts/components/molecules";
 
 const menuItems = [
@@ -11,51 +10,81 @@ const menuItems = [
     icon: <MdDashboard />,
     href: "/dashboard",
   },
-  {
-    label: "Barang",
-    icon: <FaCube />,
-    href: "/dashboard/barang",
-  },
-  {
-    label: "Suplier",
-    icon: <FaUsers />,
-    href: "/dashboard/suplier",
-  },
-  {
-    label: "Mitra",
-    icon: <FaSitemap />,
-    href: "/dashboard/mitra",
-  },
 ];
 
-const listMenu = [
+const listBarang = [
   {
-    label: "Brand",
-    href: "/dashboard/data/brand",
+    label: "Barang",
+    href: "/dashboard/products/barang",
   },
   {
     label: "Kategori Barang",
-    href: "/dashboard/data/kategori-barang",
+    href: "/dashboard/products/kategori-barang",
   },
   {
     label: "Tekstur",
-    href: "/dashboard/data/tekstur",
+    href: "/dashboard/products/tekstur",
   },
   {
     label: "Motif",
-    href: "/dashboard/data/motif",
+    href: "/dashboard/products/motif",
   },
   {
     label: "Kualitas",
-    href: "/dashboard/data/kualitas",
+    href: "/dashboard/products/kualitas",
   },
   {
     label: "Ukuran",
-    href: "/dashboard/data/ukuran",
+    href: "/dashboard/products/ukuran",
   },
   {
     label: "Warna",
-    href: "/dashboard/data/warna",
+    href: "/dashboard/products/warna",
+  },
+];
+
+const listSuplier = [
+  {
+    label: "Brand",
+    href: "/dashboard/suplier/brand",
+  },
+  {
+    label: "Pemasok",
+    href: "/dashboard/suplier/pemasok",
+  },
+];
+
+const listFinance = [
+  {
+    label: "Transaksi",
+    href: "/dashboard/suplier/pemasok",
+  },
+  {
+    label: "Tipe",
+    href: "/dashboard/suplier/pemasok",
+  },
+  {
+    label: "Kategori",
+    href: "/dashboard/suplier/pemasok",
+  },
+];
+
+const listMembership = [
+  {
+    label: "Mitra",
+    href: "/dashboard/suplier/pemasok",
+  },
+  {
+    label: "Membership",
+    href: "/dashboard/suplier/pemasok",
+  },
+  {
+    label: "Kategori Membership",
+    href: "/dashboard/suplier/pemasok",
+  },
+  {
+    label: "Kategori Harga",
+    href: "/dashboard/suplier/pemasok",
   },
 ];
 
@@ -84,9 +113,24 @@ export default function Sidebar() {
             />
           ))}
           <DropdownList
-            iconComponent={<BsFillDatabaseFill />}
-            title="Master Data"
-            listMenu={listMenu}
+            iconComponent={<FaCube />}
+            title="Barang"
+            listMenu={listBarang}
+          />
+          <DropdownList
+            iconComponent={<FaUsers />}
+            title="Suplier"
+            listMenu={listSuplier}
+          />
+          <DropdownList
+            iconComponent={<FaMoneyBill />}
+            title="Finance"
+            listMenu={listFinance}
+          />
+          <DropdownList
+            iconComponent={<MdCardMembership />}
+            title="Membership"
+            listMenu={listMembership}
           />
         </ul>
       </div>

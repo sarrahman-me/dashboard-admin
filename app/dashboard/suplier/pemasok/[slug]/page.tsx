@@ -20,7 +20,7 @@ export default async function detailWarna({
         },
         {
           key: "Whatsapp",
-          value: "no_whatsapp",
+          value: "whatsapp",
         },
         {
           key: "Kota",
