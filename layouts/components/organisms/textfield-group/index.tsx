@@ -15,6 +15,7 @@ export default function TextfieldGroup(props: {
               <SelectApi
                 apiUrl={input.apiUrl}
                 label={input.label}
+                useNameForValue={input.useName}
                 error={
                   (props.error &&
                     props.error.fields &&

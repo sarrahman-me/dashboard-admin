@@ -57,34 +57,34 @@ const listSuplier = [
 const listFinance = [
   {
     label: "Transaksi",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/finance/transaksi",
   },
   {
     label: "Tipe",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/finance/tipe",
   },
   {
     label: "Kategori",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/finance/kategori",
   },
 ];
 
 const listMembership = [
   {
     label: "Mitra",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/membership/mitra",
   },
   {
     label: "Membership",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/membership/member",
   },
   {
     label: "Kategori Membership",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/membership/kategori",
   },
   {
     label: "Kategori Harga",
-    href: "/dashboard/suplier/pemasok",
+    href: "/dashboard/membership/harga",
   },
 ];
 

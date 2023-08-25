@@ -9,6 +9,7 @@ export default function SelectApi(props: {
   onChange: (value: string) => void;
   value: string;
   error?: string;
+  useNameForValue?: boolean;
 }) {
   const [options, setOptions] = useState<any[]>([]);
 
@@ -47,7 +48,7 @@ export default function SelectApi(props: {
         {options.map((option) => (
           <option
             key={option[props.keyValue[0]]}
-            value={option[props.keyValue[1]]}
+            value={option[props.keyValue[props.useNameForValue ? 1 : 0]]}
           >
             {option[props.keyValue[1]]}
           </option>
