@@ -75,10 +75,6 @@ const listMembership = [
     href: "/dashboard/membership/mitra",
   },
   {
-    label: "Membership",
-    href: "/dashboard/membership/member",
-  },
-  {
     label: "Kategori Membership",
     href: "/dashboard/membership/kategori",
   },

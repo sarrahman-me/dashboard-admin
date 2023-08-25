@@ -5,7 +5,6 @@ import { ProfileAppBar } from "../../molecules";
 import { ResizeLayarButton, ToggleDarkMode } from "../../atoms";
 import { Report } from "notiflix";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 
 export default function AppBar() {
   const router = useRouter();
@@ -21,7 +20,6 @@ export default function AppBar() {
           window.location.reload();
         } else if (response?.status === 404) {
           Report.failure("Kesalahan Auth", response?.message, "Okay", () => {
-            Cookies.remove("tx");
             router.push("/login");
           });
         }

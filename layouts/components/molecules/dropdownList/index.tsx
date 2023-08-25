@@ -54,8 +54,8 @@ export default function DropdownList(props: {
                 onClick={() => router.push(item.href)}
                 className={`cursor-pointer rounded-lg block px-4 text-indigo-900 dark:text-slate-50 py-2 ${
                   currentPage
-                    ? "border-l-2 border-indigo-500"
-                    : "hover:border-l-2 border-indigo-50"
+                    ? "bg-white dark:bg-slate-800"
+                    : ""
                 }`}
               >
                 {item.label}

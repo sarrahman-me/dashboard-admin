@@ -15,7 +15,7 @@ export default function DashboardLayout({
     <div>
       <Sidebar />
       <div className="sm:ml-64">
-        <div className="bg-gray-50 min-h-screen dark:bg-gray-900">
+        <div>
           <AppBar />
           <div className="p-4">{children}</div>
           <TextFooter />

@@ -1,7 +1,6 @@
 "use client"; // Error components must be Client Components
-import Image from "next/image";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useEffect } from "react";
-import errorImage from "@/public/error.jpg";
 
 export default function Error({
   error,
@@ -18,7 +17,14 @@ export default function Error({
   return (
     <div className="flex justify-center items-center w-full h-screen">
       <div>
-        <Image src={errorImage} className="h-52 w-52" alt="error page" />
+        <Player
+          autoplay
+          loop
+          src="https://lottie.host/502d7279-05fa-43a4-ab37-64795e8b6bd6/azu0nfAoBC.json"
+          style={{ height: "300px", width: "300px" }}
+        >
+          <Controls buttons={["play", "repeat", "frame", "debug"]} />
+        </Player>
         <h2 className="text-center pb-4">Maaf, terjadi kesalahan.!</h2>
         <button
           onClick={() => reset()}
