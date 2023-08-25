@@ -75,12 +75,12 @@ const listMembership = [
     href: "/dashboard/membership/mitra",
   },
   {
-    label: "Kategori Membership",
-    href: "/dashboard/membership/kategori",
+    label: "Klasifikasi Membership",
+    href: "/dashboard/membership/klasifikasi",
   },
   {
     label: "Kategori Harga",
-    href: "/dashboard/membership/harga",
+    href: "/dashboard/membership/kategori-harga",
   },
 ];
 

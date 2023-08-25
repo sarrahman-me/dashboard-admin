@@ -1,4 +1,4 @@
-"use client"; // Error components must be Client Components
+"use client";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useEffect } from "react";
 
@@ -15,8 +15,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      <div>
+    <div className="flex flex-col justify-center items-center w-full h-screen bg-indigo-500">
+      <div className="text-center">
         <Player
           autoplay
           loop
@@ -25,13 +25,35 @@ export default function Error({
         >
           <Controls buttons={["play", "repeat", "frame", "debug"]} />
         </Player>
-        <h2 className="text-center pb-4">Maaf, terjadi kesalahan.!</h2>
+        <h2 className="text-white md:text-lg font-bold mt-8">
+          Maaf, terjadi kesalahan saat terhubung ke server!
+        </h2>
+        <p className="text-left text-white text-sm md:text-base mt-4">
+          Mohon coba beberapa langkah berikut:
+        </p>
+        <ul className="text-white text-base mt-4 text-left">
+          <li className="flex items-start">
+            <span className="mr-2">&#8226;</span>
+            Periksa koneksi internet Anda
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">&#8226;</span>
+            Klik tombol refresh pada halaman ini
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">&#8226;</span>
+            Kembali ke halaman sebelumnya lalu refresh
+          </li>
+          <li className="flex items-start">
+            <span className="mr-2">&#8226;</span>
+            Hubungi tim teknis kami
+          </li>
+        </ul>
         <button
           onClick={() => reset()}
-          type={"button"}
-          className={`w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800`}
+          className="bg-white text-indigo-500 px-6 py-2 rounded-full mt-6 hover:bg-indigo-500 hover:text-white transition duration-300"
         >
-          Coba Lagi
+          Refresh
         </button>
       </div>
     </div>
