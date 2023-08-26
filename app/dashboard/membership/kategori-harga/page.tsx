@@ -4,8 +4,8 @@ export default function KategoriHarga() {
   return (
     <ReadDataTableApi
       title={"Kategori Harga"}
-      dataKey={["nama_kategori_harga"]}
-      titleColumns={["Nama Kategori harga"]}
+      dataKey={["nama_kategori_harga", "persentase"]}
+      titleColumns={["Nama Kategori harga", "Persentase"]}
       dataEndpoint={"/membership/harga?page=1&limit=25"}
     />
   );

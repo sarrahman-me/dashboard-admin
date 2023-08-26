@@ -10,6 +10,10 @@ const DetailKategoriHarga = ({ params }: { params: { slug: string } }) => {
           key: "Nama",
           value: "nama_kategori_harga",
         },
+        {
+          key: "Persentase",
+          value: "persentase",
+        },
       ]}
     />
   );

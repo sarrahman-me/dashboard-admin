@@ -4,8 +4,8 @@ export default function klasifikasiMembership() {
   return (
     <ReadDataTableApi
       title={"Klasifikasi Membership"}
-      dataKey={["nama_klasifikasi"]}
-      titleColumns={["Nama Klasifikasi"]}
+      dataKey={["nama_klasifikasi", "harga"]}
+      titleColumns={["Nama Klasifikasi", "Harga"]}
       dataEndpoint={"/membership/klasifikasi?page=1&limit=25"}
     />
   );

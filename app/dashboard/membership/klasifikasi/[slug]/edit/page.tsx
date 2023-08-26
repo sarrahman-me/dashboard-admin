@@ -19,6 +19,11 @@ export default function EditKlasifikasiMembership({
       name: "harga",
     },
     {
+      type: "text",
+      label: "Deskripsi",
+      name: "deskripsi",
+    },
+    {
       type: "select-api",
       label: "Kategori harga",
       name: "id_kategori_harga",
