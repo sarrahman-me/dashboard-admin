@@ -2,7 +2,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { ReactElement } from "react";
-import { FaArrowCircleDown, FaArrowCircleUp, FaDatabase } from "react-icons/fa";
+import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
 
 export default function DropdownList(props: {
   listMenu: any;
@@ -23,7 +23,7 @@ export default function DropdownList(props: {
         onClick={handleDropdownToggle}
         className="flex hover:cursor-pointer items-center p-2 text-indigo-500 rounded-lg"
       >
-        {props.iconComponent}
+        <div className="text-indigo-500 bg-white dark:bg-slate-800 p-2 rounded-lg">{props.iconComponent}</div>
         <span className="flex-1 ml-3 whitespace-nowrap text-indigo-900 dark:text-white">
           {props.title}
         </span>
@@ -53,9 +53,7 @@ export default function DropdownList(props: {
                 key={i}
                 onClick={() => router.push(item.href)}
                 className={`cursor-pointer rounded-lg block px-4 text-indigo-900 dark:text-slate-50 py-2 ${
-                  currentPage
-                    ? "bg-white dark:bg-slate-800"
-                    : ""
+                  currentPage ? "bg-white dark:bg-slate-800" : ""
                 }`}
               >
                 {item.label}

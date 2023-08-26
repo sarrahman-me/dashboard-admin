@@ -1,6 +1,6 @@
 import { ReadDataTableApi } from "@/layouts/template";
 
-export default async function Suplier() {
+export default function Suplier() {
   return (
     <ReadDataTableApi
       title={"Suplier"}
