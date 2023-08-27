@@ -20,11 +20,15 @@ export default async function detailMitra({
         },
         {
           key: "Whatsapp",
-          value: "no_whatsapp",
+          value: "whatsapp",
         },
         {
           key: "Kota",
           value: "kota",
+        },
+        {
+          key: "ID membership",
+          value: "id_membership",
         },
       ]}
     />

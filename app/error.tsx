@@ -15,23 +15,23 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-screen bg-indigo-500">
+    <div className="flex flex-col justify-center items-center w-full h-screen">
       <div className="text-center">
         <Player
           autoplay
           loop
-          src="https://lottie.host/502d7279-05fa-43a4-ab37-64795e8b6bd6/azu0nfAoBC.json"
+          src="https://lottie.host/955cab67-09e2-4843-9803-80580e96184c/TXYXKxuP02.json"
           style={{ height: "300px", width: "300px" }}
         >
           <Controls buttons={["play", "repeat", "frame", "debug"]} />
         </Player>
-        <h2 className="text-white md:text-lg font-bold mt-8">
+        <h2 className="md:text-lg font-bold mt-8">
           Maaf, terjadi kesalahan saat terhubung ke server!
         </h2>
-        <p className="text-left text-white text-sm md:text-base mt-4">
+        <p className="text-left text-sm md:text-base mt-4">
           Mohon coba beberapa langkah berikut:
         </p>
-        <ul className="text-white text-base mt-4 text-left">
+        <ul className="text-base mt-4 text-left">
           <li className="flex items-start">
             <span className="mr-2">&#8226;</span>
             Periksa koneksi internet Anda
