@@ -19,7 +19,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
           <tr>
             <th>Nomor</th>
             {titleColumns.map((title: string, index: number) => (
-              <th key={title} scope="col" className="px-6 py-3">
+              <th key={index} scope="col" className="px-6 py-3">
                 {title}
               </th>
             ))}
@@ -34,7 +34,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
                     ? () => {}
                     : () => router.push(`${pathname}/${item.slug}`)
                 }
-                key={item}
+                key={index}
                 className={`${
                   notClickable
                     ? "cursor-default"
@@ -43,7 +43,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
               >
                 <td className="px-6 py-4">{index + 1}</td>
                 {dataKey.map((key: string, index: number) => (
-                  <td key={key} className="px-6 py-4">
+                  <td key={index} className="px-6 py-4">
                     {item[key]}
                   </td>
                 ))}

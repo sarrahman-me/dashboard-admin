@@ -4,8 +4,8 @@ export default function Transaksi() {
   return (
     <ReadDataTableApi
       title={"Transaksi"}
-      dataKey={["keterangan", "nominal"]}
-      titleColumns={["Keterangan Transaksi", "Nominal"]}
+      dataKey={["createdAt", "nominal"]}
+      titleColumns={["Tanggal Transaksi", "Nominal"]}
       dataEndpoint={"/finance/transaksi?page=1&limit=25"}
     />
   );
