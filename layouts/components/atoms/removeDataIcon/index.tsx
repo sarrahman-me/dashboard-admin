@@ -32,7 +32,7 @@ export default function RemoveDataIcon(props: { url: string }) {
     <div>
       <FaTrash
         onClick={handleRemove}
-        className="m-1 w-9 h-9 cursor-pointer hover:text-red-600 border p-2 rounded text-white hover:bg-white bg-red-600"
+        className="m-1 w-9 h-9 cursor-pointer text-red-500 border p-2 rounded hover:border-orange-500"
       />
     </div>
   );

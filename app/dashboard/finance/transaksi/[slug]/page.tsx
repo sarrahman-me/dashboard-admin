@@ -48,7 +48,8 @@ export default function DetailTransaksi({
         <div>
           <ListData label="ID Transaksi" value={transaksi.id_transaksi} />
           <ListData label="Keterangan" value={transaksi.keterangan} />
-          <ListData label="Tanggal" value={transaksi.createdAt} />
+          <ListData label="Tanggal" value={transaksi.nominal} />
+          <ListData label="Nominal" value={transaksi.createdAt} />
           <ListData
             label="Status"
             value={transaksi.verifikasi ? "Verified" : "not Verified"}

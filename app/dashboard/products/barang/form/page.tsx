@@ -31,7 +31,7 @@ export default function FormBarang() {
       );
       if (response.status === 200 || response.status === 201) {
         Notify.success(response.message);
-        router.push("/dashboard/barang");
+        router.push("/dashboard/products/barang");
         Loading.remove();
       } else {
         seterror(response.error);

@@ -52,7 +52,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       );
       if (response.status === 200 || response.status === 201) {
         Notify.success(response.message);
-        router.push("/dashboard/barang");
+        router.push("/dashboard/products/barang");
       } else {
         setError(response.error);
         Notify.failure(response.error.message);

@@ -9,7 +9,7 @@ export default function EditDataIcon() {
     <div>
       <FaPen
         onClick={() => router.push(`${pathname}/edit`)}
-        className="m-1 w-9 h-9 cursor-pointer hover:text-orange-500 border p-2 rounded text-white hover:bg-white bg-orange-500"
+        className="m-1 w-9 h-9 cursor-pointer text-orange-500 border p-2 rounded hover:border-orange-500"
       />
     </div>
   );

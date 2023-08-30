@@ -17,7 +17,7 @@ export default function DashboardLayout({
       <div className="sm:ml-64">
         <div>
           <AppBar />
-          <div className="p-4">{children}</div>
+          <div className="py-4 md:px-4">{children}</div>
           <TextFooter />
         </div>
         <BottomBar />
