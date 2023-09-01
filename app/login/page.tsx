@@ -1,9 +1,9 @@
 "use client";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Heading } from "@/layouts/components/atoms";
 import { Loading, Notify } from "notiflix";
-import { TextFooter } from "@/layouts/components/molecules";
 import { PostDataApi } from "@/utils";
 import { TextfieldGroup } from "@/layouts/components/organisms";
 
@@ -23,6 +23,8 @@ export default function Login() {
     );
 
     if (response.success) {
+      setCookie("tx", response.data.token);
+      setCookie("rtx", response.data.refreshToken);
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();

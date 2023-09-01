@@ -1,8 +1,10 @@
 "use client";
+import { deleteCookie } from "cookies-next";
 import { Confirm, Loading } from "notiflix";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { DeleteDataApi } from "@/utils";
 
 const listMenu = [
   {
@@ -15,7 +17,7 @@ const listMenu = [
   },
 ];
 
-export default function ProfileAppBar(props: { user: any }) {
+export default function ProfileAppBar() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,18 +32,15 @@ export default function ProfileAppBar(props: { user: any }) {
       "Yakin Untuk Keluar ?",
       "Keluar",
       "Batal",
-      () => {
+      async () => {
         try {
-          fetch(`${process.env.NEXT_PUBLIC_HOST}/auth/user/logout`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }).then(() => {
+          const responseLogout = await DeleteDataApi("/api/auth/logout");
+          if (responseLogout.success) {
+            deleteCookie("tx");
+            deleteCookie("rtx");
             router.push("/login");
             Loading.remove();
-          });
+          }
         } catch (error) {
           console.error(error);
           Loading.remove();
