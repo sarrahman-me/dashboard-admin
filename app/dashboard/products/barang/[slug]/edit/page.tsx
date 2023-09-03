@@ -75,6 +75,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "kategori",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kategori`,
       keyValue: ["slug", "nama_kategori"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -82,6 +83,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "brand",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/brand`,
       keyValue: ["slug", "nama_brand"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -89,6 +91,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "ukuran",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/ukuran`,
       keyValue: ["slug", "nama_ukuran"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -96,6 +99,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "motif",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/motif`,
       keyValue: ["slug", "nama_motif"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -103,6 +107,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "tekstur",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/tekstur`,
       keyValue: ["slug", "nama_tekstur"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -110,6 +115,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "kualitas",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/kualitas`,
       keyValue: ["slug", "nama_kualitas"],
+      useName: true,
     },
     {
       type: "select-api",
@@ -117,6 +123,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       name: "warna",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/products/warna`,
       keyValue: ["slug", "nama_warna"],
+      useName: true,
     },
     {
       type: "number",
