@@ -10,6 +10,10 @@ const DetailBrand = ({ params }: { params: { slug: string } }) => {
           key: "Nama",
           value: "nama_brand",
         },
+        {
+          key: "Suplier",
+          value: "suplier",
+        },
       ]}
     />
   );

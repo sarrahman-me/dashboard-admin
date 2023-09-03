@@ -4,8 +4,8 @@ export default async function Barang() {
   return (
     <ReadDataTableApi
       title={"Barang"}
-      dataKey={["nama_barang", "harga", "stok"]}
-      titleColumns={["Nama", "Harga", "Stok"]}
+      titleColumns={["Nama", "Brand", "Ukuran", "Warna", "Harga", "Stok"]}
+      dataKey={["nama_barang", "brand", "ukuran", "warna", "harga", "stok"]}
       dataEndpoint={"/products/barang?page=1&limit=25"}
     />
   );

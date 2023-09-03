@@ -9,6 +9,13 @@ export default function FormBrand() {
       name: "nama_brand",
       autoFocus: true,
     },
+    {
+      type: "select-api",
+      label: "Suplier",
+      name: "id_suplier",
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/pemasok`,
+      keyValue: ["id", "nama_perusahaan"],
+    },
   ];
 
   return (

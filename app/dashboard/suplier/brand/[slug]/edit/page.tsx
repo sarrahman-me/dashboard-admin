@@ -8,6 +8,13 @@ export default function EditBrand({ params }: { params: { slug: string } }) {
       label: "Nama Brand",
       name: "nama_brand",
     },
+    {
+      type: "select-api",
+      label: "Suplier",
+      name: "id_suplier",
+      apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/pemasok`,
+      keyValue: ["id", "nama_perusahaan"],
+    },
   ];
 
   return (
