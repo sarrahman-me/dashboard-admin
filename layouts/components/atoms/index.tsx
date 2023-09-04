@@ -7,6 +7,7 @@ import ListData from "./listData";
 import RemoveDataIcon from "./removeDataIcon";
 import ResizeLayarButton from "./resizeLayarButton";
 import SelectApi from "./selectApi";
+import SwitchButton from "./switchButton";
 import ToggleDarkMode from "./toogleDarkMode";
 
 export {
@@ -20,4 +21,5 @@ export {
   BackIcon,
   ResizeLayarButton,
   ToggleDarkMode,
+  SwitchButton,
 };

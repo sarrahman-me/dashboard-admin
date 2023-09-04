@@ -1,4 +1,5 @@
 import ListIcon from "../molecules/listIcon";
+import IconSelect from "./IconSelect";
 import DropdownList from "./dropdownList";
 import HeaderAndBackIcon from "./headerAndBackIcon";
 import ImageInputWithPreview from "./imageInputWithPreview";
@@ -14,4 +15,5 @@ export {
   ImageInputWithPreview,
   ProfileAppBar,
   HeaderAndBackIcon,
+  IconSelect,
 };

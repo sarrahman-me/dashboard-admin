@@ -1,10 +1,20 @@
 "use client";
-import { BackIcon, Button, Heading, Input } from "@/layouts/components/atoms";
+import {
+  BackIcon,
+  Button,
+  Heading,
+  Input,
+  SwitchButton,
+} from "@/layouts/components/atoms";
+import { IoFootstepsSharp, IoHandRight } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PostDataApi } from "@/utils";
 import { Loading, Notify } from "notiflix";
-import { ImageInputWithPreview } from "@/layouts/components/molecules";
+import {
+  IconSelect,
+  ImageInputWithPreview,
+} from "@/layouts/components/molecules";
 import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function FormBarang() {
@@ -12,35 +22,61 @@ export default function FormBarang() {
   const [data, setdata] = useState({} as any);
   const [error, seterror] = useState({} as any);
   const [hargaBeli, setHargaBeli] = useState(0);
+  const [promo, setPromo] = useState(false);
+  const [hargaPromo, setHargaPromo] = useState(0);
+  const [penggunaanUmum, setPenggunaanUmum] = useState([] as string[]);
+  const [areaPenggunaan, setAreaPenggunaan] = useState([] as string[]);
   const [gambar, setGambar] = useState([] as string[]);
+
+  const penggunaanUmumOptions = ["Lantai", "Dinding"];
+  const areaPenggunaanOptions = [
+    "Dalam Rumah",
+    "Teras",
+    "Garasi",
+    "Kolam Renang",
+    "Kamar Mandi",
+    "Dapur",
+  ];
 
   const handleSubmit = async (event: any) => {
     Loading.hourglass();
     event.preventDefault();
 
+    // Validasi harga promo
+    if (promo && hargaPromo >= hargaBeli) {
+      seterror({ harga: "Harga promo harus lebih rendah dari harga beli." });
+      Loading.remove();
+      return;
+    }
+
     const payload = {
       ...data,
       harga: hargaBeli,
+      promo: promo,
+      harga_promo: hargaPromo,
+      penggunaan_umum: penggunaanUmum,
+      area_penggunaan: areaPenggunaan,
       images: gambar,
     };
 
-    try {
-      const response = await PostDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
-        payload
-      );
-      if (response.status === 200 || response.status === 201) {
-        Notify.success(response.message);
-        router.push("/dashboard/products/barang");
-        Loading.remove();
-      } else {
-        seterror(response.error);
-        Notify.failure(response.message);
-        Loading.remove();
-      }
-    } catch (error: any) {
-      Notify.failure("Terjadi kesalahan saat menambahkan data");
-    }
+    // try {
+    //   const response = await PostDataApi(
+    //     `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
+    //     payload
+    //   );
+    //   if (response.status === 200 || response.status === 201) {
+    //     Notify.success(response.message);
+    //     router.push("/dashboard/products/barang");
+    //     Loading.remove();
+    //   } else {
+    //     seterror(response.error);
+    //     Notify.failure(response.message);
+    //     Loading.remove();
+    //   }
+    // } catch (error: any) {
+    //   Notify.failure("Terjadi kesalahan saat menambahkan data");
+    // }
+    console.log(payload);
     Loading.remove();
   };
 
@@ -144,10 +180,45 @@ export default function FormBarang() {
             value={hargaBeli}
             onChange={(event) => setHargaBeli(event.target.value)}
           />
+          <div className="my-3">
+            <SwitchButton title="Promo" enabled={promo} setEnabled={setPromo} />
+          </div>
         </div>
+        {promo && (
+          <div className="shadow p-2 rounded mt-2 bg-white dark:bg-slate-800">
+            <Input
+              label="Harga Promo"
+              name="harga_promo"
+              type="number"
+              value={hargaPromo}
+              onChange={(event) => setHargaPromo(event.target.value)}
+              error={error.harga}
+            />
+          </div>
+        )}
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Gambar :</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
+        </div>
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
+          <p className="font-bold underline">Penggunaan Umum :</p>
+          <div className="flex space-x-4 my-2">
+            <IconSelect
+              options={penggunaanUmumOptions}
+              selected={penggunaanUmum}
+              setSelected={setPenggunaanUmum}
+            />
+          </div>
+        </div>
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
+          <p className="font-bold underline">Area Penggunaan :</p>
+          <div className="flex space-x-4 my-2">
+            <IconSelect
+              options={areaPenggunaanOptions}
+              selected={areaPenggunaan}
+              setSelected={setAreaPenggunaan}
+            />
+          </div>
         </div>
         <div className="mt-4">
           <Button isSubmit={true}>Simpan</Button>
