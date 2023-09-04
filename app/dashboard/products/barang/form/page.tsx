@@ -6,7 +6,6 @@ import {
   Input,
   SwitchButton,
 } from "@/layouts/components/atoms";
-import { IoFootstepsSharp, IoHandRight } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PostDataApi } from "@/utils";
@@ -42,13 +41,6 @@ export default function FormBarang() {
     Loading.hourglass();
     event.preventDefault();
 
-    // Validasi harga promo
-    if (promo && hargaPromo >= hargaBeli) {
-      seterror({ harga: "Harga promo harus lebih rendah dari harga beli." });
-      Loading.remove();
-      return;
-    }
-
     const payload = {
       ...data,
       harga: hargaBeli,
@@ -59,24 +51,23 @@ export default function FormBarang() {
       images: gambar,
     };
 
-    // try {
-    //   const response = await PostDataApi(
-    //     `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
-    //     payload
-    //   );
-    //   if (response.status === 200 || response.status === 201) {
-    //     Notify.success(response.message);
-    //     router.push("/dashboard/products/barang");
-    //     Loading.remove();
-    //   } else {
-    //     seterror(response.error);
-    //     Notify.failure(response.message);
-    //     Loading.remove();
-    //   }
-    // } catch (error: any) {
-    //   Notify.failure("Terjadi kesalahan saat menambahkan data");
-    // }
-    console.log(payload);
+    try {
+      const response = await PostDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/products/barang`,
+        payload
+      );
+      if (response.status === 200 || response.status === 201) {
+        Notify.success(response.message);
+        router.push("/dashboard/products/barang");
+        Loading.remove();
+      } else {
+        seterror(response.error);
+        Notify.failure(response.message);
+        Loading.remove();
+      }
+    } catch (error: any) {
+      Notify.failure("Terjadi kesalahan saat menambahkan data");
+    }
     Loading.remove();
   };
 
@@ -192,7 +183,6 @@ export default function FormBarang() {
               type="number"
               value={hargaPromo}
               onChange={(event) => setHargaPromo(event.target.value)}
-              error={error.harga}
             />
           </div>
         )}

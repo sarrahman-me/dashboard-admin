@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Input } from "@/layouts/components/atoms";
+import { Button, Input, SwitchButton } from "@/layouts/components/atoms";
 import { GetDataApi, PatchDataApi } from "@/utils";
 import { Notify } from "notiflix";
 import {
   HeaderAndBackIcon,
+  IconSelect,
   ImageInputWithPreview,
 } from "@/layouts/components/molecules";
 import { TextfieldGroup } from "@/layouts/components/organisms";
@@ -16,7 +17,21 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
   const [data, setData] = useState({} as any);
   const [error, setError] = useState({} as any);
   const [hargaBeli, setHargaBeli] = useState(0);
+  const [promo, setPromo] = useState(false);
+  const [hargaPromo, setHargaPromo] = useState(0);
+  const [penggunaanUmum, setPenggunaanUmum] = useState([] as string[]);
+  const [areaPenggunaan, setAreaPenggunaan] = useState([] as string[]);
   const [gambar, setGambar] = useState([] as string[]);
+
+  const penggunaanUmumOptions = ["Lantai", "Dinding"];
+  const areaPenggunaanOptions = [
+    "Dalam Rumah",
+    "Teras",
+    "Garasi",
+    "Kolam Renang",
+    "Kamar Mandi",
+    "Dapur",
+  ];
 
   useEffect(() => {
     if (slug) {
@@ -27,6 +42,10 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
           );
           setData(response.data);
           setHargaBeli(response.data.harga);
+          setPromo(response.data.promo);
+          setHargaPromo(response.data.harga_promo);
+          setPenggunaanUmum(response.data.penggunaan_umum || []);
+          setAreaPenggunaan(response.data.area_penggunaan || []);
           setGambar(response.data.images);
         } catch (error) {
           Notify.failure("Terjadi kesalahan saat mengambil data barang");
@@ -42,6 +61,10 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
     const payload = {
       ...data,
       harga: hargaBeli,
+      promo: promo,
+      harga_promo: hargaPromo,
+      penggunaan_umum: penggunaanUmum,
+      area_penggunaan: areaPenggunaan,
       images: gambar,
     };
 
@@ -155,19 +178,30 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
           {/* Tambahkan form input lainnya sesuai dengan kebutuhan */}
         </div>
 
-        {/* Form input untuk mengedit harga */}
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
-          <p className="font-bold underline">Detail Harga:</p>
+          <p className="font-bold underline">Detail Harga :</p>
           <Input
-            type="number"
             label="Harga"
             name="harga"
+            type="number"
             value={hargaBeli}
             onChange={(event) => setHargaBeli(event.target.value)}
-            error={error.harga}
           />
-          {/* Tambahkan form input lainnya sesuai dengan kebutuhan */}
+          <div className="my-3">
+            <SwitchButton title="Promo" enabled={promo} setEnabled={setPromo} />
+          </div>
         </div>
+        {promo && (
+          <div className="shadow p-2 rounded mt-2 bg-white dark:bg-slate-800">
+            <Input
+              label="Harga Promo"
+              name="harga_promo"
+              type="number"
+              value={hargaPromo}
+              onChange={(event) => setHargaPromo(event.target.value)}
+            />
+          </div>
+        )}
 
         {/* Form input untuk mengedit gambar */}
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
@@ -175,6 +209,26 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
         </div>
 
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
+          <p className="font-bold underline">Penggunaan Umum :</p>
+          <div className="flex space-x-4 my-2">
+            <IconSelect
+              options={penggunaanUmumOptions}
+              selected={penggunaanUmum}
+              setSelected={setPenggunaanUmum}
+            />
+          </div>
+        </div>
+        <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
+          <p className="font-bold underline">Area Penggunaan :</p>
+          <div className="flex space-x-4 my-2">
+            <IconSelect
+              options={areaPenggunaanOptions}
+              selected={areaPenggunaan}
+              setSelected={setAreaPenggunaan}
+            />
+          </div>
+        </div>
         <div className="mt-4">
           <Button isSubmit={true}>Simpan Perubahan</Button>
         </div>

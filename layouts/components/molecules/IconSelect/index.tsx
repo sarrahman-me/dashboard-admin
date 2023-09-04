@@ -1,3 +1,5 @@
+"use client";
+import { Tooltip } from "react-tooltip";
 import { IoFootstepsSharp, IoHandRight } from "react-icons/io5";
 import { TbSwimming } from "react-icons/tb";
 import { GiHomeGarage, GiSofa, GiParkBench } from "react-icons/gi";
@@ -29,6 +31,8 @@ export default function IconSelect(props: {
               : "text-gray-400"
           } text-2xl cursor-pointer transition duration-300 p-1`}
           title={option}
+          data-tooltip-id="tooltip"
+          data-tooltip-content={option}
         >
           {option === "Lantai" ? (
             <IoFootstepsSharp />
@@ -51,6 +55,7 @@ export default function IconSelect(props: {
           )}
         </div>
       ))}
+      <Tooltip id="tooltip" />
     </div>
   );
 }
