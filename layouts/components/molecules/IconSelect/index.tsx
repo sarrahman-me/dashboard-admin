@@ -10,6 +10,7 @@ export default function IconSelect(props: {
   options: string[];
   selected: string[];
   setSelected: any;
+  unSelected?: boolean;
 }) {
   function togglePenggunaanUmum(option: string) {
     if (props.selected.includes(option)) {
@@ -24,7 +25,9 @@ export default function IconSelect(props: {
       {props.options.map((option) => (
         <div
           key={option}
-          onClick={() => togglePenggunaanUmum(option)}
+          onClick={
+            props.unSelected ? () => {} : () => togglePenggunaanUmum(option)
+          }
           className={`${
             props.selected.includes(option)
               ? "text-indigo-400 border rounded-full border-indigo-400"
