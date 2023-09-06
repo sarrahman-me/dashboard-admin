@@ -1,11 +1,14 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaExclamationCircle } from "react-icons/fa";
 import ImageInput from "../../atoms/inputImage";
+import { useState } from "react";
 
 export default function ImageInputWithPreview(props: {
   gambar: string[];
   setGambar: (i: any) => void;
 }) {
+  const [error, setError] = useState("");
   const handleImageChange = (base64Image: string) => {
     props.setGambar((prevGambar: any) => [...prevGambar, base64Image]);
   };
@@ -21,7 +24,7 @@ export default function ImageInputWithPreview(props: {
       <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
         Gambar
       </label>
-      <ImageInput onImageChange={handleImageChange} />
+      <ImageInput onImageChange={handleImageChange} setError={setError} />
       <div className="mt-5 flex">
         {props.gambar.length > 0 ? (
           <div>
@@ -37,6 +40,12 @@ export default function ImageInputWithPreview(props: {
           </div>
         ) : null}
       </div>
+      {error && (
+        <p className="text-xs text-red-500">
+          <FaExclamationCircle className="inline-block mr-1" />
+          {error}
+        </p>
+      )}
     </div>
   );
 }

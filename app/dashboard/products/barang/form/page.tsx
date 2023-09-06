@@ -27,7 +27,7 @@ export default function FormBarang() {
   const [areaPenggunaan, setAreaPenggunaan] = useState([] as string[]);
   const [gambar, setGambar] = useState([] as string[]);
 
-  const penggunaanUmumOptions = ["Lantai", "Dinding"];
+  const penggunaanUmumOptions = ["Lantai", "Dinding", "Meja Dapur", "Tangga"];
   const areaPenggunaanOptions = [
     "Dalam Rumah",
     "Teras",

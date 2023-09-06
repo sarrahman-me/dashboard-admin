@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Input, SwitchButton } from "@/layouts/components/atoms";
 import { GetDataApi, PatchDataApi } from "@/utils";
-import { Notify } from "notiflix";
+import { Loading, Notify } from "notiflix";
 import {
   HeaderAndBackIcon,
   IconSelect,
@@ -23,7 +23,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
   const [areaPenggunaan, setAreaPenggunaan] = useState([] as string[]);
   const [gambar, setGambar] = useState([] as string[]);
 
-  const penggunaanUmumOptions = ["Lantai", "Dinding"];
+  const penggunaanUmumOptions = ["Lantai", "Dinding", "Meja Dapur", "Tangga"];
   const areaPenggunaanOptions = [
     "Dalam Rumah",
     "Teras",
@@ -56,6 +56,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
   }, [slug]);
 
   const handleSubmit = async (event: any) => {
+    Loading.hourglass();
     event.preventDefault();
 
     const payload = {
@@ -76,13 +77,16 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       if (response.status === 200 || response.status === 201) {
         Notify.success(response.message);
         router.push("/dashboard/products/barang");
+        Loading.remove();
       } else {
         setError(response.error);
         Notify.failure(response.error.message);
+        Loading.remove();
       }
     } catch (error) {
       Notify.failure("Terjadi kesalahan saat menyimpan perubahan");
     }
+    Loading.remove();
   };
 
   const formInput = [
