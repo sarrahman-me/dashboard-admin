@@ -16,7 +16,7 @@ export default function SelectApi(props: {
   useEffect(() => {
     async function fetchOptions() {
       try {
-        const response = await GetDataApi(props.apiUrl);
+        const response = await GetDataApi(`${props.apiUrl}?limit=100`);
         const data = response.data;
         setOptions(data);
       } catch (error) {

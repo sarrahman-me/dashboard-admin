@@ -6,7 +6,7 @@ export default async function Barang() {
       title={"Barang"}
       titleColumns={["Nama", "Brand", "Ukuran", "Warna", "Harga", "Stok"]}
       dataKey={["nama_barang", "brand", "ukuran", "warna", "harga", "stok"]}
-      dataEndpoint={"/products/barang?page=1&limit=25"}
+      dataEndpoint={"/products/barang?page=1&limit=60"}
     />
   );
 }
