@@ -12,10 +12,14 @@ export default function Input(props: {
 }) {
   return (
     <div>
-      <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+      <label
+        htmlFor={props.name}
+        className="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+      >
         {props.label} {props.optional ? "(opsional)" : ""}
       </label>
       <input
+        id={props.name} 
         type={props.type || "text"}
         onKeyDown={props.onKeyDown}
         name={props.name}
