@@ -20,11 +20,12 @@ const ReadDataTableApi = (props: {
   const [data, setData] = useState([] as any);
   const [metadata, setMetada] = useState({} as any);
   const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
+  const [currentLimit, setCurrentLimit] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}${props.dataEndpoint}?limit=25&page=${currentPage}`
+        `${process.env.NEXT_PUBLIC_HOST}${props.dataEndpoint}?limit=${currentLimit}&page=${currentPage}`
       );
       setData(response?.data || []);
       setCurrentPage(response?.metadata?.page || 1);
@@ -32,7 +33,7 @@ const ReadDataTableApi = (props: {
     };
 
     fetchData();
-  }, [currentPage, props.dataEndpoint]);
+  }, [currentPage, props.dataEndpoint, currentLimit]);
 
   const handleNextPage = () => {
     if (currentPage < metadata?.totalPages) {
@@ -53,7 +54,22 @@ const ReadDataTableApi = (props: {
   return (
     <div>
       <div className="mb-2 flex justify-between items-center">
-        <Heading>{props.title}</Heading>
+        <div className="flex justify-center items-center">
+          <Heading>{props.title}</Heading>
+          <select
+            className="ml-2 dark:bg-slate-800"
+            onChange={(e) => {
+              setCurrentPage(1);
+              setCurrentLimit(Number(e.target.value));
+              router.push(`${path}?page=1`);
+            }}
+          >
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
         {!props.notAddable && <Button href={`${pathname}/form`}>Tambah</Button>}
       </div>
       <Table
