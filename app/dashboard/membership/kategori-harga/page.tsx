@@ -6,7 +6,7 @@ export default function KategoriHarga() {
       title={"Kategori Harga"}
       dataKey={["nama_kategori_harga", "persentase"]}
       titleColumns={["Nama Kategori harga", "Persentase"]}
-      dataEndpoint={"/membership/harga?page=1&limit=25"}
+      dataEndpoint={"/membership/harga"}
     />
   );
 }

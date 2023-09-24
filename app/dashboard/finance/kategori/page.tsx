@@ -6,7 +6,7 @@ export default function KateogriTransaksi() {
       title={"Kategori Transaksi"}
       dataKey={["nama_kategori_transaksi"]}
       titleColumns={["Nama Kategori"]}
-      dataEndpoint={"/finance/kategori?page=1&limit=25"}
+      dataEndpoint={"/finance/kategori"}
     />
   );
 }

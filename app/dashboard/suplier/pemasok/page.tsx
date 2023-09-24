@@ -6,7 +6,7 @@ export default function Suplier() {
       title={"Suplier"}
       dataKey={["nama_perusahaan"]}
       titleColumns={["Nama Perusahaan"]}
-      dataEndpoint={"/suplier/pemasok?page=1&limit=25"}
+      dataEndpoint={"/suplier/pemasok"}
     />
   );
 }

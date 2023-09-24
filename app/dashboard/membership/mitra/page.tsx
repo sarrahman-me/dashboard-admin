@@ -6,7 +6,7 @@ export default async function Suplier() {
       title={"Mitra"}
       dataKey={["nama", "username"]}
       titleColumns={["Nama", "Username"]}
-      dataEndpoint={"/mitra?page=1&limit=25"}
+      dataEndpoint={"/mitra"}
       notAddable={true}
     />
   );

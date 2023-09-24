@@ -6,7 +6,7 @@ export default async function Motif() {
       title={"Motif"}
       dataKey={["nama_motif"]}
       titleColumns={["Nama Motif"]}
-      dataEndpoint={"/products/motif?page=1&limit=25"}
+      dataEndpoint={"/products/motif"}
     />
   );
 }

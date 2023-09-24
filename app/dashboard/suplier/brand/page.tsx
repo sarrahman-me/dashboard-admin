@@ -6,7 +6,7 @@ export default function Brand() {
       title={"Brand"}
       dataKey={["nama_brand"]}
       titleColumns={["Nama Brand"]}
-      dataEndpoint={"/suplier/brand?page=1&limit=25"}
+      dataEndpoint={"/suplier/brand"}
     />
   );
 }

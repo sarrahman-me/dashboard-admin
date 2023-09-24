@@ -6,7 +6,7 @@ export default function Kualitas() {
       title={"Kualitas"}
       dataKey={["nama_kualitas"]}
       titleColumns={["Nama Kualitas"]}
-      dataEndpoint={"/products/kualitas?page=1&limit=25"}
+      dataEndpoint={"/products/kualitas"}
     />
   );
 }

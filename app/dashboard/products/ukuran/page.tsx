@@ -6,7 +6,7 @@ export default async function Ukuran() {
       title={"Ukuran"}
       dataKey={["nama_ukuran"]}
       titleColumns={["Nama Ukuran"]}
-      dataEndpoint={"/products/ukuran?page=1&limit=25"}
+      dataEndpoint={"/products/ukuran"}
     />
   );
 }

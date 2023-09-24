@@ -6,7 +6,7 @@ export default function klasifikasiMembership() {
       title={"Klasifikasi Membership"}
       dataKey={["nama_klasifikasi", "harga"]}
       titleColumns={["Nama Klasifikasi", "Harga"]}
-      dataEndpoint={"/membership/klasifikasi?page=1&limit=25"}
+      dataEndpoint={"/membership/klasifikasi"}
     />
   );
 }

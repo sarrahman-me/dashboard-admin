@@ -6,7 +6,7 @@ export default async function Warna() {
       title={"Warna"}
       dataKey={["nama_warna"]}
       titleColumns={["Nama Warna"]}
-      dataEndpoint={"/products/warna?page=1&limit=100"}
+      dataEndpoint={"/products/warna"}
     />
   );
 }

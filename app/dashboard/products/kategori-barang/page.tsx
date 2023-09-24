@@ -6,7 +6,7 @@ export default async function KategoriBarang() {
       title={"Kategori Barang"}
       dataKey={["nama_kategori"]}
       titleColumns={["Nama Kategori Barang"]}
-      dataEndpoint={"/products/kategori?page=1&limit=25"}
+      dataEndpoint={"/products/kategori"}
     />
   );
 }

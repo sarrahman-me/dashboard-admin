@@ -6,7 +6,7 @@ export default function Transaksi() {
       title={"Transaksi"}
       dataKey={["createdAt", "nominal"]}
       titleColumns={["Tanggal Transaksi", "Nominal"]}
-      dataEndpoint={"/finance/transaksi?page=1&limit=25"}
+      dataEndpoint={"/finance/transaksi"}
     />
   );
 }

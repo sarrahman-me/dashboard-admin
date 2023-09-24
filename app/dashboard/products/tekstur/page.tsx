@@ -6,7 +6,7 @@ export default async function Tekstur() {
       title={"Tekstur"}
       dataKey={["nama_tekstur"]}
       titleColumns={["Nama Tekstur"]}
-      dataEndpoint={"/products/tekstur?page=1&limit=25"}
+      dataEndpoint={"/products/tekstur"}
     />
   );
 }

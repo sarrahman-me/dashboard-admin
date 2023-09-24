@@ -6,7 +6,7 @@ export default function TipeTransaksi() {
       title={"Tipe Transaksi"}
       dataKey={["nama_tipe_transaksi"]}
       titleColumns={["Nama Tipe"]}
-      dataEndpoint={"/finance/tipe?page=1&limit=25"}
+      dataEndpoint={"/finance/tipe"}
     />
   );
 }

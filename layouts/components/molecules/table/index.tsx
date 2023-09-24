@@ -6,11 +6,20 @@ type Props = {
   titleColumns: string[];
   dataKey: any;
   notClickable?: boolean;
+  metadata: any;
 };
 
-const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
+const Table = ({
+  data,
+  titleColumns,
+  dataKey,
+  notClickable,
+  metadata,
+}: Props) => {
   const router = useRouter();
   const pathname = usePathname();
+
+  const startNumber = (metadata.page - 1) * metadata.limit + 1;
 
   return (
     <div className="relative overflow-x-auto p-1">
@@ -41,7 +50,7 @@ const Table = ({ data, titleColumns, dataKey, notClickable }: Props) => {
                     : "cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-400"
                 } bg-white border-b dark:bg-slate-500 dark:border-slate-50`}
               >
-                <td className="px-6 py-4">{index + 1}</td>
+                <td className="px-6 py-4">{startNumber + index}</td>
                 {dataKey.map((key: string, index: number) => (
                   <td key={index} className="px-6 py-4">
                     {item[key]}
