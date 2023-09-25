@@ -28,8 +28,8 @@ describe("Login Page", () => {
       success: true,
       message: "Login Berhasil",
       data: {
-        token: "",
-        refreshToken: "",
+        token: "xxx",
+        refreshToken: "xxx",
         user: {
           id_user: 2,
           nama: "jhon doe",
