@@ -12,9 +12,9 @@ export default function FormBrand() {
     {
       type: "select-api",
       label: "Suplier",
-      name: "id_suplier",
+      name: "suplier",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/suplier/pemasok`,
-      keyValue: ["id", "nama_perusahaan"],
+      keyValue: ["slug", "nama_perusahaan"],
     },
   ];
 

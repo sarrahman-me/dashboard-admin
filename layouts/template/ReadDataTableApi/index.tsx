@@ -94,6 +94,7 @@ const ReadDataTableApi = (props: {
         </div>
         <div className="flex justify-around items-center">
           <button
+            id="prevPagionation"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
             className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed mr-5"
@@ -101,6 +102,7 @@ const ReadDataTableApi = (props: {
             {"<"}
           </button>
           <button
+            id="nextPagionation"
             onClick={handleNextPage}
             disabled={currentPage === metadata?.totalPages}
             className="text-4xl text-indigo-500 disabled:text-gray-400 disabled:cursor-not-allowed"

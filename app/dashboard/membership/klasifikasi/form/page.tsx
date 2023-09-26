@@ -22,9 +22,9 @@ export default function FormKlasifikasiMembership() {
     {
       type: "select-api",
       label: "Kategori harga",
-      name: "id_kategori_harga",
+      name: "kategori_harga",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/membership/harga`,
-      keyValue: ["id", "nama_kategori_harga"],
+      keyValue: ["slug", "nama_kategori_harga"],
     },
   ];
 

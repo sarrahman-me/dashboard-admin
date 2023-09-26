@@ -1,4 +1,4 @@
-describe("template spec", () => {
+describe("Pengujian Register", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/register");
   });

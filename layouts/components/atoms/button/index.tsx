@@ -35,6 +35,7 @@ export default function Button(props: {
   return (
     <div>
       <button
+        id={props.children}
         onClick={handleClick}
         type={props.isSubmit ? "submit" : "button"}
         disabled={props.isLoading}

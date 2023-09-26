@@ -1,4 +1,4 @@
-describe("template spec", () => {
+describe("Pengujian Login", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/login");
   });

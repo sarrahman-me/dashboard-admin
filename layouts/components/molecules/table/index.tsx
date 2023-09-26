@@ -38,6 +38,7 @@ const Table = ({
           <tbody>
             {data.map((item: any, index: number) => (
               <tr
+                id={item.id}
                 onClick={
                   notClickable
                     ? () => {}
