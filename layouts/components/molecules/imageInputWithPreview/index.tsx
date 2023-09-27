@@ -30,7 +30,7 @@ export default function ImageInputWithPreview(props: {
           <div>
             {props.gambar.map((g: string, i: number) => (
               <div key={i} className="inline-block relative">
-                <img className="border w-48 h-48 m-1" alt="gambar" src={g} />
+                <img className="object-contain max-h-44 border" alt="gambar" src={g} />
                 <FaTrash
                   className="text-red-500 hover:text-red-700 absolute top-1 right-1 cursor-pointer"
                   onClick={() => handleRemoveImage(i)}

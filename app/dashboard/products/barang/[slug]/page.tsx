@@ -11,7 +11,7 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
   );
 
-  const barang = responseBarang.data;
+  const barang = responseBarang.data.currentData;
 
   return (
     <div>
