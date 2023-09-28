@@ -7,6 +7,7 @@ import {
 } from "@/layouts/components/atoms";
 import { useState, useEffect } from "react";
 import { GetDataApi } from "@/utils";
+import SectionLayout from "../sectionLayout";
 
 const DetailDataApi = (props: {
   dataEndpoint: string;
@@ -32,8 +33,8 @@ const DetailDataApi = (props: {
         <BackIcon />
         <h2 className="font-bold text-lg">Detail {props.title}</h2>
       </div>
-      <div className="md:flex mt-4">
-        <div className="m-2 p-2 border rounded-lg shadow-lg md:w-full bg-white dark:bg-slate-800">
+      <SectionLayout>
+        <div>
           {/* section list data */}
           {props.keyValueData.map((item: any, i) => (
             <div key={i}>
@@ -46,7 +47,7 @@ const DetailDataApi = (props: {
             <RemoveDataIcon url={props.dataEndpoint} />
           </div>
         </div>
-      </div>
+      </SectionLayout>
     </div>
   );
 };

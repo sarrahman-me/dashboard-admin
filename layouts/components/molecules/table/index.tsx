@@ -1,4 +1,5 @@
 "use client";
+import moment from "moment";
 import { useRouter, usePathname } from "next/navigation";
 
 type Props = {
@@ -56,7 +57,11 @@ const Table = ({
                 </td>
                 {dataKey.map((key: string, index: number) => (
                   <td key={index} className="px-6 py-4">
-                    {item[key]}
+                    {key === "timestamp" ||
+                    key === "tanggal" ||
+                    key === "createdAt"
+                      ? moment(item[key]).format("lll")
+                      : item[key]}
                   </td>
                 ))}
               </tr>

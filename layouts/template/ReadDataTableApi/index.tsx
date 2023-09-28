@@ -57,7 +57,7 @@ const ReadDataTableApi = (props: {
         <div className="flex justify-center items-center">
           <Heading>{props.title}</Heading>
           <select
-            className="ml-2 dark:bg-slate-800"
+            className="ml-2 bg-white dark:bg-slate-800"
             onChange={(e) => {
               setCurrentPage(1);
               setCurrentLimit(Number(e.target.value));

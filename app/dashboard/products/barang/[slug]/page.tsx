@@ -91,26 +91,14 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </SectionLayout>
-      {dataHistori.length > 0 ? (
+      {dataHistori && dataHistori.length > 0 ? (
         <div className="mt-5">
           <p className="underline font-semibold">Riwayat Perubahan</p>
           <Table
             notClickable={true}
             data={dataHistori}
-            titleColumns={[
-              "Tanggal",
-              "Harga",
-              // "Harga Baru",
-              "Stok",
-              // "Stok Baru",
-            ]}
-            dataKey={[
-              "timestamp",
-              "harga_lama",
-              // "harga_baru",
-              "stok_lama",
-              // "stok_baru",
-            ]}
+            titleColumns={["Tanggal", "Harga", "Stok"]}
+            dataKey={["timestamp", "harga_lama", "stok_lama"]}
             metadata={{}}
           />
         </div>
