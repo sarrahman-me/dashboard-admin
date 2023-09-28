@@ -51,7 +51,9 @@ const Table = ({
                     : "cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-400"
                 } bg-white border-b dark:bg-slate-500 dark:border-slate-50`}
               >
-                <td className="px-6 py-4">{startNumber + index}</td>
+                <td className="px-6 py-4">
+                  {startNumber + index || index + 1}
+                </td>
                 {dataKey.map((key: string, index: number) => (
                   <td key={index} className="px-6 py-4">
                     {item[key]}

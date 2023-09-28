@@ -20,7 +20,7 @@ export default function ListIcon({ text, iconComponent, href }: Props) {
       onClick={() => router.push(href)}
       className={`cursor-pointer ${
         currentPage
-          ? "bg-white dark:text-indigo-50 dark:bg-slate-800"
+          ? "bg-white dark:text-indigo-50 dark:bg-slate-800 border"
           : ""
       } flex text-indigo-900 items-center p-2 rounded-lg dark:text-slate-50`}
     >

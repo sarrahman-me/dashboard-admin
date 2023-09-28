@@ -1,7 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { SectionLayout } from "@/layouts/template";
 import { GetDataApi, formatCurrency } from "@/utils";
-import { HeaderAndBackIcon, IconSelect } from "@/layouts/components/molecules";
+import {
+  HeaderAndBackIcon,
+  IconSelect,
+  Table,
+} from "@/layouts/components/molecules";
 import { EditDataIcon, RemoveDataIcon } from "@/layouts/components/atoms";
 
 const DetailProduct = async ({ params }: { params: { slug: string } }) => {
@@ -11,14 +15,23 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
     `${process.env.NEXT_PUBLIC_HOST}/products/barang/${slug}`
   );
 
-  const barang = responseBarang.data.currentData;
+  const responseHistoryBarang = await GetDataApi(
+    `${process.env.NEXT_PUBLIC_HOST}/products/barang/history/${slug}`
+  );
+
+  const barang = responseBarang.data;
+  const dataHistori = responseHistoryBarang.data;
 
   return (
     <div>
       <HeaderAndBackIcon title="Detail Barang" />
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/3 flex justify-center items-center w-full">
-          <img src={barang.images[0]} alt={barang.slug} className="w-52 h-52 object-contain" />
+          <img
+            src={barang.images[0]}
+            alt={barang.slug}
+            className="w-52 h-52 object-contain"
+          />
         </div>
         <SectionLayout>
           <div className="divide-y-8 divide-transparent">
@@ -53,7 +66,7 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
             </div>
             <div className="w-1/2">
               <div>
-              <p className="underline">Penggunaan Umum</p>
+                <p className="underline">Penggunaan Umum</p>
                 <div className="my-2">
                   <IconSelect
                     options={barang.penggunaan_umum}
@@ -78,6 +91,30 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
           </div>
         </div>
       </SectionLayout>
+      {dataHistori.length > 0 ? (
+        <div className="mt-5">
+          <p className="underline font-semibold">Riwayat Perubahan</p>
+          <Table
+            notClickable={true}
+            data={dataHistori}
+            titleColumns={[
+              "Tanggal",
+              "Harga",
+              // "Harga Baru",
+              "Stok",
+              // "Stok Baru",
+            ]}
+            dataKey={[
+              "timestamp",
+              "harga_lama",
+              // "harga_baru",
+              "stok_lama",
+              // "stok_baru",
+            ]}
+            metadata={{}}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
