@@ -3,7 +3,7 @@ import { Button, ListData } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout } from "@/layouts/template";
 import { GetDataApi, PatchDataApi, PostDataApi } from "@/utils";
-import { Loading, Notify } from "notiflix";
+import { Confirm, Loading, Notify } from "notiflix";
 import { useEffect, useState } from "react";
 
 export default function DetailTransaksi({
@@ -27,18 +27,27 @@ export default function DetailTransaksi({
 
   const handleVerifikasi = async () => {
     Loading.hourglass();
-    const response = await PatchDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${slug}`,
-      { verifikasi: true, tanggal_verifikasi: new Date() }
+    Confirm.show(
+      "Konfirmasi",
+      "Yakin Ingin Memverifikasi Transaksi?",
+      "Yakin",
+      "Tidak",
+      async () => {
+        const response = await PatchDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${slug}`,
+          { verifikasi: true, tanggal_verifikasi: new Date() }
+        );
+        if (response.success) {
+          Loading.remove();
+          Notify.success("berhasil verifikasi");
+          window.location.reload();
+        } else {
+          Loading.remove();
+          Notify.success(response.message || "gagal verifikasi");
+        }
+      },
+      () => {}
     );
-    if (response.success) {
-      Loading.remove();
-      Notify.success("berhasil verifikasi");
-      window.location.reload();
-    } else {
-      Loading.remove();
-      Notify.success(response.message || "gagal verifikasi");
-    }
   };
 
   return (
