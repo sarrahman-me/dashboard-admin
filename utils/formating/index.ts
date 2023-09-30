@@ -4,3 +4,11 @@ export const formatCurrency = (value: number) => {
     currency: "IDR",
   });
 };
+
+export const stringToSlug = (str: string) => {
+  return str
+    .trim()
+    .toLowerCase()
+    .replace(/[\W_]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+};

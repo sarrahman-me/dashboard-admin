@@ -4,6 +4,7 @@ import FormData from "./formData";
 import FormEditData from "./formEditData";
 import SectionLayout from "./sectionLayout";
 import SwiperCoverflow from "./swiperCoverflow";
+import Timeline from "./timeline";
 
 export {
   ReadDataTableApi,
@@ -11,5 +12,6 @@ export {
   FormData,
   FormEditData,
   SectionLayout,
+  Timeline,
   SwiperCoverflow,
 };
