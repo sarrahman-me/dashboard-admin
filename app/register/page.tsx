@@ -40,12 +40,6 @@ export default function Register() {
       placeholder: "eg. Jhon Doe",
     },
     {
-      type: "text",
-      label: "Username",
-      name: "username",
-      placeholder: "@username",
-    },
-    {
       type: "email",
       label: "Email",
       name: "email",

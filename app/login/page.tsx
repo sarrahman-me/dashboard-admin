@@ -42,9 +42,9 @@ export default function Login() {
   const form = [
     {
       type: "text",
-      label: "Username",
-      name: "username",
-      placeholder: "@username",
+      label: "Akun",
+      name: "akun",
+      placeholder: "Email atau Whatsapp",
     },
     {
       type: "password",
