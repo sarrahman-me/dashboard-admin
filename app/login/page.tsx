@@ -1,5 +1,4 @@
 "use client";
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Heading } from "@/layouts/components/atoms";
@@ -23,11 +22,6 @@ export default function Login() {
     );
 
     if (response.success) {
-      setCookie("tx", response.data.token, {
-        maxAge: 60 * 60 * 24 * 30,
-        path: "/",
-      });
-      setCookie("rtx", response.data.refreshToken);
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();

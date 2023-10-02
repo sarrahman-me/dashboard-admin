@@ -1,5 +1,4 @@
 "use client";
-import { deleteCookie } from "cookies-next";
 import { Confirm, Loading } from "notiflix";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
@@ -34,10 +33,10 @@ export default function ProfileAppBar() {
       "Batal",
       async () => {
         try {
-          const responseLogout = await DeleteDataApi("/api/auth/logout");
+          const responseLogout = await DeleteDataApi(
+            `${process.env.NEXT_PUBLIC_HOST}/auth/user/logout`
+          );
           if (responseLogout.success) {
-            deleteCookie("tx");
-            deleteCookie("rtx");
             router.push("/login");
             Loading.remove();
           }
