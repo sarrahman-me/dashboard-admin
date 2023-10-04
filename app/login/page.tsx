@@ -1,5 +1,5 @@
 "use client";
-// import { setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Heading } from "@/layouts/components/atoms";
@@ -23,11 +23,16 @@ export default function Login() {
     );
 
     if (response.success) {
-      // setCookie("tx", response.data.token, {
-      //   maxAge: 60 * 60 * 24 * 30,
-      //   path: "/",
-      // });
-      // setCookie("rtx", response.data.refreshToken);
+      setCookie("tx", response.data.token, {
+        secure: true,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24,
+      });
+      setCookie("rtx", response.data.refreshToken, {
+        secure: true,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      });
       Notify.success(response.message);
       router.push("/dashboard");
       Loading.remove();
