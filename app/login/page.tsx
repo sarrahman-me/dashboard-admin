@@ -25,12 +25,12 @@ export default function Login() {
     if (response.success) {
       setCookie("tx", response.data.token, {
         secure: true,
-        httpOnly: true,
+        httpOnly: false,
         maxAge: 1000 * 60 * 60 * 24,
       });
       setCookie("rtx", response.data.refreshToken, {
         secure: true,
-        httpOnly: true,
+        httpOnly: false,
         maxAge: 1000 * 60 * 60 * 24 * 7,
       });
       Notify.success(response.message);
