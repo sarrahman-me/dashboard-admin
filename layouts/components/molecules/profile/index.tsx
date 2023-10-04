@@ -38,8 +38,8 @@ export default function ProfileAppBar() {
             `${process.env.NEXT_PUBLIC_HOST}/auth/user/logout`
           );
           if (responseLogout.success) {
-            deleteCookie("tx");
-            deleteCookie("rtx");
+            // deleteCookie("tx");
+            // deleteCookie("rtx");
             router.push("/login");
             Loading.remove();
           }
