@@ -23,7 +23,7 @@ export default function Login() {
 
     if (response.success) {
       Notify.success(response.message);
-      router.push("/dashboard");
+      // router.push("/dashboard");
       Loading.remove();
     } else {
       setLoading(false);
