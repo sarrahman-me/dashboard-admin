@@ -20,7 +20,7 @@ const ReadDataTableApi = (props: {
   const [data, setData] = useState([] as any);
   const [metadata, setMetada] = useState({} as any);
   const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
-  const [currentLimit, setCurrentLimit] = useState(10);
+  const [currentLimit, setCurrentLimit] = useState(25);
 
   useEffect(() => {
     const fetchData = async () => {
