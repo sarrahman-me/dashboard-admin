@@ -93,7 +93,7 @@ export default function Timeline(props: {
             value sebagai berikut
           </p>
           <ul className="my-2 bg-slate-100 dark:bg-slate-900 rounded-md">
-            <li>NEXT_PUBLIC_HOST=http://localhost</li>
+            <li>NEXT_PUBLIC_HOST=https://api.tokokeramik.com</li>
             {props.nama_webstore ? (
               <li>
                 NEXT_PUBLIC_DOMAIN=
