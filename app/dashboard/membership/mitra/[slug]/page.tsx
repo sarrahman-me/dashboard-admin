@@ -1,8 +1,4 @@
-import {
-  EditDataIcon,
-  ListData,
-  RemoveDataIcon,
-} from "@/layouts/components/atoms";
+import { ListData } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout } from "@/layouts/template";
 import { GetDataApi, formatCurrency } from "@/utils";
@@ -14,18 +10,20 @@ export default async function detailMitra({
   params: { slug: string };
 }) {
   const mitraResponse = await GetDataApi(
-    `${process.env.NEXT_PUBLIC_HOST}/mitra/${params.slug}`
+    `${process.env.NEXT_PUBLIC_HOST}/mitra/by?username=${params.slug}`
   );
 
   const mitra = mitraResponse.data;
   let membership = null;
+  let klasifikasi = null;
 
   if (mitra.id_membership) {
     const membershipResponse = await GetDataApi(
       `${process.env.NEXT_PUBLIC_HOST}/membership/member/${mitra.id_membership}`
     );
 
-    membership = membershipResponse?.data;
+    membership = membershipResponse?.data.membership;
+    klasifikasi = membershipResponse?.data.klasifikasi;
   }
 
   return (
@@ -50,25 +48,23 @@ export default async function detailMitra({
             <ListData label={"ID Membership"} value={mitra.id_membership} />
             <ListData
               label={"Paket Membership"}
-              value={membership.klasifikasi.nama_klasifikasi}
+              value={klasifikasi.nama_klasifikasi}
             />
             <ListData
               label={"Biaya Bulanan"}
-              value={formatCurrency(membership.klasifikasi.harga)}
+              value={formatCurrency(klasifikasi.harga)}
             />
             <ListData
               label={"Kategori Harga"}
-              value={membership.klasifikasi.kategori_harga}
+              value={klasifikasi.kategori_harga}
             />
             <ListData
               label={"Berlangganan Sejak"}
-              value={moment(Number(membership.membership.startDate)).format(
-                "ll"
-              )}
+              value={moment(Number(membership.startDate)).format("ll")}
             />
             <ListData
               label={"Berlangganan berakhir"}
-              value={moment(Number(membership.membership.endDate)).format("ll")}
+              value={moment(Number(membership.endDate)).format("ll")}
             />
           </div>
         </SectionLayout>
