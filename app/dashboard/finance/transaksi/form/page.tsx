@@ -17,9 +17,9 @@ export default function FormTransaksi() {
     {
       type: "select-api",
       label: "Tipe transaksi",
-      name: "id_tipe_transaksi",
+      name: "tipe_transaksi",
       apiUrl: `${process.env.NEXT_PUBLIC_HOST}/finance/tipe`,
-      keyValue: ["id", "nama_tipe_transaksi"],
+      keyValue: ["slug", "nama_tipe_transaksi"],
     },
   ];
 
