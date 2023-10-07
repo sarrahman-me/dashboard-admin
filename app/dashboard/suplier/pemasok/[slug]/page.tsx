@@ -1,6 +1,5 @@
 import {
   EditDataIcon,
-  Heading,
   ListData,
   RemoveDataIcon,
 } from "@/layouts/components/atoms";

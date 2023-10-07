@@ -3,6 +3,7 @@ import logo from "@/public/logo.png";
 import { FaCube, FaUsers, FaMoneyBill, FaStoreAlt } from "react-icons/fa";
 import { MdDashboard, MdCardMembership } from "react-icons/md";
 import { DropdownList, ListIcon } from "@/layouts/components/molecules";
+import { FcDataConfiguration } from "react-icons/fc";
 
 const menuItems = [
   {
@@ -12,7 +13,7 @@ const menuItems = [
   },
   {
     label: "Webstore",
-    icon:  <FaStoreAlt />,
+    icon: <FaStoreAlt />,
     href: "/dashboard/webstore",
   },
 ];
@@ -89,6 +90,41 @@ const listMembership = [
   },
 ];
 
+const listConfiguration = [
+  {
+    label: "Domain",
+    href: "/dashboard/configuration/domain",
+  },
+];
+
+const menuDropdownItems = [
+  {
+    icon: <FaCube />,
+    title: "Barang",
+    listMenu: listBarang,
+  },
+  {
+    icon: <FaUsers />,
+    title: "Suplier",
+    listMenu: listSuplier,
+  },
+  {
+    icon: <FaMoneyBill />,
+    title: "Finance",
+    listMenu: listFinance,
+  },
+  {
+    icon: <MdCardMembership />,
+    title: "Membership",
+    listMenu: listMembership,
+  },
+  {
+    icon: <FcDataConfiguration />,
+    title: "Configuration",
+    listMenu: listConfiguration,
+  },
+];
+
 export default function Sidebar() {
   return (
     <aside
@@ -113,26 +149,14 @@ export default function Sidebar() {
               iconComponent={item.icon}
             />
           ))}
-          <DropdownList
-            iconComponent={<FaCube />}
-            title="Barang"
-            listMenu={listBarang}
-          />
-          <DropdownList
-            iconComponent={<FaUsers />}
-            title="Suplier"
-            listMenu={listSuplier}
-          />
-          <DropdownList
-            iconComponent={<FaMoneyBill />}
-            title="Finance"
-            listMenu={listFinance}
-          />
-          <DropdownList
-            iconComponent={<MdCardMembership />}
-            title="Membership"
-            listMenu={listMembership}
-          />
+          {menuDropdownItems.map((item, i) => (
+            <DropdownList
+              iconComponent={item.icon}
+              title={item.title}
+              listMenu={item.listMenu}
+              key={i}
+            />
+          ))}
         </ul>
       </div>
     </aside>
