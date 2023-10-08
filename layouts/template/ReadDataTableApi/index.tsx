@@ -11,6 +11,7 @@ const ReadDataTableApi = (props: {
   dataKey: string[];
   titleColumns: string[];
   notAddable?: boolean;
+  notClickable?: boolean;
 }) => {
   const path = usePathname();
   const router = useRouter();
@@ -73,6 +74,7 @@ const ReadDataTableApi = (props: {
         {!props.notAddable && <Button href={`${pathname}/form`}>Tambah</Button>}
       </div>
       <Table
+        notClickable={props.notClickable}
         metadata={metadata}
         dataKey={props.dataKey}
         data={data}
