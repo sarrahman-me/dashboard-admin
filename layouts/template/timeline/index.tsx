@@ -17,15 +17,15 @@ export default function Timeline(props: {
         const createNewDomainAllowed = await PostDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/config/domain`,
           {
-            domain: `https://${stringToSlug(props.nama_webstore)}.netlify.app`,
+            domain: `https://${stringToSlug(props.nama_webstore)}.vercel.app`,
           }
         );
 
         const updateDataWebstore = await PatchDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/webstore/${props.id_webstore}`,
           {
-            url: `https://${stringToSlug(props.nama_webstore)}.netlify.app`,
-            domain: `${stringToSlug(props.nama_webstore)}.netlify.app`,
+            url: `https://${stringToSlug(props.nama_webstore)}.vercel.app`,
+            domain: `${stringToSlug(props.nama_webstore)}.vercel.app`,
             isLive: true,
           }
         );
@@ -52,9 +52,9 @@ export default function Timeline(props: {
             Langkah 1
           </h3>
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-            Kunjungi Situs Netlify, klik tombol dibawah
+            Kunjungi Situs vercel, klik tombol dibawah
           </p>
-          <Button href="https://app.netlify.com/start">Netlify</Button>
+          <Button href="https://vercel.com/new">vercel</Button>
         </li>
 
         {/* langkah 2 */}
