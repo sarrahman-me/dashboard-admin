@@ -2,10 +2,16 @@
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Heading } from "@/layouts/components/atoms";
+import { Heading } from "@/layouts/components/atoms";
 import { Loading, Notify } from "notiflix";
 import { PostDataApi } from "@/utils";
-import { TextfieldGroup } from "@/layouts/components/organisms";
+import {
+  Button,
+  Container,
+  Logo,
+  TextfieldGroup,
+  Typography,
+} from "@/src/components";
 
 export default function Login() {
   const router = useRouter();
@@ -60,37 +66,26 @@ export default function Login() {
   ];
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="mb-3">
-          <Heading>Dunia Bangunan</Heading>
-        </div>
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <form
-            className="p-6 space-y-4 md:space-y-6 sm:p-8"
-            onSubmit={handleSubmit}
-          >
-            <TextfieldGroup
-              error={error}
-              form={form}
-              setData={setData}
-              data={data}
-            />
-            <Button isLoading={loading} isFullWidth={true} isSubmit={true}>
-              Masuk
-            </Button>
-            <p className="text-center">
-              Belum punya akun{" "}
-              <span
-                onClick={() => router.push("/register")}
-                className="underline text-indigo-500 cursor-pointer"
-              >
-                Daftar
-              </span>
-            </p>
-          </form>
-        </div>
+    <section className="flex flex-col items-center justify-center h-screen">
+      <div>
+        <Logo />
       </div>
+      <Container otherClass="my-5 w-full sm:min-w-[50%] lg:min-w-[30%]">
+        <form
+          className="p-6 space-y-4 md:space-y-6 sm:p-8"
+          onSubmit={handleSubmit}
+        >
+          <TextfieldGroup
+            error={error}
+            forms={form}
+            setData={setData}
+            data={data}
+          />
+          <Button loading={loading} size="full" type="submit">
+            Masuk
+          </Button>
+        </form>
+      </Container>
     </section>
   );
 }
