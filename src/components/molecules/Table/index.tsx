@@ -1,4 +1,6 @@
 import React from "react";
+import { Typography } from "../../atoms";
+import { PiFolderNotchOpen } from "react-icons/pi";
 
 interface Column {
   label: string;
@@ -20,7 +22,20 @@ const Table = ({ datas, columns }: TableProps) => {
     right: "text-right",
   };
 
-  const tdClassNameDefault = `border-b text-xs sm:text-sm p-2`;
+  const tdClassNameDefault = `border-b text-xs sm:text-sm p-2 whitespace-nowrap`;
+
+  if (datas.length < 1) {
+    return (
+      <div>
+        <div className="flex justify-center m-1">
+          <PiFolderNotchOpen className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
+        </div>
+        <Typography color="secondary" variant="helper" align="center">
+          No Data
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <div className="relative overflow-x-auto">
@@ -32,7 +47,7 @@ const Table = ({ datas, columns }: TableProps) => {
             {columns.map((column, i) => (
               <th
                 key={i}
-                className="first-letter:uppercase bg-gray-200 dark:bg-gray-800 rounded p-2 text-sm sm:text-base"
+                className="first-letter:uppercase bg-gray-200 dark:bg-gray-800 p-2 text-sm sm:text-base"
               >
                 {column.label}
               </th>

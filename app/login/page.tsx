@@ -8,6 +8,7 @@ import { PostDataApi } from "@/utils";
 import {
   Button,
   Container,
+  FooterText,
   Logo,
   TextfieldGroup,
   Typography,
@@ -86,6 +87,7 @@ export default function Login() {
           </Button>
         </form>
       </Container>
+      <FooterText />
     </section>
   );
 }

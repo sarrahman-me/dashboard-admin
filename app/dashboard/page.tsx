@@ -57,6 +57,7 @@ const columns = [
     renderCell: (item: any) => (
       <div className="flex justify-center">
         <IconButton
+          size="small"
           color="warning"
           onClick={() => console.log("oke")}
           icon={<CiEdit />}
@@ -69,6 +70,7 @@ const columns = [
     renderCell: (item: any) => (
       <div className="flex justify-center">
         <IconButton
+          size="small"
           color="danger"
           onClick={() => console.log("oke")}
           icon={<CiTrash />}
@@ -82,6 +84,9 @@ export default function Dashboard() {
   return (
     <div>
       <Table columns={columns} datas={data} />
+      <br />
+      <br />
+      <Table columns={columns} datas={[]} />
     </div>
   );
 }
