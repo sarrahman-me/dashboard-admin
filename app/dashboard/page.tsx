@@ -6,22 +6,32 @@ const data = [
   {
     nama: "Muhammad nur rahman",
     umur: 23,
+    daerah: "samarinda",
+    gender: "pria",
   },
   {
     nama: "Sarah nur khalifah",
     umur: 24,
+    daerah: "samarinda",
+    gender: "wanita",
   },
   {
     nama: "Khaulah ma'rifatunnisa",
     umur: 4,
+    daerah: "samarinda",
+    gender: "wanita",
   },
   {
     nama: "Khalid fadlurrahman",
     umur: 2,
+    daerah: "samarinda",
+    gender: "pria",
   },
   {
     nama: "khaulid",
     umur: 0,
+    daerah: "samarinda",
+    gender: "pria",
   },
 ];
 
@@ -32,8 +42,15 @@ const columns = [
   },
   {
     label: "Umur",
-    align: "right",
     renderCell: (item: any) => item.umur,
+  },
+  {
+    label: "Daerah",
+    renderCell: (item: any) => item.daerah,
+  },
+  {
+    label: "Gender",
+    renderCell: (item: any) => item.gender,
   },
   {
     label: "Edit",
