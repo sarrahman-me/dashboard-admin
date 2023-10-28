@@ -24,7 +24,7 @@ const Logo = ({ size }: LogoProps) => {
   return (
     <span className={className}>
       <p>Tokokera</p>
-      <FaMountainSun className="text-indigo-600" />
+      <FaMountainSun className="text-lime-600" />
       <p>ik.com</p>
     </span>
   );

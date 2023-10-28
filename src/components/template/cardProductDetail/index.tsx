@@ -52,7 +52,7 @@ export default function CardProductDetail({
 
       <Container otherClass="p-2 w-full">
         <div className="space-y-2 md:space-y-3 ml-2">
-          <p className="text-sm md:text-base text-indigo-500">
+          <p className="text-sm md:text-base text-lime-500">
             {barang.kategori}
           </p>
 

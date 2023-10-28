@@ -1,7 +1,8 @@
 "use client";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { IconButton, ItemSidebar, Logo } from "@/src/components";
-import { menuItems, personalMenu } from "@/src/data/menu";
+import { menuDropdownItems, menuItems, personalMenu } from "@/src/data/menu";
+import { DropdownList } from "@/layouts/components/molecules";
 
 /**
  * Komponen Sidebar digunakan untuk membuat sidebar yang dapat diperluas atau ditutup.
@@ -30,7 +31,11 @@ const Sidebar = ({ expand, setExpand }: SidebarProps) => {
         } items-center m-2`}
       >
         {expand && <Logo />}
-        <IconButton size="small" onClick={() => setExpand(!expand)} icon={icon} />
+        <IconButton
+          size="small"
+          onClick={() => setExpand(!expand)}
+          icon={icon}
+        />
       </div>
 
       <div className="my-10 mx-3 border-b border-gray-200 dark:border-gray-600">
@@ -43,6 +48,15 @@ const Sidebar = ({ expand, setExpand }: SidebarProps) => {
               label={item.label}
             />
           </div>
+        ))}
+        {menuDropdownItems.map((item, i) => (
+          <DropdownList
+            expand={expand}
+            iconComponent={item.icon}
+            title={item.title}
+            listMenu={item.listMenu}
+            key={i}
+          />
         ))}
       </div>
 

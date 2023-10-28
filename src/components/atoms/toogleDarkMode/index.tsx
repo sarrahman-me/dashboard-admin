@@ -45,7 +45,7 @@ export default function ToggleDarkMode() {
       <button
         title={isDarkModeEnabled ? "Terang" : "Gelap"}
         onClick={toggleDarkMode}
-        className="flex items-center gap-2 p-2 rounded-md transition-colors duration-300 focus:outline-none text-indigo-500 "
+        className="flex items-center gap-2 p-2 rounded-md transition-colors duration-300 focus:outline-none text-lime-500 "
       >
         <span
           className={`transform transition-transform duration-300 ${

@@ -70,7 +70,7 @@ export default function Login() {
       <div>
         <Logo />
       </div>
-      <Container otherClass="my-5 w-full sm:min-w-[50%] lg:min-w-[30%]">
+      <Container otherClass="my-5 min-w-[95%] sm:min-w-[50%] lg:min-w-[30%]">
         <form
           className="p-6 space-y-4 md:space-y-6 sm:p-8"
           onSubmit={handleSubmit}

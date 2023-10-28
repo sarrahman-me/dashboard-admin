@@ -38,10 +38,10 @@ const Button = ({
 
   const classVariant = {
     contained:
-      "border border-indigo-600 bg-indigo-600 text-white hover:bg-indigo-800 disabled:bg-gray-500 disabled:border-none",
+      "border border-lime-600 bg-lime-600 text-white hover:bg-lime-800 disabled:bg-gray-500 disabled:border-none",
 
     outlined:
-      "border-2 border-indigo-600 hover:shadow-md hover:border-indigo-500 disabled:border-gray-500",
+      "border-2 border-lime-600 hover:shadow-md hover:border-lime-500 disabled:border-gray-500",
 
     text: "hover:bg-slate-200 dark:hover:bg-slate-800",
   };

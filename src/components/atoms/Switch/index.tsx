@@ -23,7 +23,7 @@ const SwitchToggle = ({ value, setValue, label }: SwitchProps) => {
         checked={value}
         onChange={setValue}
         className={`${
-          value ? "bg-indigo-600" : "bg-gray-200 dark:bg-slate-800"
+          value ? "bg-lime-600" : "bg-gray-200 dark:bg-slate-800"
         } relative inline-flex h-6 w-11 items-center rounded-full`}
       >
         <span

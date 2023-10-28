@@ -7,13 +7,7 @@ import { Report } from "notiflix";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setMembership,
-  setPersentaseHarga,
-  setProfile,
-  setTransaksi,
-  setWebstore,
-} from "@/src/redux/slice/profile";
+import { setProfile } from "@/src/redux/slice/profile";
 
 /**
  * Komponen AppBar digunakan untuk membuat bilah aplikasi yang dapat menampilkan judul dan opsi lainnya.
@@ -28,7 +22,7 @@ export default function AppBar() {
   useEffect(() => {
     async function fetchData() {
       const responseProfile = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/auth/mitra/profile`,
+        `${process.env.NEXT_PUBLIC_HOST}/auth/user/profile`,
         300
       );
 
@@ -47,39 +41,7 @@ export default function AppBar() {
       }
 
       const profile = responseProfile?.data;
-      let membership = null;
-      let transaksi = null;
-      let persentaseHarga = null;
-      let webstore = null;
 
-      if (profile?.id_membership) {
-        const responseMembership = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/membership/member/${profile?.id_membership}`,
-          300
-        );
-        membership = responseMembership?.data.membership;
-        persentaseHarga = responseMembership?.data?.harga?.persentase;
-      }
-
-      if (profile?.id_webstore) {
-        const responseWebstore = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/webstore/${profile.id_webstore}`
-        );
-        webstore = responseWebstore?.data;
-      }
-
-      if (membership?.id_transaksi) {
-        const responseTransaksi = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/finance/transaksi/${membership.id_transaksi}`,
-          300
-        );
-
-        transaksi = responseTransaksi?.data;
-      }
-      dispatch(setWebstore(webstore));
-      dispatch(setTransaksi(transaksi));
-      dispatch(setPersentaseHarga(persentaseHarga));
-      dispatch(setMembership(membership));
       dispatch(setProfile(profile));
     }
     fetchData();

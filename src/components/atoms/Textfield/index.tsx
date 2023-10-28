@@ -55,7 +55,7 @@ const Textfield = ({
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
     default:
-      "border-gray-600 hover:border-gray-600 focus:border-indigo-600 dark:focus:border-indigo-600",
+      "border-gray-600 hover:border-gray-600 focus:border-lime-600 dark:focus:border-lime-600",
     error:
       "border-red-600 hover:border-red-600 focus:border-red-600 dark:focus:border-red-600",
   };
@@ -64,10 +64,10 @@ const Textfield = ({
 
   const classVariant: Record<string, string> = {
     outlined:
-      "bg-white dark:bg-slate-800 border focus:border-2 focus:ring-indigo-600 dark:focus:ring-indigo-600 rounded-md  invalid:border-red-500",
+      "bg-white dark:bg-slate-800 border focus:border-2 focus:ring-lime-600 dark:focus:ring-lime-600 rounded-md  invalid:border-red-500",
 
     standard:
-      "bg-transparent border-b focus:border-b-2 border-indigo-600 hover:border-indigo-600 invalid:border-b-red-500",
+      "bg-transparent border-b focus:border-b-2 border-lime-600 hover:border-lime-600 invalid:border-b-red-500",
   };
 
   /* "defaultClass" adalah class tailwind yang ada di semua variant textfield */
@@ -106,7 +106,7 @@ const Textfield = ({
         />
         {icon && (
           <div onClick={onClickIcon} className="relative flex items-center">
-            <button type="submit" className="absolute right-3 text-indigo-600">
+            <button type="submit" className="absolute right-3 text-lime-600">
               {icon}
             </button>
           </div>

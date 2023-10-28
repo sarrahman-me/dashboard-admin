@@ -60,7 +60,7 @@ const CardMembershipPlan = ({ item }: CardMembershipPlanProps) => {
       <div className="flex justify-center items-center mb-3">
         <Typography variant="h4">{item?.nama_klasifikasi}</Typography>
         {item?.slug === "premium" ? (
-          <BsHandThumbsUpFill className="text-indigo-600" />
+          <BsHandThumbsUpFill className="text-lime-600" />
         ) : null}
       </div>
 

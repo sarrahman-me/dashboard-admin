@@ -31,7 +31,7 @@ const IconButton = ({
   // Daftar kelas CSS untuk setiap warna tombol
   const classColor = {
     primary:
-      "bg-indigo-600 text-white hover:bg-white hover:text-indigo-600 disabled:bg-gray-600 disabled:hover:text-white",
+      "bg-lime-600 text-white hover:bg-white hover:text-lime-600 disabled:bg-gray-600 disabled:hover:text-white",
     secondary:
       "bg-gray-600 text-white hover:bg-white hover:text-gray-600 disabled:bg-gray-600 disabled:hover:text-white",
     danger:

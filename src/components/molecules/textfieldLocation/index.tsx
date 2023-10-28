@@ -79,7 +79,7 @@ const TextfieldLocation = ({
               otherClass="p-2 cursor-pointer hover:bg-gray-50 hover:border-black"
             >
               <div>
-                <p className="text-indigo-500 text-xs">{location.type}</p>
+                <p className="text-lime-500 text-xs">{location.type}</p>
                 <Typography>{location.display_name}</Typography>
                 <Typography variant="helper" color="secondary">
                   {location.class}

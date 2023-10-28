@@ -45,7 +45,7 @@ const CardProduct = ({ product }: CardProductProps) => {
       {/* label jika barang baru */}
 
       {isNew && (
-        <div className="bg-indigo-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
+        <div className="bg-lime-500 text-white text-xs md:text-sm px-2 py-1 rounded-br absolute top-0 left-0">
           Baru
         </div>
       )}
@@ -61,7 +61,7 @@ const CardProduct = ({ product }: CardProductProps) => {
       </div>
 
       <div className="p-1 divide-y-2 md:divide-y-4 divide-transparent">
-        <p className="text-xs text-indigo-500">{product?.kategori}</p>
+        <p className="text-xs text-lime-500">{product?.kategori}</p>
         <p className="text-xs md:text-sm">{product?.nama_barang}</p>
 
         {/* harga */}

@@ -11,7 +11,7 @@ function Tabs({ lists, panels }: TabsProps) {
     <Tab.Group>
       {/* bagian list */}
 
-      <div className="max-w-fit mx-auto bg-indigo-50 dark:bg-gray-900 rounded-md my-3">
+      <div className="max-w-fit mx-auto bg-lime-50 dark:bg-gray-900 rounded-md my-3">
         <Tab.List className="flex divide-x-2 divide-white dark:divide-transparent">
           {lists.map((list, i) => (
             <Tab key={i}>
@@ -19,8 +19,8 @@ function Tabs({ lists, panels }: TabsProps) {
                 <div
                   className={`${
                     selected
-                      ? "bg-indigo-600 text-white"
-                      : "bg-indigo-50 text-indigo-600 dark:bg-gray-900 dark:text-white"
+                      ? "bg-lime-600 text-white"
+                      : "bg-lime-50 text-lime-600 dark:bg-gray-900 dark:text-white"
                   } cursor-pointer p-1 px-3 rounded-md`}
                 >
                   {list}

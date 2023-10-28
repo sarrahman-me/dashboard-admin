@@ -25,14 +25,14 @@ const ItemTopBar = ({ icon, href, label }: ItemTopBarProps) => {
       : pathName === href;
 
   const colorClass = active
-    ? "border-b-2 border-indigo-600 dark:border-gray-700"
+    ? "border-b-2 border-lime-600 dark:border-gray-700"
     : "";
 
   const colorIcon = active
-    ? "text-indigo-600 dark:text-white font-bold"
+    ? "text-lime-600 dark:text-white font-bold"
     : "text-gray-400 dark:text-gray-200";
 
-  const colotText = active ? "text-indigo-500 dark:text-white" : "";
+  const colotText = active ? "text-lime-500 dark:text-white" : "";
 
   return (
     <div

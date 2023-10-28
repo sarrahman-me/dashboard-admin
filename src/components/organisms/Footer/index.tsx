@@ -12,7 +12,7 @@ const Footer = () => {
     <div className="relative">
       <div className="container p-8 mx-auto xl:px-0">
         
-        <div className="grid max-w-screen-xl grid-cols-1 gap-10 pt-10 mx-auto mt-5 border-t border-indigo-100 dark:border-indigo-600 lg:grid-cols-5">
+        <div className="grid max-w-screen-xl grid-cols-1 gap-10 pt-10 mx-auto mt-5 border-t border-lime-100 dark:border-lime-600 lg:grid-cols-5">
           {/* Bagian 1 */}
 
           <div className="lg:col-span-2">

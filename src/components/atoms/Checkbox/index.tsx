@@ -30,7 +30,7 @@ const Checkbox = ({
   // Kelas CSS untuk styling checkbox
 
   const className =
-    "w-4 h-4 text-indigo-600 bg-white dark:bg-slate-800 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600 disabled:cursor-not-allowed";
+    "w-4 h-4 text-lime-600 bg-white dark:bg-slate-800 border-gray-300 rounded focus:ring-lime-500 dark:focus:ring-lime-600 dark:ring-offset-gray-800 focus:ring-2 dark:border-gray-600 disabled:cursor-not-allowed";
 
   return (
     <div className="flex items-center">

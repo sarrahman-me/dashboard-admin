@@ -28,7 +28,7 @@ const RadioGroup = ({
   // CSS classes untuk styling Radio buttons
 
   const classNameInput =
-    "w-4 h-4 text-indigo-600 bg-white dark:bg-slate-800 border-indigo-600 dark:border-indigo-600";
+    "w-4 h-4 text-lime-600 bg-white dark:bg-slate-800 border-lime-600 dark:border-lime-600";
 
   return (
     <div>

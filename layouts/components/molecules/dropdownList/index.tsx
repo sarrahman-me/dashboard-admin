@@ -2,47 +2,46 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { ReactElement } from "react";
-import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
-export default function DropdownList(props: {
-  listMenu: any;
+interface DropdownListProps {
+  listMenu: { label: string; href: string }[];
   title: string;
   iconComponent: ReactElement;
-}) {
+  expand: boolean;
+}
+
+export default function DropdownList({
+  listMenu,
+  title,
+  iconComponent,
+  expand,
+}: DropdownListProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleDropdownToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
       <li
-        onClick={handleDropdownToggle}
-        className="flex hover:cursor-pointer items-center p-2 text-indigo-500 rounded-lg"
+        onClick={() => setOpen(!open)}
+        className="flex w-full my-3 p-3 cursor-pointer rounded-md items-center hover:bg-lime-50 dark:hover:bg-gray-700"
       >
-        <div className="text-indigo-500 bg-white dark:bg-slate-800 p-2 rounded-lg">{props.iconComponent}</div>
-        <span className="flex-1 ml-3 whitespace-nowrap text-indigo-900 dark:text-white">
-          {props.title}
-        </span>
-        <span>
-          <FaArrowCircleUp className={`${isOpen ? "hidden" : ""}`} />
-          <FaArrowCircleDown className={`${isOpen ? "" : "hidden"}`} />
-        </span>
+        {iconComponent}
+
+        <div className={!expand ? "hidden" : "flex w-full items-center"}>
+          <span className="flex-1 ml-3 font-medium">{title}</span>
+
+          <span>
+            <MdKeyboardArrowUp className={`${open ? "hidden" : ""}`} />
+            <MdKeyboardArrowDown className={`${open ? "" : "hidden"}`} />
+          </span>
+        </div>
       </li>
-      <div
-        id="dropdown"
-        className={`z-10 divide-y divide-indigo-100 rounded w-44 ${
-          isOpen ? "" : "hidden"
-        }`}
-      >
-        <ul
-          className="py-2 text-sm text-indigo-900 dark:text-indigo-200"
-          aria-labelledby="dropdownDefaultButton"
-        >
-          {props.listMenu.map((item: any, i: any) => {
+
+      <div id="dropdown" className={`z-10 ${open ? "" : "hidden"}`}>
+        <ul className="ml-3" aria-labelledby="dropdownDefaultButton">
+          {listMenu.map((item: any, i: any) => {
             const currentPage =
               item.href !== "/dashboard"
                 ? pathname === item.href || pathname.includes(item.href)
@@ -52,9 +51,11 @@ export default function DropdownList(props: {
               <li
                 key={i}
                 onClick={() => router.push(item.href)}
-                className={`cursor-pointer rounded-lg block px-4 text-indigo-900 dark:text-slate-50 py-2 ${
-                  currentPage ? "bg-white dark:bg-slate-800 border" : ""
-                }`}
+                className={`${
+                  currentPage
+                    ? "bg-lime-600 dark:bg-gray-700 text-white"
+                    : "hover:bg-lime-50 dark:hover:bg-gray-700"
+                } flex w-full my-2 p-2 cursor-pointer rounded-md `}
               >
                 {item.label}
               </li>

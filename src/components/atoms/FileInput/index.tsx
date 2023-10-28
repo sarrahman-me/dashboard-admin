@@ -100,8 +100,8 @@ const FileInput = ({ label, error, setFile, previewFile }: FileInputProps) => {
         file:mr-4 file:py-2 file:px-4
         file:rounded-md file:border-0
         file:text-sm file:font-semibold
-        file:bg-indigo-50 file:text-indigo-700
-        hover:file:bg-indigo-100`;
+        file:bg-lime-50 file:text-lime-700
+        hover:file:bg-lime-100`;
 
   return (
     <div>

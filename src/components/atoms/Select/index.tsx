@@ -35,7 +35,7 @@ const Select = ({
   /* Objek `classColorBorder` mendefinisikan kelas CSS yang berbeda untuk setiap border pada varian Textfield ketika error. */
   const classColorBorder = {
     default:
-      "border-gray-600 hover:border-gray-600 focus:border-indigo-600 dark:focus:border-indigo-600",
+      "border-gray-600 hover:border-gray-600 focus:border-lime-600 dark:focus:border-lime-600",
     error:
       "border-red-600 hover:border-red-600 focus:border-red-600 dark:focus:border-red-600",
   };
@@ -44,7 +44,7 @@ const Select = ({
     !error ? classColorBorder.default : classColorBorder.error
   }`;
 
-  const classNameOptions = `mt-2 p-2 focus:outline-none border border-indigo-600 bg-white dark:bg-slate-800 rounded-md shadow-md max-h-48 overflow-scroll`;
+  const classNameOptions = `mt-2 p-2 focus:outline-none border border-lime-600 bg-white dark:bg-slate-800 rounded-md shadow-md max-h-48 overflow-scroll`;
 
   return (
     <div>
@@ -58,7 +58,7 @@ const Select = ({
           </Listbox.Button>
 
           <div className="relative flex items-center">
-            <span className="absolute right-3 text-indigo-600">
+            <span className="absolute right-3 text-lime-600">
               <HiSelector />
             </span>
           </div>
@@ -72,9 +72,9 @@ const Select = ({
                 <div
                   className={`${
                     active
-                      ? "bg-indigo-100 text-indigo-600"
+                      ? "bg-lime-100 text-lime-600"
                       : selected
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-lime-600 text-white"
                       : ""
                   } cursor-pointer select-none p-2 rounded-md`}
                 >
