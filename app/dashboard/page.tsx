@@ -1,21 +1,70 @@
-import { GiHand } from "react-icons/gi";
+"use client";
+import { IconButton, Table } from "@/src/components";
+import { CiEdit, CiTrash } from "react-icons/ci";
+
+const data = [
+  {
+    nama: "Muhammad nur rahman",
+    umur: 23,
+  },
+  {
+    nama: "Sarah nur khalifah",
+    umur: 24,
+  },
+  {
+    nama: "Khaulah ma'rifatunnisa",
+    umur: 4,
+  },
+  {
+    nama: "Khalid fadlurrahman",
+    umur: 2,
+  },
+  {
+    nama: "khaulid",
+    umur: 0,
+  },
+];
+
+const columns = [
+  {
+    label: "Nama",
+    renderCell: (item: any) => item.nama,
+  },
+  {
+    label: "Umur",
+    align: "right",
+    renderCell: (item: any) => item.umur,
+  },
+  {
+    label: "Edit",
+    renderCell: (item: any) => (
+      <div className="flex justify-center">
+        <IconButton
+          color="warning"
+          onClick={() => console.log("oke")}
+          icon={<CiEdit />}
+        />
+      </div>
+    ),
+  },
+  {
+    label: "Hapus",
+    renderCell: (item: any) => (
+      <div className="flex justify-center">
+        <IconButton
+          color="danger"
+          onClick={() => console.log("oke")}
+          icon={<CiTrash />}
+        />
+      </div>
+    ),
+  },
+];
 
 export default function Dashboard() {
   return (
     <div>
-      <p className="hidden md:inline-flex text-lg font-bold text-indigo-500 justify-center items-center">
-        Hay !! Selamat datang di{" "}
-        <span className="text-black dark:text-white mx-2">sarrahman bangunan</span>{" "}
-        <span>
-          <GiHand />
-        </span>{" "}
-      </p>
-      <p className="inline-flex md:hidden text-lg font-bold text-indigo-500 justify-center items-center">
-        Hay !! Selamat datang{" "}
-        <span>
-          <GiHand />
-        </span>{" "}
-      </p>
+      <Table columns={columns} datas={data} />
     </div>
   );
 }

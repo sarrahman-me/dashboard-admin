@@ -1,4 +1,5 @@
 import NavGroup from "./NavGroup";
+import Table from "./Table";
 import Tabs from "./Tabs";
 import TextfieldGroup from "./TextfieldGroup";
 import TopBar from "./TopBar";
@@ -20,4 +21,5 @@ export {
   Tabs,
   TextfieldLocation,
   SearchBar,
+  Table,
 };

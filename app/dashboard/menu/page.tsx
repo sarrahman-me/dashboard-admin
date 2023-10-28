@@ -1,6 +1,6 @@
 "use client";
 import { Button, Container, Typography } from "@/src/components";
-import { menuDropdownItems, menuItemsPageMobile } from "@/src/data/menu";
+import { menuDropdownItems } from "@/src/data/menu";
 import { DeleteDataApi } from "@/utils";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
