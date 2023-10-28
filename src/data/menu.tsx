@@ -8,7 +8,7 @@ import { MdOutlineCardMembership, MdOutlineFeedback } from "react-icons/md";
 import { BiCube, BiStore } from "react-icons/bi";
 import { TbTools } from "react-icons/tb";
 import { RiAccountCircleLine } from "react-icons/ri";
-import { GrDocumentConfig } from "react-icons/gr";
+import { AiOutlineSetting } from "react-icons/ai";
 import { PiUsersThree, PiMoneyThin } from "react-icons/pi";
 
 export const menuItemsPageMobile = [
@@ -61,19 +61,19 @@ export const menuItemsMobile = [
     href: "/dashboard",
   },
   {
-    label: "Membership",
-    icon: <MdOutlineCardMembership />,
-    href: "/dashboard/membership",
+    label: "Mitra",
+    icon: <PiUsersThree />,
+    href: "/dashboard/membership/mitra",
   },
   {
     label: "Barang",
     icon: <BiCube />,
-    href: "/dashboard/barang",
+    href: "/dashboard/products/barang",
   },
   {
-    label: "Webstore",
-    icon: <BiStore />,
-    href: "/dashboard/webstore",
+    label: "Transaksi",
+    icon: <PiMoneyThin />,
+    href: "/dashboard/finance/transaksi",
   },
   {
     label: "Menu",
@@ -204,7 +204,7 @@ export const menuDropdownItems = [
     listMenu: listMembership,
   },
   {
-    icon: <GrDocumentConfig />,
+    icon: <AiOutlineSetting />,
     title: "Configuration",
     listMenu: listConfiguration,
   },

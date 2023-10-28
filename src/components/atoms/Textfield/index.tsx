@@ -72,7 +72,7 @@ const Textfield = ({
 
   /* "defaultClass" adalah class tailwind yang ada di semua variant textfield */
 
-  const defaultClass = `placeholder:select-none dark:placeholder-gray-400 p-2 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed transition`;
+  const defaultClass = `placeholder:select-none dark:placeholder-gray-400 p-2 focus:outline-none disabled:border-gray-500 disabled:cursor-not-allowed transition appearance-none`;
 
   /* `Const className` membuat string yang berisi kelas CSS untuk komponen Textfield. */
 

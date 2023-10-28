@@ -19,7 +19,7 @@ export default function Input(props: {
         {props.label} {props.optional ? "(opsional)" : ""}
       </label>
       <input
-        id={props.name} 
+        id={props.name}
         type={props.type || "text"}
         onKeyDown={props.onKeyDown}
         name={props.name}
