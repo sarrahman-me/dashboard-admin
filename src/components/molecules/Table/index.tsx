@@ -1,10 +1,9 @@
-import React from "react";
 import { Typography } from "../../atoms";
 import { PiFolderNotchOpen } from "react-icons/pi";
 
 interface Column {
   label: string;
-  renderCell: (item: any) => JSX.Element;
+  renderCell: (item: any) => any;
   align?: "center" | "left" | "right" | string;
 }
 

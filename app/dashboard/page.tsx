@@ -1,92 +1,76 @@
 "use client";
-import { IconButton, Table } from "@/src/components";
+import { DataTable, IconButton, Table } from "@/src/components";
+import { formatCurrency } from "@/src/utils";
+import moment from "moment";
 import { CiEdit, CiTrash } from "react-icons/ci";
-
-const data = [
-  {
-    nama: "Muhammad nur rahman",
-    umur: 23,
-    daerah: "samarinda",
-    gender: "pria",
-  },
-  {
-    nama: "Sarah nur khalifah",
-    umur: 24,
-    daerah: "samarinda",
-    gender: "wanita",
-  },
-  {
-    nama: "Khaulah ma'rifatunnisa",
-    umur: 4,
-    daerah: "samarinda",
-    gender: "wanita",
-  },
-  {
-    nama: "Khalid fadlurrahman",
-    umur: 2,
-    daerah: "samarinda",
-    gender: "pria",
-  },
-  {
-    nama: "khaulid",
-    umur: 0,
-    daerah: "samarinda",
-    gender: "pria",
-  },
-];
-
-const columns = [
-  {
-    label: "Nama",
-    renderCell: (item: any) => item.nama,
-  },
-  {
-    label: "Umur",
-    renderCell: (item: any) => item.umur,
-  },
-  {
-    label: "Daerah",
-    renderCell: (item: any) => item.daerah,
-  },
-  {
-    label: "Gender",
-    renderCell: (item: any) => item.gender,
-  },
-  {
-    label: "Edit",
-    renderCell: (item: any) => (
-      <div className="flex justify-center">
-        <IconButton
-          size="small"
-          color="warning"
-          onClick={() => console.log("oke")}
-          icon={<CiEdit />}
-        />
-      </div>
-    ),
-  },
-  {
-    label: "Hapus",
-    renderCell: (item: any) => (
-      <div className="flex justify-center">
-        <IconButton
-          size="small"
-          color="danger"
-          onClick={() => console.log("oke")}
-          icon={<CiTrash />}
-        />
-      </div>
-    ),
-  },
-];
+import { RxCross2 } from "react-icons/rx";
+import { TiTick } from "react-icons/ti";
 
 export default function Dashboard() {
+  const columns = [
+    {
+      label: "Tanggal",
+      renderCell: async (item: any) => (
+        <p>{moment(item.createdAt).format("lll")}</p>
+      ),
+    },
+    {
+      label: "Nominal",
+      renderCell: async (item: any) => (
+        <p>{formatCurrency(Number(item.nominal))}</p>
+      ),
+    },
+    {
+      label: "verifikasi",
+      renderCell: async (item: any) => (
+        <div>
+          {item.verifikasi ? (
+            <div className="flex justify-center">
+              <TiTick className="text-green-500" />
+            </div>
+          ) : (
+            <div className="flex justify-center">
+              <RxCross2 className="text-red-500" />
+            </div>
+          )}
+        </div>
+      ),
+    },
+    {
+      label: "Edit",
+      renderCell: async (item: any) => (
+        <div className="flex justify-center">
+          <IconButton
+            size="small"
+            color="warning"
+            onClick={() => console.log("oke")}
+            icon={<CiEdit />}
+          />
+        </div>
+      ),
+    },
+    {
+      label: "Hapus",
+      renderCell: async (item: any) => (
+        <div className="flex justify-center">
+          <IconButton
+            size="small"
+            color="danger"
+            onClick={() => console.log("oke")}
+            icon={<CiTrash />}
+          />
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div>
-      <Table columns={columns} datas={data} />
-      <br />
-      <br />
-      <Table columns={columns} datas={[]} />
+      <DataTable
+        title="Transaksi"
+        dataEndpoint="/finance/transaksi"
+        columns={columns}
+      />
     </div>
   );
 }

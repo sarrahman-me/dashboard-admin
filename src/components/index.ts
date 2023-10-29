@@ -36,6 +36,7 @@ import {
   AppBar,
   CatalogProducts,
   Sidebar,
+  DataTable,
 } from "./organisms/index";
 import {
   LoadingAnimation,
@@ -93,6 +94,7 @@ export {
   AppBar,
   CatalogProducts,
   Sidebar,
+  DataTable,
 
   // template
   LoadingAnimation,
