@@ -5,14 +5,16 @@ import Label from "../Label";
 import Typography from "../Typography";
 
 /**
- * Komponen Select digunakan untuk membuat kotak pilihan sederhana hanya string[] dengan daftar pilihan.
+ * Komponen Select digunakan untuk membuat kotak pilihan sederhana yang hanya menerima input string dari daftar pilihan.
  *
  * @param {string} value - Nilai yang saat ini dipilih.
  * @param {function} setValue - Fungsi yang dipanggil saat nilai dipilih.
  * @param {string} placeholder - Teks placeholder yang ditampilkan saat tidak ada pilihan yang dipilih.
  * @param {string[]} lists - Daftar pilihan yang tersedia.
- * @param {string} label - Label Textfield dalam string.
- * @param {string} error - Pesan kesalahan yang ditampilkan di bawah Textfield (opsional).
+ * @param {string} label - Label untuk kotak pilihan (opsional).
+ * @param {string} error - Pesan kesalahan yang ditampilkan di bawah kotak pilihan (opsional).
+ * @param {string} size - Ukuran komponen (opsional, tersedia: "small", "medium", "large") default medium.
+ * @param {boolean} noIcon - Menghilangkan ikon seleksi (opsional).
  */
 
 interface SelectProps {

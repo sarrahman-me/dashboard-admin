@@ -53,6 +53,8 @@ import {
   Cta,
   QrSampleProducts,
   SimulasiKeramik,
+  FormData,
+  FormEditData,
 } from "./template";
 
 export {
@@ -111,4 +113,6 @@ export {
   Benefits,
   QrSampleProducts,
   SimulasiKeramik,
+  FormData,
+  FormEditData,
 };

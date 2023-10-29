@@ -1,3 +1,4 @@
+"use client";
 import { Typography } from "../../atoms";
 import { PiFolderNotchOpen } from "react-icons/pi";
 
@@ -10,9 +11,10 @@ interface Column {
 interface TableProps {
   datas: any[];
   columns: Column[];
+  loading?: boolean;
 }
 
-const Table = ({ datas, columns }: TableProps) => {
+const Table = ({ datas, columns, loading }: TableProps) => {
   // classname untuk mengatur perataan teks
 
   const alignClassName: Record<string, string> = {
@@ -29,9 +31,15 @@ const Table = ({ datas, columns }: TableProps) => {
         <div className="flex justify-center m-1">
           <PiFolderNotchOpen className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
         </div>
-        <Typography color="secondary" variant="helper" align="center">
-          No Data
-        </Typography>
+        {loading ? (
+          <Typography color="secondary" variant="helper" align="center">
+            Loading
+          </Typography>
+        ) : (
+          <Typography color="secondary" variant="helper" align="center">
+            No Data
+          </Typography>
+        )}
       </div>
     );
   }

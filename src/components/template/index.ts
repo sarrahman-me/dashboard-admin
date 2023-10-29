@@ -5,6 +5,8 @@ import OngkirCalculator from "./OngkirCalculator";
 import CardProductDetail from "./cardProductDetail";
 import CreatingWebsite from "./creatingWebsite";
 import DeskripsiProduk from "./deskripsiProduct";
+import FormData from "./formData";
+import FormEditData from "./formEditData";
 import FormWebstore from "./formWebstore";
 import LoadingAnimation from "./loadingAnimation";
 import MembershipPlanList from "./membershipPlanList";
@@ -28,4 +30,6 @@ export {
   Benefits,
   SimulasiKeramik,
   QrSampleProducts,
+  FormData,
+  FormEditData,
 };
