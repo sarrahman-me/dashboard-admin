@@ -1,5 +1,5 @@
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
-import { FormData } from "@/layouts/template";
+import { FormData } from "@/src/components";
 
 export default function FormMotif() {
   const form = [

@@ -1,5 +1,5 @@
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
-import { FormEditData } from "@/layouts/template";
+import { FormEditData } from "@/src/components";
 
 export default function EditMotif({ params }: { params: { slug: string } }) {
   const form = [

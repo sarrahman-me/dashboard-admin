@@ -31,7 +31,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
       <div>
         {loading ? (
           <div>
-            <div className="flex justify-center m-1">
+            <div className="flex justify-center m-1 animate-spin">
               <LuLoader className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
             </div>
             <Typography color="secondary" variant="helper" align="center">
@@ -62,7 +62,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
             {columns.map((column, i) => (
               <th
                 key={i}
-                className="first-letter:uppercase bg-gray-200 dark:bg-gray-800 p-2 text-sm sm:text-base"
+                className="text-left first-letter:uppercase bg-gray-200 dark:bg-gray-800 p-2 text-sm sm:text-base border-r border-gray-300 dark:border-gray-900"
               >
                 {column.label}
               </th>

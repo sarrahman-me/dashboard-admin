@@ -32,7 +32,7 @@ export default function Tekstur() {
 
   const columns = [
     {
-      label: "Nama Ukuran",
+      label: "Nama Tekstur",
       renderCell: async (item: any) => item.nama_tekstur,
     },
     {
