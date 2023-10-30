@@ -1,7 +1,11 @@
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
-import { FormEditData } from "@/layouts/template";
+import { FormEditData } from "@/src/components";
 
-export default function EditKategoriTransaksi({ params }: { params: { slug: string } }) {
+export default function EditKategoriTransaksi({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const form = [
     {
       type: "text",

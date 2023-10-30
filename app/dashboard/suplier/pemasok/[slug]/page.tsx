@@ -1,10 +1,7 @@
-import {
-  EditDataIcon,
-  ListData,
-  RemoveDataIcon,
-} from "@/layouts/components/atoms";
+import { EditDataIcon, RemoveDataIcon } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout } from "@/layouts/template";
+import { ListData, Typography } from "@/src/components";
 import { GetDataApi } from "@/utils";
 
 export default async function detailWarna({
@@ -47,7 +44,7 @@ export default async function detailWarna({
             <p className="underline">Daftar Brand</p>
             {brand.map((a: any, i: any) => (
               <div key={i}>
-                <p>{a.nama_brand}</p>
+                <Typography>{a.nama_brand}</Typography>
               </div>
             ))}
           </div>

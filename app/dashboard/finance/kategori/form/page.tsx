@@ -1,5 +1,5 @@
-import { FormData } from "@/layouts/template";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
+import { FormData } from "@/src/components";
 
 export default function FormKategoriTransaksi() {
   const form = [

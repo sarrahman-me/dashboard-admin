@@ -1,8 +1,8 @@
 "use client";
-import { Button, ListData } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout } from "@/layouts/template";
-import { GetDataApi, PatchDataApi, PostDataApi } from "@/utils";
+import { Button, ListData } from "@/src/components";
+import { GetDataApi, PatchDataApi } from "@/utils";
 import { Confirm, Loading, Notify } from "notiflix";
 import { useEffect, useState } from "react";
 
