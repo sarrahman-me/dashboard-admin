@@ -25,6 +25,7 @@ interface TextfieldGroupProps {
       | string;
     list?: any[];
     placeholder?: string;
+    autoFocus?: boolean;
     disabled?: boolean;
     variant?: "outlined" | "standard" | string;
     keyValue?: {
@@ -99,6 +100,7 @@ const TextfieldGroup = ({
           return (
             <Textfield
               key={i}
+              autoFocus={form.autoFocus}
               placeholder={form.placeholder}
               fullWidth
               value={data[form.name] || ""}

@@ -30,7 +30,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
     return (
       <div>
         {loading ? (
-          <div>
+          <div className="my-2">
             <div className="flex justify-center m-1 animate-spin">
               <LuLoader className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
             </div>
@@ -39,7 +39,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
             </Typography>
           </div>
         ) : (
-          <div>
+          <div className="my-2">
             <div className="flex justify-center m-1">
               <PiFolderNotchOpen className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
             </div>
