@@ -1,6 +1,7 @@
 "use client";
 import { Typography } from "../../atoms";
 import { PiFolderNotchOpen } from "react-icons/pi";
+import { LuLoader } from "react-icons/lu";
 
 interface Column {
   label: string;
@@ -28,17 +29,24 @@ const Table = ({ datas, columns, loading }: TableProps) => {
   if (datas.length < 1) {
     return (
       <div>
-        <div className="flex justify-center m-1">
-          <PiFolderNotchOpen className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
-        </div>
         {loading ? (
-          <Typography color="secondary" variant="helper" align="center">
-            Loading
-          </Typography>
+          <div>
+            <div className="flex justify-center m-1">
+              <LuLoader className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
+            </div>
+            <Typography color="secondary" variant="helper" align="center">
+              Loading
+            </Typography>
+          </div>
         ) : (
-          <Typography color="secondary" variant="helper" align="center">
-            No Data
-          </Typography>
+          <div>
+            <div className="flex justify-center m-1">
+              <PiFolderNotchOpen className="text-lime-500 text-4xl md:text-5xl shadow shadow-lime-300 p-1 border rounded-full" />
+            </div>
+            <Typography color="secondary" variant="helper" align="center">
+              No Data
+            </Typography>
+          </div>
         )}
       </div>
     );

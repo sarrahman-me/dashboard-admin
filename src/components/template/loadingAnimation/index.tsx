@@ -10,7 +10,7 @@ const LoadingAnimation = () => {
     <div className="flex justify-center items-center" role="status">
       <LottiePlayer
         url={
-          "https://lottie.host/b75eed4a-23a4-4f95-a0cd-b40dfa2ef70c/H3bKzDBXwg.json"
+          "https://lottie.host/9d4fc8b0-b795-4bf5-9e42-3553a3d700b0/mcs6yU8z4S.json"
         }
         height={"200px"}
         width={"200px"}

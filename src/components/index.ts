@@ -40,19 +40,8 @@ import {
 } from "./organisms/index";
 import {
   LoadingAnimation,
-  PaymentChecking,
-  NotMembership,
-  MembershipPlanList,
-  FormWebstore,
-  CreatingWebsite,
   DeskripsiProduk,
   CardProductDetail,
-  OngkirCalculator,
-  Jumbotron,
-  Benefits,
-  Cta,
-  QrSampleProducts,
-  SimulasiKeramik,
   FormData,
   FormEditData,
 } from "./template";
@@ -100,19 +89,8 @@ export {
 
   // template
   LoadingAnimation,
-  PaymentChecking,
-  NotMembership,
-  MembershipPlanList,
-  FormWebstore,
-  CreatingWebsite,
   DeskripsiProduk,
   CardProductDetail,
-  OngkirCalculator,
-  Jumbotron,
-  Cta,
-  Benefits,
-  QrSampleProducts,
-  SimulasiKeramik,
   FormData,
   FormEditData,
 };

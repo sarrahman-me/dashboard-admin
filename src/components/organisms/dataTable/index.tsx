@@ -29,7 +29,7 @@ const DataTable = ({ columns, dataEndpoint, title }: DataTableProps) => {
   const path = usePathname();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentLimit, setCurrentLimit] = useState("25");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [metadata, setMetada] = useState(
     {} as {
       page: number;
@@ -41,7 +41,6 @@ const DataTable = ({ columns, dataEndpoint, title }: DataTableProps) => {
   const [data, setData] = useState([] as any);
 
   useEffect(() => {
-    setLoading(true);
     const fetchData = async () => {
       const response = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}${dataEndpoint}?limit=${currentLimit}&page=${currentPage}`
