@@ -24,7 +24,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
     right: "text-right",
   };
 
-  const tdClassNameDefault = `border-b text-xs sm:text-sm p-2 whitespace-nowrap`;
+  const tdClassNameDefault = `border-b text-sm p-2 whitespace-nowrap`;
 
   if (datas.length < 1) {
     return (
@@ -62,7 +62,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
             {columns.map((column, i) => (
               <th
                 key={i}
-                className="text-left first-letter:uppercase bg-gray-200 dark:bg-gray-800 p-2 text-sm sm:text-base border-r border-gray-300 dark:border-gray-900"
+                className="text-left first-letter:uppercase bg-gray-200 dark:bg-gray-800 p-2 font-medium text-sm sm:text-base border-r border-gray-300 dark:border-gray-900"
               >
                 {column.label}
               </th>
