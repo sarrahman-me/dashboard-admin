@@ -3,7 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { PostDataApi } from "@/utils";
 import { Notify } from "notiflix";
-import { Button, TextfieldGroup } from "@/src/components";
+import { Button } from "@/src/components";
+import { TextfieldGroup } from "@/layouts/components/organisms";
 
 export default function FormData(props: {
   submitEndpoint: string;
@@ -33,7 +34,7 @@ export default function FormData(props: {
       <form className="md:w-1/2 mt-5" onSubmit={handleSubmit}>
         <TextfieldGroup
           error={error}
-          forms={props.formInput}
+          form={props.formInput}
           setData={setdata}
           data={data}
         />
