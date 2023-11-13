@@ -80,8 +80,9 @@ export default function Dashboard() {
         <div className="my-1">
           {dailyPopulerProducts.map((item: any, i: number) => (
             <div key={i} className="flex items-center space-x-1">
-              <Typography>{item.product_id}</Typography>
-              <Typography>{item.viewed}</Typography>
+              <Typography>{item.nama_barang}</Typography>
+              <Typography>{item.brand}</Typography>
+              <Typography>{item.viewed} x</Typography>
             </div>
           ))}
         </div>
