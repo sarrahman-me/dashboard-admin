@@ -25,6 +25,10 @@ export default function Mitra() {
       ),
     },
     {
+      label: "Email",
+      renderCell: async (item: any) => item.email,
+    },
+    {
       label: "Whatsapp",
       renderCell: async (item: any) => item.whatsapp,
     },
