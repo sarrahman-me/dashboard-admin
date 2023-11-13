@@ -4,6 +4,7 @@ import { DeleteDataApi, formatCurrency } from "@/src/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { Confirm, Notify } from "notiflix";
 import { CiEdit, CiTrash } from "react-icons/ci";
+import { PiArrowSquareUpRightLight } from "react-icons/pi";
 import { RxCross2 } from "react-icons/rx";
 import { TiTick } from "react-icons/ti";
 
@@ -35,7 +36,15 @@ export default function Barang() {
   const columns = [
     {
       label: "Nama",
-      renderCell: async (item: any) => item.nama_barang,
+      renderCell: async (item: any) => (
+        <p
+          className="underline cursor-pointer text-blue-500 flex items-center"
+          onClick={() => router.push(`${pathname}/${item.slug}`)}
+        >
+          {item.nama_barang}
+          <PiArrowSquareUpRightLight className="ml-1" />
+        </p>
+      ),
     },
     {
       label: "Brand",
