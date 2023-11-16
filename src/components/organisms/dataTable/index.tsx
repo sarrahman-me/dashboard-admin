@@ -4,8 +4,10 @@ import {
   IconButton,
   Select,
   Table,
+  Textfield,
   Typography,
 } from "@/src/components";
+import { FaSearch } from "react-icons/fa";
 import { GetDataApi } from "@/src/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -40,6 +42,11 @@ const DataTable = ({ columns, dataEndpoint, title }: DataTableProps) => {
   );
   const [data, setData] = useState([] as any);
 
+  /**
+   * ada bug saat menggunakan useState
+   */
+  let query = "";
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await GetDataApi(
@@ -55,6 +62,19 @@ const DataTable = ({ columns, dataEndpoint, title }: DataTableProps) => {
 
     fetchData();
   }, [currentLimit, currentPage, dataEndpoint]);
+
+  const handleSearch = async () => {
+    setLoading(true);
+    const response = await GetDataApi(
+      `${process.env.NEXT_PUBLIC_HOST}${dataEndpoint}?limit=${currentLimit}&page=${currentPage}&search=${query}`
+    );
+
+    setData(response?.data || []);
+    setCurrentPage(response?.metadata?.page || 1);
+    setMetada(response?.metadata || {});
+
+    setLoading(false);
+  };
 
   const handleNextPage = () => {
     if (currentPage < metadata?.totalPages) {
@@ -92,6 +112,16 @@ const DataTable = ({ columns, dataEndpoint, title }: DataTableProps) => {
         <Button onClick={() => router.push(`${path}/form`)} icon={<IoIosAdd />}>
           Tambah
         </Button>
+      </div>
+
+      <div className="flex justify-center my-2">
+        <Textfield
+          name={"search"}
+          placeholder="cari nama ..."
+          onChange={(value) => (query = value)}
+          icon={<FaSearch />}
+          onClickIcon={handleSearch}
+        />
       </div>
 
       {/* table */}
