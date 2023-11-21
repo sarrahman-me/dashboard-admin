@@ -17,13 +17,13 @@ const Logo = ({ size }: LogoProps) => {
     large: "text-2xl",
   };
 
-  const className = `flex select-none items-center divide-x-2 divide-transparent font-serif
+  const className = `flex select-none items-center divide-x-2 divide-transparent
     ${classSize[size || "medium"]}
   `;
 
   return (
     <span className={className}>
-      <p>Tokokera</p>
+      <p>tokokera</p>
       <FaMountainSun className="text-lime-600" />
       <p>ik.com</p>
     </span>
