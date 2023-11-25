@@ -94,6 +94,10 @@ export default function Barang() {
       renderCell: async (item: any) => item.warna,
     },
     {
+      label: "Kualitas",
+      renderCell: async (item: any) => item.kualitas,
+    },
+    {
       label: "Harga",
       renderCell: async (item: any) => (
         <p>{formatCurrency(Number(item.harga))}</p>
