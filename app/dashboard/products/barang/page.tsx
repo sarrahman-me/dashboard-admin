@@ -1,6 +1,7 @@
 "use client";
+import { LuPencil } from "react-icons/lu";
 import { DataTable, IconButton } from "@/src/components";
-import { DeleteDataApi, formatCurrency } from "@/src/utils";
+import { DeleteDataApi, PatchDataApi, formatCurrency } from "@/src/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { Confirm, Notify } from "notiflix";
 import { CiEdit, CiTrash } from "react-icons/ci";
@@ -29,6 +30,40 @@ export default function Barang() {
       {
         okButtonBackground: "red",
         titleColor: "red",
+      }
+    );
+  };
+
+  const handleEditStok = (
+    slug: string,
+    currentStok: any,
+    currentPrice: any
+  ) => {
+    Confirm.prompt(
+      "Perubahan data",
+      "Berapa stok terbaru?",
+      currentStok,
+      "Simpan",
+      "Cancel",
+      async (clientAnswer) => {
+        const payload = {
+          stok: Number(clientAnswer),
+          harga: currentPrice,
+        };
+
+        try {
+          const response = await PatchDataApi(
+            `${process.env.NEXT_PUBLIC_HOST}/products/barang/field/${slug}`,
+            payload
+          );
+          if (response.status === 200 || response.status === 201) {
+            Notify.success(response.message);
+          } else {
+            Notify.failure("gagal memperbarui stok");
+          }
+        } catch (error) {
+          Notify.failure("Terjadi kesalahan saat menyimpan perubahan");
+        }
       }
     );
   };
@@ -66,7 +101,15 @@ export default function Barang() {
     },
     {
       label: "Stok",
-      renderCell: async (item: any) => item.stok,
+      renderCell: async (item: any) => (
+        <div className="flex">
+          <p>{item.stok}</p>
+          <LuPencil
+            onClick={() => handleEditStok(item.slug, item.stok, item.harga)}
+            className="ml-2 text-slate-400 cursor-pointer hover:text-orange-400"
+          />
+        </div>
+      ),
     },
     {
       label: "Promo",
