@@ -97,8 +97,20 @@ const DetailProduct = async ({ params }: { params: { slug: string } }) => {
           <Table
             notClickable={true}
             data={dataHistori}
-            titleColumns={["Tanggal", "Harga", "Stok"]}
-            dataKey={["timestamp", "harga_lama", "stok_lama"]}
+            titleColumns={[
+              "Tanggal",
+              "Harga",
+              "Stok",
+              "Harga baru",
+              "Stok baru",
+            ]}
+            dataKey={[
+              "timestamp",
+              "harga_lama",
+              "stok_lama",
+              "harga_baru",
+              "stok_baru",
+            ]}
             metadata={{}}
           />
         </div>
