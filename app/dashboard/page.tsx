@@ -4,12 +4,15 @@ import { FaSearch, FaCubes, FaEye } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import { GetDataApi } from "@/utils";
 import React, { useEffect, useState } from "react";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 export default function Dashboard() {
   const [dailySearch, setDailySearch] = useState({} as any);
   const [dailyProductView, setProductView] = useState({} as any);
   const [dailySearchTrend, setDailySearchTrend] = useState([] as any);
   const [dailyPopulerProducts, setDailyPopulerProducts] = useState([] as any);
+  const [lastDailySearch, setlastDailySearch] = useState({} as any);
+  const [lastDailyProductView, setlastProductView] = useState({} as any);
   const [totalProducts, setProducts] = useState({} as any);
   const [totalBrand, setBrand] = useState({} as any);
 
@@ -38,11 +41,21 @@ export default function Dashboard() {
       setProductView(dailyProductViewResponse?.data[0]);
       setDailySearchTrend(dailySearchTrendResponse?.data[0].searches);
       setDailyPopulerProducts(dailyPopulerProductResponse?.data[0].products);
+      //  -- LAST --
+      setlastDailySearch(dailySearchResponse?.data[1]);
+      setlastProductView(dailyProductViewResponse?.data[1]);
+      // --
       setProducts(productsResponse?.metadata);
       setBrand(productsBrandResponse?.metadata);
     }
     fetchData();
   }, []);
+
+  const calculatePercentage = (current: number, last: number) => {
+    const selisihNilai = current - last;
+    const persentasePotongan = (selisihNilai / current) * 100;
+    return persentasePotongan.toFixed(0);
+  };
 
   if (!dailySearch.total_searches) {
     return <LoadingAnimation />;
@@ -51,11 +64,11 @@ export default function Dashboard() {
   return (
     <div>
       <Typography variant="subtitle">Insight Produk (Kemarin)</Typography>
-      <div className="flex items-center my-2 space-x-1 md:space-x-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
           data={totalProducts.totalData}
           title={"Total"}
-          color={"violet"}
+          color={"emerald"}
           icon={<FaCubes />}
         />
 
@@ -70,13 +83,25 @@ export default function Dashboard() {
           data={dailySearch.total_searches}
           title={"Pencarian"}
           color={"amber"}
+          percentase={Number(
+            calculatePercentage(
+              dailySearch.total_searches,
+              lastDailySearch.total_searches
+            )
+          )}
           icon={<FaSearch />}
         />
 
         <InsightCard
           data={dailyProductView.total_product_views}
+          percentase={Number(
+            calculatePercentage(
+              dailyProductView.total_product_views,
+              lastDailyProductView.total_product_views
+            )
+          )}
+          color={"violet"}
           title={"Dilihat"}
-          color={"emerald"}
           icon={<FaEye />}
         />
       </div>
@@ -99,7 +124,7 @@ export default function Dashboard() {
             },
 
             {
-              label: "Jumlah",
+              label: "Jumlah dilihat",
               renderCell: (item: any) => item.viewed,
             },
           ]}
@@ -116,7 +141,7 @@ export default function Dashboard() {
               renderCell: (item: any) => item.query,
             },
             {
-              label: "Jumlah",
+              label: "Jumlah dicari",
               renderCell: (item: any) => item.total_search,
             },
           ]}
@@ -129,30 +154,41 @@ export default function Dashboard() {
 
 const InsightCard = (props: {
   data: string;
+  percentase?: number;
   title: string;
   color: "amber" | "emerald" | "sky" | "violet";
   icon: React.ReactNode;
 }) => {
   const colorBg = {
-    amber: "bg-amber-300 dark:bg-amber-700",
-    emerald: "bg-emerald-300 dark:bg-emerald-700",
-    sky: "bg-sky-300 dark:bg-sky-700",
-    violet: "bg-violet-300 dark:bg-violet-700",
+    amber:
+      "bg-gradient-to-br from-amber-300 to-amber-500 dark:from-amber-700 dark:to-amber-900",
+    emerald:
+      "bg-gradient-to-br from-emerald-300 to-emerald-500 dark:from-emerald-700 dark:to-emerald-900",
+    sky: "bg-gradient-to-br from-sky-300 to-sky-500 dark:from-sky-700 dark:to-sky-900",
+    violet:
+      "bg-gradient-to-br from-violet-300 to-violet-500 dark:from-violet-700 dark:to-violet-900",
   };
 
   return (
-    <div
-      className={`flex justify-between p-3 w-1/2 md:w-1/4 rounded ${
-        colorBg[props.color]
-      }`}
-    >
-      <div className="space-y-2">
+    <div className={`p-3 rounded ${colorBg[props.color]}`}>
+      <div className="flex justify-between">
         {props.icon}
-        <Typography variant="helper">{props.title}</Typography>
+        <Typography variant="subtitle">{props.data}</Typography>
       </div>
-      <Typography variant="subtitle" align="center">
-        {props.data}
-      </Typography>
+      <div className="flex justify-between">
+        <Typography variant="helper">{props.title}</Typography>
+        {props.percentase && (
+          <div className="flex items-center space-x-1">
+            {props.percentase <= 0 ? <FaArrowDown className="text-xs" /> : <FaArrowUp className="text-xs" />}
+            <Typography
+              color={props.percentase <= 0 ? "danger" : "success"}
+              variant="helper"
+            >
+              {props.percentase}%
+            </Typography>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
