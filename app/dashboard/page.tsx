@@ -179,7 +179,19 @@ const InsightCard = (props: {
         <Typography variant="helper">{props.title}</Typography>
         {props.percentase && (
           <div className="flex items-center space-x-1">
-            {props.percentase <= 0 ? <FaArrowDown className="text-xs" /> : <FaArrowUp className="text-xs" />}
+            {props.percentase <= 0 ? (
+              <FaArrowDown
+                className={`text-xs ${
+                  props.percentase <= 0 ? "text-red-500" : "text-green-500"
+                }`}
+              />
+            ) : (
+              <FaArrowUp
+                className={`text-xs ${
+                  props.percentase <= 0 ? "text-red-500" : "text-green-500"
+                }`}
+              />
+            )}
             <Typography
               color={props.percentase <= 0 ? "danger" : "success"}
               variant="helper"

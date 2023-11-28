@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { LuPencil } from "react-icons/lu";
 import { DataTable, IconButton } from "@/src/components";
@@ -68,7 +69,51 @@ export default function Barang() {
     );
   };
 
+  const handleEditHarga = (
+    slug: string,
+    currentStok: any,
+    currentPrice: any
+  ) => {
+    Confirm.prompt(
+      "Perubahan data",
+      "Berapa harga terbaru?",
+      currentPrice,
+      "Simpan",
+      "Cancel",
+      async (clientAnswer) => {
+        const payload = {
+          stok: currentStok,
+          harga: Number(clientAnswer),
+        };
+
+        try {
+          const response = await PatchDataApi(
+            `${process.env.NEXT_PUBLIC_HOST}/products/barang/field/${slug}`,
+            payload
+          );
+          if (response.status === 200 || response.status === 201) {
+            Notify.success(response.message);
+          } else {
+            Notify.failure("gagal memperbarui harga");
+          }
+        } catch (error) {
+          Notify.failure("Terjadi kesalahan saat menyimpan perubahan");
+        }
+      }
+    );
+  };
+
   const columns = [
+    {
+      label: "Gambar",
+      renderCell: async (item: any) => (
+        <img
+          src={item.images[0]}
+          alt={item.slug}
+          className="w-10 h-10 object-contain"
+        />
+      ),
+    },
     {
       label: "Nama",
       renderCell: async (item: any) => (
@@ -97,10 +142,22 @@ export default function Barang() {
       label: "Kualitas",
       renderCell: async (item: any) => item.kualitas,
     },
+    // {
+    //   label: "Harga",
+    //   renderCell: async (item: any) => (
+    //     <p>{formatCurrency(Number(item.harga))}</p>
+    //   ),
+    // },
     {
       label: "Harga",
       renderCell: async (item: any) => (
-        <p>{formatCurrency(Number(item.harga))}</p>
+        <div className="flex">
+          <p>{formatCurrency(Number(item.harga))}</p>
+          <LuPencil
+            onClick={() => handleEditHarga(item.slug, item.stok, item.harga)}
+            className="ml-2 text-slate-400 cursor-pointer hover:text-orange-400"
+          />
+        </div>
       ),
     },
     {
