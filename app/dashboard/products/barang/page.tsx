@@ -131,12 +131,20 @@ export default function Barang() {
       renderCell: async (item: any) => item.brand,
     },
     {
+      label: "Warna",
+      renderCell: async (item: any) => item.warna,
+    },
+    {
       label: "Ukuran",
       renderCell: async (item: any) => item.ukuran,
     },
     {
-      label: "Warna",
-      renderCell: async (item: any) => item.warna,
+      label: "Motif",
+      renderCell: async (item: any) => item.motif,
+    },
+    {
+      label: "Tekstur",
+      renderCell: async (item: any) => item.tekstur,
     },
     {
       label: "Kualitas",
