@@ -17,7 +17,7 @@ export default function Motif() {
       "Batal",
       async () => {
         const response = await DeleteDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/products/motif/${slug}`
+          `${process.env.NEXT_PUBLIC_HOST}/products/tag-image/${slug}`
         );
         Notify.success(response?.message);
         window.location.reload();
