@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Input, SwitchButton } from "@/layouts/components/atoms";
+import {
+  Button,
+  Input,
+  SelectApi,
+  SwitchButton,
+} from "@/layouts/components/atoms";
 import { GetDataApi, PatchDataApi } from "@/utils";
 import { Loading, Notify } from "notiflix";
 import {
@@ -48,6 +53,7 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
           setPenggunaanUmum(response.data.penggunaan_umum || []);
           setAreaPenggunaan(response.data.area_penggunaan || []);
           setGambar(response.data.images);
+          setTagImage(response.data.tag_image);
         } catch (error) {
           Notify.failure("Terjadi kesalahan saat mengambil data barang");
         }
@@ -214,12 +220,13 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
           <p className="font-bold underline">Detail Gambar:</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
           <p className="font-bold">Pengaturan lanjutan :</p>
-          <Input
-            optional
-            label="Tag Gambar"
-            name="tag_image"
+          <SelectApi
+            apiUrl={`${process.env.NEXT_PUBLIC_HOST}/products/tag-image`}
+            label="Tag Gambar (Opsional)"
+            useNameForValue={true}
             value={tagImage}
-            onChange={(event) => setTagImage(event.target.value)}
+            onChange={(value) => setTagImage(value)}
+            keyValue={["slug", "nama_tag_image"]}
           />
         </div>
 
