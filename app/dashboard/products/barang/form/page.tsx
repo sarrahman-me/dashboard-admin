@@ -4,6 +4,7 @@ import {
   Button,
   Heading,
   Input,
+  SelectApi,
   SwitchButton,
 } from "@/layouts/components/atoms";
 import { useRouter } from "next/navigation";
@@ -192,12 +193,13 @@ export default function FormBarang() {
           <p className="font-bold underline">Detail Gambar :</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
           <p className="font-bold">Pengaturan lanjutan :</p>
-          <Input
-            optional
-            label="Tag Gambar"
-            name="tag_image"
+          <SelectApi
+            apiUrl={`${process.env.NEXT_PUBLIC_HOST}/products/tag-image`}
+            label="Tag Gambar (Opsional)"
+            useNameForValue={true}
             value={tagImage}
-            onChange={(event) => setTagImage(event.target.value)}
+            onChange={(value) => setTagImage(value)}
+            keyValue={["slug", "nama_tag_image"]}
           />
         </div>
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
