@@ -86,6 +86,10 @@ const listBarang = [
     label: "Warna",
     href: "/dashboard/products/warna",
   },
+  {
+    label: "Tag gambar",
+    href: "/dashboard/products/tag-image",
+  },
 ];
 
 const listSuplier = [
