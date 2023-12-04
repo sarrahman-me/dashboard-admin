@@ -26,6 +26,7 @@ export default function FormBarang() {
   const [penggunaanUmum, setPenggunaanUmum] = useState([] as string[]);
   const [areaPenggunaan, setAreaPenggunaan] = useState([] as string[]);
   const [gambar, setGambar] = useState([] as string[]);
+  const [tagImage, setTagImage] = useState("");
 
   const penggunaanUmumOptions = ["Lantai", "Dinding", "Meja Dapur", "Tangga"];
   const areaPenggunaanOptions = [
@@ -49,6 +50,7 @@ export default function FormBarang() {
       penggunaan_umum: penggunaanUmum,
       area_penggunaan: areaPenggunaan,
       images: gambar,
+      tag_image: tagImage,
     };
 
     try {
@@ -189,6 +191,14 @@ export default function FormBarang() {
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Detail Gambar :</p>
           <ImageInputWithPreview gambar={gambar} setGambar={setGambar} />
+          <p className="font-bold">Pengaturan lanjutan :</p>
+          <Input
+            optional
+            label="Tag Gambar"
+            name="tag_image"
+            value={tagImage}
+            onChange={(event) => setTagImage(event.target.value)}
+          />
         </div>
         <div className="shadow p-2 rounded mt-5 bg-white dark:bg-slate-800">
           <p className="font-bold underline">Penggunaan Umum :</p>

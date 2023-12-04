@@ -150,12 +150,6 @@ export default function Barang() {
       label: "Kualitas",
       renderCell: async (item: any) => item.kualitas,
     },
-    // {
-    //   label: "Harga",
-    //   renderCell: async (item: any) => (
-    //     <p>{formatCurrency(Number(item.harga))}</p>
-    //   ),
-    // },
     {
       label: "Harga",
       renderCell: async (item: any) => (
