@@ -151,10 +151,6 @@ export default function Barang() {
       renderCell: async (item: any) => item.kualitas,
     },
     {
-      label: "Tag",
-      renderCell: async (item: any) => item.tag_image,
-    },
-    {
       label: "Harga",
       renderCell: async (item: any) => (
         <div className="flex">
