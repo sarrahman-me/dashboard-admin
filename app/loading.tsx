@@ -10,7 +10,7 @@ export default function LoadingPage() {
       <Player
         autoplay
         loop
-        src="https://lottie.host/a07b9995-147c-4ee5-9f19-3a830d9a13ec/EVdtHO33Fa.json"
+        src="https://lottie.host/9d4fc8b0-b795-4bf5-9e42-3553a3d700b0/mcs6yU8z4S.json"
         style={{ height: "300px", width: "300px" }}
       >
         <Controls buttons={["play", "repeat", "frame", "debug"]} />
