@@ -220,6 +220,14 @@ export default function Barang() {
 
   return (
     <div>
+      {/* warning */}
+      <div className="text-sm bg-orange-100 dark:bg-orange-900 p-2 rounded-md flex justify-center">
+        <p>
+          Jangan nambahin ukuran 60x60 dulu ya, aku lagi ada perubahan logika
+          program untuk ukuran 60x60
+        </p>
+      </div>
+      {/* end warning */}
       <DataTable
         title="Barang"
         dataEndpoint="/products/barang"
