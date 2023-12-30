@@ -29,6 +29,7 @@ import {
   Tabs,
   SearchBar,
   Table,
+  InsightCard,
 } from "./molecules/index";
 import {
   Footer,
@@ -78,6 +79,7 @@ export {
   Tabs,
   SearchBar,
   Table,
+  InsightCard,
 
   //   organims
   Footer,

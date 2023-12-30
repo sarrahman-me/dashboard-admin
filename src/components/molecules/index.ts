@@ -1,3 +1,4 @@
+import InsightCard from "./InsightCard";
 import NavGroup from "./NavGroup";
 import Table from "./Table";
 import Tabs from "./Tabs";
@@ -22,4 +23,5 @@ export {
   TextfieldLocation,
   SearchBar,
   Table,
+  InsightCard,
 };
