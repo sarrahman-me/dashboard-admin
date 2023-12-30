@@ -28,6 +28,26 @@ export default function DetailWebstore({
     total_searches: string;
     top_search_query: any[];
   });
+  const [oldProductInsight, setOldProductInsight] = useState({
+    total_product_view: "",
+    top_product_view: [],
+  } as {
+    total_product_view: string;
+    top_product_view: any[];
+  });
+  const [oldsSarchInsight, setOldSearchInsight] = useState({
+    total_searches: "",
+    top_search_query: [],
+  } as {
+    total_searches: string;
+    top_search_query: any[];
+  });
+
+  const calculatePercentage = (current: number, last: number) => {
+    const selisihNilai = current - last;
+    const persentasePotongan = (selisihNilai / current) * 100;
+    return persentasePotongan.toFixed(0);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -47,9 +67,9 @@ export default function DetailWebstore({
         );
 
         if (
-          responseWebstoreProductInsight?.data[0]?.total_searches ===
+          responseWebstoreProductInsight?.data[0]?.total_searches !==
             undefined ||
-          responseWebstoreProductInsight?.data[0]?.total_searches === null
+          responseWebstoreProductInsight?.data[0]?.total_searches !== null
         ) {
           const { total_searches, top_search_query } =
             responseWebstoreSearchInsight.data[0];
@@ -63,6 +83,28 @@ export default function DetailWebstore({
           });
 
           setProductInsight({
+            top_product_view,
+            total_product_view,
+          });
+        }
+
+        if (
+          responseWebstoreProductInsight?.data[1]?.total_searches !==
+            undefined ||
+          responseWebstoreProductInsight?.data[1]?.total_searches !== null
+        ) {
+          const { total_searches, top_search_query } =
+            responseWebstoreSearchInsight.data[1];
+
+          const { total_product_view, top_product_view } =
+            responseWebstoreProductInsight.data[1];
+
+          setOldSearchInsight({
+            total_searches,
+            top_search_query,
+          });
+
+          setOldProductInsight({
             top_product_view,
             total_product_view,
           });
@@ -112,29 +154,33 @@ export default function DetailWebstore({
                 </p>
                 <div className="grid grid-cols-2 gap-2 md:gap-6">
                   <InsightCard
-                    data={searchInsight.total_searches}
-                    title={"Pencarian"}
-                    color={"emerald"}
-                    // percentase={Number(
-                    //   calculatePercentage(
-                    //     dailySearch.total_searches,
-                    //     lastDailySearch.total_searches
-                    //   )
-                    // )}
-                    icon={<FaSearch />}
+                    data={productInsight.total_product_view}
+                    percentase={
+                      Number(
+                        calculatePercentage(
+                          Number(productInsight.total_product_view),
+                          Number(oldProductInsight.total_product_view)
+                        )
+                      ) || 0
+                    }
+                    color={"violet"}
+                    title={"Dilihat"}
+                    icon={<FaEye />}
                   />
 
                   <InsightCard
-                    data={productInsight.total_product_view}
-                    // percentase={Number(
-                    //   calculatePercentage(
-                    //     dailyProductView.total_product_views,
-                    //     lastDailyProductView.total_product_views
-                    //   )
-                    // )}
-                    color={"sky"}
-                    title={"Dilihat"}
-                    icon={<FaEye />}
+                    data={searchInsight.total_searches}
+                    title={"Pencarian"}
+                    color={"amber"}
+                    percentase={
+                      Number(
+                        calculatePercentage(
+                          Number(searchInsight.total_searches),
+                          Number(oldsSarchInsight.total_searches)
+                        )
+                      ) || 0
+                    }
+                    icon={<FaSearch />}
                   />
                 </div>
 
