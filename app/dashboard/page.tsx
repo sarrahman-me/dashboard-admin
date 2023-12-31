@@ -11,47 +11,108 @@ import { GetDataApi } from "@/utils";
 import React, { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const [dailySearch, setDailySearch] = useState({} as any);
-  const [dailyProductView, setProductView] = useState({} as any);
-  const [dailySearchTrend, setDailySearchTrend] = useState([] as any);
-  const [dailyPopulerProducts, setDailyPopulerProducts] = useState([] as any);
-  const [lastDailySearch, setlastDailySearch] = useState({} as any);
-  const [lastDailyProductView, setlastProductView] = useState({} as any);
-  const [totalProducts, setProducts] = useState({} as any);
-  const [totalBrand, setBrand] = useState({} as any);
+  const [productInsight, setProductInsight] = useState({
+    total_product_view: "",
+    total_product: "",
+    total_brand: "",
+    top_product_view: [],
+  } as {
+    total_product_view: string;
+    total_product: string;
+    total_brand: string;
+    top_product_view: any[];
+  });
+  const [searchInsight, setSearchInsight] = useState({
+    total_searches: "",
+    top_search_query: [],
+  } as {
+    total_searches: string;
+    top_search_query: any[];
+  });
+  const [oldProductInsight, setOldProductInsight] = useState({
+    total_product_view: "",
+    total_product: "",
+    total_brand: "",
+    top_product_view: [],
+  } as {
+    total_product_view: string;
+    total_product: string;
+    total_brand: string;
+    top_product_view: any[];
+  });
+  const [oldsSarchInsight, setOldSearchInsight] = useState({
+    total_searches: "",
+    top_search_query: [],
+  } as {
+    total_searches: string;
+    top_search_query: any[];
+  });
 
   useEffect(() => {
-    async function fetchData() {
-      const dailySearchResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analysis/data/daily-search`
-      );
-      const dailyProductViewResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analysis/data/daily-product-view`
-      );
-      const dailySearchTrendResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analysis/data/daily-search-trend`
-      );
-      const dailyPopulerProductResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analysis/data/daily-populer-products`
-      );
-      const productsResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/products/barang?limit=1`
-      );
-      const productsBrandResponse = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/suplier/brand?limit=1`
+    const fetchData = async () => {
+      const responseWebstoreProductInsight = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/product-insight`
       );
 
-      setDailySearch(dailySearchResponse?.data[0]);
-      setProductView(dailyProductViewResponse?.data[0]);
-      setDailySearchTrend(dailySearchTrendResponse?.data[0].searches);
-      setDailyPopulerProducts(dailyPopulerProductResponse?.data[0].products);
-      //  -- LAST --
-      setlastDailySearch(dailySearchResponse?.data[1]);
-      setlastProductView(dailyProductViewResponse?.data[1]);
-      // --
-      setProducts(productsResponse?.metadata);
-      setBrand(productsBrandResponse?.metadata);
-    }
+      const responseWebstoreSearchInsight = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/search-insight`
+      );
+
+      if (
+        responseWebstoreProductInsight?.data[0]?.total_searches !== undefined ||
+        responseWebstoreProductInsight?.data[0]?.total_searches !== null
+      ) {
+        const { total_searches, top_search_query } =
+          responseWebstoreSearchInsight.data[0];
+
+        const {
+          total_product,
+          total_brand,
+          total_product_view,
+          top_product_view,
+        } = responseWebstoreProductInsight.data[0];
+
+        setSearchInsight({
+          total_searches,
+          top_search_query,
+        });
+
+        setProductInsight({
+          total_product,
+          total_brand,
+          top_product_view,
+          total_product_view,
+        });
+
+        if (
+          responseWebstoreProductInsight?.data[1]?.total_searches !==
+            undefined ||
+          responseWebstoreProductInsight?.data[1]?.total_searches !== null
+        ) {
+          const { total_searches, top_search_query } =
+            responseWebstoreSearchInsight.data[1];
+
+          const {
+            total_product,
+            total_brand,
+            total_product_view,
+            top_product_view,
+          } = responseWebstoreProductInsight.data[1];
+
+          setOldSearchInsight({
+            total_searches,
+            top_search_query,
+          });
+
+          setOldProductInsight({
+            total_product,
+            total_brand,
+            top_product_view,
+            total_product_view,
+          });
+        }
+      }
+    };
     fetchData();
   }, []);
 
@@ -61,7 +122,7 @@ export default function Dashboard() {
     return persentasePotongan.toFixed(0);
   };
 
-  if (!dailySearch.total_searches) {
+  if (!productInsight.total_product) {
     return <LoadingAnimation />;
   }
 
@@ -70,43 +131,63 @@ export default function Dashboard() {
       <Typography variant="subtitle">Insight Produk (Kemarin)</Typography>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
-          data={totalProducts.totalData}
+          data={productInsight.total_product}
           title={"Total"}
-          color={"emerald"}
+          percentase={
+            Number(
+              calculatePercentage(
+                Number(productInsight.total_product),
+                Number(oldProductInsight.total_product)
+              )
+            ) || 0
+          }
+          color={"blue"}
           icon={<FaCubes />}
         />
 
         <InsightCard
-          data={totalBrand.totalData}
+          data={productInsight.total_brand}
           title={"Brand"}
-          color={"sky"}
+          percentase={
+            Number(
+              calculatePercentage(
+                Number(productInsight.total_brand),
+                Number(oldProductInsight.total_brand)
+              )
+            ) || 0
+          }
+          color={"stone"}
           icon={<MdDiscount />}
         />
 
         <InsightCard
-          data={dailySearch.total_searches}
-          title={"Pencarian"}
-          color={"amber"}
-          percentase={Number(
-            calculatePercentage(
-              dailySearch.total_searches,
-              lastDailySearch.total_searches
-            )
-          )}
-          icon={<FaSearch />}
-        />
-
-        <InsightCard
-          data={dailyProductView.total_product_views}
-          percentase={Number(
-            calculatePercentage(
-              dailyProductView.total_product_views,
-              lastDailyProductView.total_product_views
-            )
-          )}
+          data={productInsight.total_product_view}
+          percentase={
+            Number(
+              calculatePercentage(
+                Number(productInsight.total_product_view),
+                Number(oldProductInsight.total_product_view)
+              )
+            ) || 0
+          }
           color={"violet"}
           title={"Dilihat"}
           icon={<FaEye />}
+        />
+
+        <InsightCard
+          data={searchInsight.total_searches}
+          title={"Pencarian"}
+          color={"amber"}
+          percentase={
+            Number(
+              calculatePercentage(
+                Number(searchInsight.total_searches),
+                Number(oldsSarchInsight.total_searches)
+              )
+            ) || 0
+          }
+          icon={<FaSearch />}
         />
       </div>
 
@@ -116,23 +197,19 @@ export default function Dashboard() {
           columns={[
             {
               label: "Nama Barang",
-              renderCell: (item: any) => item.nama_barang,
-            },
-            {
-              label: "Brand",
-              renderCell: (item: any) => item.brand,
-            },
-            {
-              label: "Warna",
-              renderCell: (item: any) => item.warna,
+              renderCell: (item: any) => item.productName,
             },
 
             {
+              label: "Brand",
+              renderCell: (item: any) => item.productBrand,
+            },
+            {
               label: "Jumlah dilihat",
-              renderCell: (item: any) => item.viewed,
+              renderCell: (item: any) => item.views,
             },
           ]}
-          datas={dailyPopulerProducts}
+          datas={productInsight.top_product_view}
         />
       </div>
 
@@ -146,10 +223,10 @@ export default function Dashboard() {
             },
             {
               label: "Jumlah dicari",
-              renderCell: (item: any) => item.total_search,
+              renderCell: (item: any) => item.totalSearch,
             },
           ]}
-          datas={dailySearchTrend}
+          datas={searchInsight.top_search_query}
         />
       </div>
     </div>
