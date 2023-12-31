@@ -132,7 +132,10 @@ export default function Barang() {
     },
     {
       label: "Warna",
-      renderCell: async (item: any) => item.warna,
+      renderCell: async (item: any) => (
+        <p>{item.warna?.replace(/\([^)]*\)/g, "").trim()}</p>
+      ),
+      //
     },
     {
       label: "Ukuran",
