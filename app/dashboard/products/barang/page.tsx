@@ -121,7 +121,7 @@ export default function Barang() {
           className="underline cursor-pointer text-blue-500 flex items-center"
           onClick={() => router.push(`${pathname}/${item.slug}`)}
         >
-          {item.nama_barang}
+          {item.nama_barang} {item.warna?.replace(/\([^)]*\)/g, "").trim()}
           <PiArrowSquareUpRightLight className="ml-1" />
         </p>
       ),
@@ -129,13 +129,6 @@ export default function Barang() {
     {
       label: "Brand",
       renderCell: async (item: any) => item.brand,
-    },
-    {
-      label: "Warna",
-      renderCell: async (item: any) => (
-        <p>{item.warna?.replace(/\([^)]*\)/g, "").trim()}</p>
-      ),
-      //
     },
     {
       label: "Ukuran",
