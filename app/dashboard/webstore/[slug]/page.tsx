@@ -2,8 +2,10 @@
 import { ListData } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout, Timeline } from "@/layouts/template";
-import { InsightCard, Table, Typography } from "@/src/components";
-import { GetDataApi } from "@/utils";
+import { Button, InsightCard, Table, Typography } from "@/src/components";
+import { PatchDataApi } from "@/src/utils";
+import { GetDataApi, isValidDomain } from "@/utils";
+import { Confirm, Notify } from "notiflix";
 import { useEffect, useState } from "react";
 import { FaEye, FaSearch } from "react-icons/fa";
 
@@ -115,6 +117,34 @@ export default function DetailWebstore({
     fetchData();
   }, [slug]);
 
+  const handleChangeDomain = async () => {
+    Confirm.prompt(
+      "Konfirmasi",
+      "Nama domain baru?",
+      webstore.domain,
+      "Ubah",
+      "Batal",
+      async (newDomain) => {
+        if (isValidDomain(newDomain)) {
+          const response = await PatchDataApi(
+            `${process.env.NEXT_PUBLIC_HOST}/webstore/${slug}`,
+            {
+              url: `https://www.${newDomain}`,
+              domain: newDomain,
+            }
+          );
+          if (response.success) {
+            Notify.success(response.message);
+          } else {
+            Notify.failure(response.message);
+          }
+        } else {
+          Notify.failure("format domain tidak valid");
+        }
+      }
+    );
+  };
+
   return (
     <div>
       <HeaderAndBackIcon title={"Detail Webstore"} />
@@ -133,6 +163,11 @@ export default function DetailWebstore({
               )
             }
           />
+          {webstore.isLive && (
+            <Button onClick={handleChangeDomain} variant="outlined">
+              Ubah Domain
+            </Button>
+          )}
         </div>
       </SectionLayout>
       {!webstore.isLive && (

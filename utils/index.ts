@@ -4,6 +4,14 @@ import {
   PatchDataApi,
   PostDataApi,
 } from "./fetching";
-import { formatCurrency, stringToSlug } from "./formating";
+import { formatCurrency, stringToSlug, isValidDomain } from "./formating";
 
-export { DeleteDataApi, GetDataApi, PatchDataApi, PostDataApi, formatCurrency, stringToSlug };
+export {
+  DeleteDataApi,
+  GetDataApi,
+  PatchDataApi,
+  PostDataApi,
+  formatCurrency,
+  stringToSlug,
+  isValidDomain,
+};

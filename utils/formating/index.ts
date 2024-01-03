@@ -12,3 +12,10 @@ export const stringToSlug = (str: string) => {
     .replace(/[\W_]+/g, "-")
     .replace(/^-+|-+$/g, "");
 };
+
+// validasi format domain
+export const isValidDomain = (domain: string) => {
+  const domainRegex =
+    /^(?!:\/\/)([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}(?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$/;
+  return domainRegex.test(domain);
+};
