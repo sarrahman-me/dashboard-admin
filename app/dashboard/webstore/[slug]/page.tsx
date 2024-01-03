@@ -154,6 +154,25 @@ export default function DetailWebstore({
           <ListData label="Domain" value={webstore.domain} />
           <ListData label="Url" value={webstore.url} />
           <ListData
+            label="Persentase keuntungan"
+            value={webstore.profit_percentage}
+          />
+          <ListData
+            label="Tampil stok"
+            value={webstore.show_stock ? <span>Ya</span> : <span>Tidak</span>}
+          />
+          <ListData
+            label="Tampil harga"
+            value={webstore.show_price ? <span>Ya</span> : <span>Tidak</span>}
+          />
+          <ListData
+            label="Terkunci"
+            value={webstore.use_password ? <span>Ya</span> : <span>Tidak</span>}
+          />
+          {webstore.use_password && (
+            <ListData label="Password" value={webstore.password} />
+          )}
+          <ListData
             label="Status"
             value={
               webstore.isLive ? (
