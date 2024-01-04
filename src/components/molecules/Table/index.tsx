@@ -72,7 +72,7 @@ const Table = ({ datas, columns, loading }: TableProps) => {
 
         {/* body table */}
 
-        <tbody>
+        <tbody className="bg-white dark:bg-slate-700">
           {datas.map((data, i) => (
             <tr key={i}>
               {columns.map((column, j) => (

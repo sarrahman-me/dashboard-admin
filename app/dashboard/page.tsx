@@ -2,6 +2,7 @@
 import {
   InsightCard,
   LoadingAnimation,
+  PieChart,
   Table,
   Typography,
 } from "@/src/components";
@@ -47,34 +48,55 @@ export default function Dashboard() {
     total_searches: string;
     top_search_query: any[];
   });
+  const [topBrand, setTopBrand] = useState({
+    brands: [],
+    views: [],
+  } as {
+    brands: string[];
+    views: number[];
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseWebstoreProductInsight = await GetDataApi(
+      const responseProductInsight = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/analytic/product-insight`
       );
 
-      const responseWebstoreSearchInsight = await GetDataApi(
+      const responseSearchInsight = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/analytic/search-insight`
       );
 
+      const responseBrandInsight = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/brand-insight`
+      );
+
       if (
-        responseWebstoreProductInsight?.data[0]?.total_searches !== undefined ||
-        responseWebstoreProductInsight?.data[0]?.total_searches !== null
+        responseProductInsight?.data[0]?.total_searches !== undefined ||
+        responseProductInsight?.data[0]?.total_searches !== null
       ) {
         const { total_searches, top_search_query } =
-          responseWebstoreSearchInsight.data[0];
+          responseSearchInsight.data[0];
 
         const {
           total_product,
           total_brand,
           total_product_view,
           top_product_view,
-        } = responseWebstoreProductInsight.data[0];
+        } = responseProductInsight.data[0];
 
         setSearchInsight({
           total_searches,
           top_search_query,
+        });
+
+        const responseBrand = responseBrandInsight.data[0].top_brand_view;
+
+        const brands = responseBrand.map((a: any) => a.brandName);
+        const views = responseBrand.map((a: any) => a.views);
+
+        setTopBrand({
+          brands,
+          views,
         });
 
         setProductInsight({
@@ -85,19 +107,18 @@ export default function Dashboard() {
         });
 
         if (
-          responseWebstoreProductInsight?.data[1]?.total_searches !==
-            undefined ||
-          responseWebstoreProductInsight?.data[1]?.total_searches !== null
+          responseProductInsight?.data[1]?.total_searches !== undefined ||
+          responseProductInsight?.data[1]?.total_searches !== null
         ) {
           const { total_searches, top_search_query } =
-            responseWebstoreSearchInsight.data[1];
+            responseSearchInsight.data[1];
 
           const {
             total_product,
             total_brand,
             total_product_view,
             top_product_view,
-          } = responseWebstoreProductInsight.data[1];
+          } = responseProductInsight.data[1];
 
           setOldSearchInsight({
             total_searches,
@@ -191,6 +212,32 @@ export default function Dashboard() {
         />
       </div>
 
+      <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
+        <div className="md:w-2/3 w-full">
+          <Typography>Pencarian Populer</Typography>
+          <Table
+            columns={[
+              {
+                label: "Kata kunci",
+                renderCell: (item: any) => item.query,
+              },
+              {
+                label: "Jumlah dicari",
+                renderCell: (item: any) => item.totalSearch,
+              },
+            ]}
+            datas={searchInsight.top_search_query}
+          />
+        </div>
+        <div className="md:w-1/3 w-full">
+          <PieChart
+            title={"Top Brands"}
+            labels={topBrand.brands}
+            data={topBrand.views}
+          />
+        </div>
+      </div>
+
       <div className="my-3">
         <Typography>Produk Populer</Typography>
         <Table
@@ -210,23 +257,6 @@ export default function Dashboard() {
             },
           ]}
           datas={productInsight.top_product_view}
-        />
-      </div>
-
-      <div className="my-3">
-        <Typography>Pencarian Populer</Typography>
-        <Table
-          columns={[
-            {
-              label: "Kata kunci",
-              renderCell: (item: any) => item.query,
-            },
-            {
-              label: "Jumlah dicari",
-              renderCell: (item: any) => item.totalSearch,
-            },
-          ]}
-          datas={searchInsight.top_search_query}
         />
       </div>
     </div>

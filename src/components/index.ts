@@ -30,6 +30,7 @@ import {
   SearchBar,
   Table,
   InsightCard,
+  PieChart,
 } from "./molecules/index";
 import {
   Footer,
@@ -80,6 +81,7 @@ export {
   SearchBar,
   Table,
   InsightCard,
+  PieChart,
 
   //   organims
   Footer,
