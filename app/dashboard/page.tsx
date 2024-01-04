@@ -212,7 +212,7 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
+      <div className="my-3 flex items-center flex-col-reverse md:flex-row gap-2 md:gap-4">
         <div className="md:w-2/3 w-full">
           <Typography>Pencarian Populer</Typography>
           <Table
