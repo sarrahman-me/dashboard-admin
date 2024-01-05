@@ -2,7 +2,13 @@
 import { ListData } from "@/layouts/components/atoms";
 import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout, Timeline } from "@/layouts/template";
-import { Button, InsightCard, Table, Typography } from "@/src/components";
+import {
+  Button,
+  InsightCard,
+  PieChart,
+  Table,
+  Typography,
+} from "@/src/components";
 import { PatchDataApi } from "@/src/utils";
 import { GetDataApi, isValidDomain } from "@/utils";
 import { Confirm, Notify } from "notiflix";
@@ -44,6 +50,13 @@ export default function DetailWebstore({
     total_searches: string;
     top_search_query: any[];
   });
+  const [topBrand, setTopBrand] = useState({
+    brands: [],
+    views: [],
+  } as {
+    brands: string[];
+    views: number[];
+  });
 
   const calculatePercentage = (current: number, last: number) => {
     const selisihNilai = current - last;
@@ -68,6 +81,10 @@ export default function DetailWebstore({
           `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-search-insight/${webstoreResponse.data?.domain}`
         );
 
+        const responseBrandInsight = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-brand-insight/${webstoreResponse.data?.domain}`
+        );
+
         if (
           responseWebstoreProductInsight?.data[0]?.total_searches !==
             undefined ||
@@ -78,6 +95,16 @@ export default function DetailWebstore({
 
           const { total_product_view, top_product_view } =
             responseWebstoreProductInsight.data[0];
+
+          const responseBrand = responseBrandInsight.data[0].top_brand_view;
+
+          const brands = responseBrand.map((a: any) => a.brandName);
+          const views = responseBrand.map((a: any) => a.views);
+
+          setTopBrand({
+            brands,
+            views,
+          });
 
           setSearchInsight({
             total_searches,
@@ -240,23 +267,34 @@ export default function DetailWebstore({
 
                 <div className="my-3">
                   <Typography>Produk Populer</Typography>
-                  <Table
-                    columns={[
-                      {
-                        label: "Nama Barang",
-                        renderCell: (item: any) => item.productName,
-                      },
-                      {
-                        label: "Brand",
-                        renderCell: (item: any) => item.productBrand,
-                      },
-                      {
-                        label: "Jumlah dilihat",
-                        renderCell: (item: any) => item.views,
-                      },
-                    ]}
-                    datas={productInsight.top_product_view}
-                  />
+                  <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-4">
+                    <div className="md:w-2/3 w-full">
+                      <Table
+                        columns={[
+                          {
+                            label: "Nama Barang",
+                            renderCell: (item: any) => item.productName,
+                          },
+                          {
+                            label: "Brand",
+                            renderCell: (item: any) => item.productBrand,
+                          },
+                          {
+                            label: "Jumlah dilihat",
+                            renderCell: (item: any) => item.views,
+                          },
+                        ]}
+                        datas={productInsight.top_product_view}
+                      />
+                    </div>
+                    <div className="md:w-1/3 w-full">
+                      <PieChart
+                        title={"Top Brands"}
+                        labels={topBrand.brands}
+                        data={topBrand.views}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="my-3">
