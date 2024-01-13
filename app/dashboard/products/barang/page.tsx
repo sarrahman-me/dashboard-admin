@@ -187,6 +187,10 @@ export default function Barang() {
       ),
     },
     {
+      label: "Tag",
+      renderCell: async (item: any) => item.tag,
+    },
+    {
       label: "Edit",
       renderCell: async (item: any) => (
         <div className="flex justify-center">
