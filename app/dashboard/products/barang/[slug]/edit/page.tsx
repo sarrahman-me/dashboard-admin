@@ -170,6 +170,11 @@ export default function EditBarang({ params }: { params: { slug: string } }) {
       label: "Stok Barang",
       name: "stok",
     },
+    {
+      type: "text",
+      label: "ID Suplier",
+      name: "tag",
+    },
   ];
 
   return (

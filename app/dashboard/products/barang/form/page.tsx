@@ -147,6 +147,11 @@ export default function FormBarang() {
       label: "Stok Barang",
       name: "stok",
     },
+    {
+      type: "text",
+      label: "ID Suplier",
+      name: "tag",
+    },
   ];
 
   return (
