@@ -57,6 +57,13 @@ export default function DetailWebstore({
     brands: string[];
     views: number[];
   });
+  const [ProductViewToday, setProductViewToday] = useState({
+    totalDataBySource: 0,
+    topProductsBySource: [],
+  } as {
+    totalDataBySource: number;
+    topProductsBySource: any[];
+  });
 
   const calculatePercentage = (current: number, last: number) => {
     const selisihNilai = current - last;
@@ -84,6 +91,18 @@ export default function DetailWebstore({
         const responseBrandInsight = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-brand-insight/${webstoreResponse.data?.domain}`
         );
+
+        const responseProductViewToday = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight-today/${webstoreResponse.data?.domain}`
+        );
+
+        const { topProductsBySource, totalDataBySource } =
+          responseProductViewToday.data;
+
+        setProductViewToday({
+          topProductsBySource,
+          totalDataBySource,
+        });
 
         if (
           responseWebstoreProductInsight?.data[0]?.total_searches !==
@@ -311,6 +330,27 @@ export default function DetailWebstore({
                       },
                     ]}
                     datas={searchInsight.top_search_query}
+                  />
+                </div>
+
+                <div className="my-3">
+                  <Typography>Produk dilihat hari ini</Typography>
+                  <Table
+                    columns={[
+                      {
+                        label: "Nama Barang",
+                        renderCell: (item: any) => item.productName,
+                      },
+                      {
+                        label: "Brand",
+                        renderCell: (item: any) => item.productBrand,
+                      },
+                      {
+                        label: "Jumlah dilihat",
+                        renderCell: (item: any) => item.views,
+                      },
+                    ]}
+                    datas={ProductViewToday.topProductsBySource}
                   />
                 </div>
               </div>
