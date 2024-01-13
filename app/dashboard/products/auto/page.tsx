@@ -4,6 +4,7 @@ import Papa from "papaparse";
 import { PatchDataApi } from "@/src/utils";
 import { Notify } from "notiflix";
 import { Button } from "@/src/components";
+import { MdAutoMode } from "react-icons/md";
 
 const FileUpload = () => {
   const [csvData, setCsvData] = useState<Array<{ Tag: string; Stok: number }>>(
@@ -11,6 +12,7 @@ const FileUpload = () => {
   );
   const [tagFailed, setTagFailed] = useState([] as string[]);
   const [productUpdated, setProductUpdated] = useState([] as string[]);
+  const [processing, setProcessing] = useState(false);
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
@@ -31,6 +33,7 @@ const FileUpload = () => {
   };
 
   const handleEditStok = async (tag: string, stok: number) => {
+    setProcessing(true);
     console.log(tag, "mulai memproses");
     try {
       const response = await PatchDataApi(
@@ -50,6 +53,8 @@ const FileUpload = () => {
       }
     } catch (error) {
       Notify.failure("Terjadi kesalahan tak terduga");
+    } finally {
+      setProcessing(false);
     }
   };
 
@@ -71,8 +76,44 @@ const FileUpload = () => {
       <p className="font-bold text-xl">Automated Update Products</p>
       <input type="file" accept=".csv" onChange={handleFileUpload} />
       <div className="my-2">
-        <Button onClick={() => processCsvData()}>Proses Data</Button>
+        <Button
+          onClick={() => processCsvData()}
+          icon={<MdAutoMode />}
+          loading={processing}
+        >
+          Proses Data
+        </Button>
       </div>
+
+      {processing && (
+        <div className="w-full mt-2">
+          <div className="relative pt-1">
+            <div className="flex mb-2 items-center justify-between">
+              <div>
+                <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-lime-600 bg-lime-200">
+                  Proses Berlangsung
+                </span>
+              </div>
+              <div className="text-right">
+                <span className="text-xs font-semibold inline-block text-lime-600">
+                  {Math.round((productUpdated.length / csvData.length) * 100)}%
+                </span>
+              </div>
+            </div>
+            <div className="flex mb-2 items-center justify-start">
+              <div className="w-full bg-gray-200 rounded-full">
+                <div
+                  className="bg-lime-600 h-2 rounded-full"
+                  style={{
+                    width: `${(productUpdated.length / csvData.length) * 100}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {productUpdated.length > 0 && (
         <div className="my-2">
           <p>tag yang berhasil di proses</p>
