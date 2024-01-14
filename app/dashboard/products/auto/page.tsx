@@ -15,7 +15,10 @@ const FileUpload = () => {
   const [processing, setProcessing] = useState(false);
   const [successCount, setSuccessCount] = useState(0);
   const [failedCount, setFailedCount] = useState(0);
+  const [inValidCount, setInValidCount] = useState(0);
   const [totalProcessed, setTotalProcessed] = useState(0);
+  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [endTime, setEndTime] = useState<Date | null>(null);
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
@@ -60,21 +63,36 @@ const FileUpload = () => {
       Notify.failure("Terjadi kesalahan tak terduga");
     } finally {
       setProcessing(false);
+      setEndTime(new Date()); // Catat waktu akhir proses
     }
     setTotalProcessed((prev) => prev + 1);
   };
 
   const processCsvData = async () => {
+    if (!startTime) {
+      setStartTime(new Date()); // Catat waktu awal proses
+    }
     for (const item of csvData) {
       const tag = item.Tag;
       const stok = item.Stok;
 
-      if (tag && stok) {
+      if (tag) {
         await handleEditStok(tag, stok);
       } else {
         console.error("format csv tidak valid");
+        setInValidCount((prev) => prev + 1);
+        setTotalProcessed((prev) => prev + 1);
       }
     }
+  };
+
+  const calculateDuration = () => {
+    if (startTime && endTime) {
+      const duration = endTime.getTime() - startTime.getTime();
+      const seconds = Math.floor(duration / 1000);
+      return seconds;
+    }
+    return 0;
   };
 
   return (
@@ -121,7 +139,18 @@ const FileUpload = () => {
       )}
 
       <div className="my-2">
-        <p className="text-lg font-semibold mt-4">Summary:</p>
+        <p className="text-lg font-semibold mt-4">Ringkasan:</p>
+        <div className="mt-2">
+          {startTime && endTime && (
+            <p className="text-xs">
+              Dimulai pada: {startTime.toLocaleTimeString()}
+              <br />
+              Selesai pada: {endTime.toLocaleTimeString()}
+              <br />
+              Durasi: {calculateDuration()} detik
+            </p>
+          )}
+        </div>
         <div className="flex space-x-4 mt-2">
           <div>
             <p className="text-green-500 text-sm font-medium">
@@ -146,6 +175,11 @@ const FileUpload = () => {
                 </p>
               ))}
             </div>
+          </div>
+          <div>
+            <p className="text-red-500 text-sm font-medium">
+              Invalid: {inValidCount}
+            </p>
           </div>
         </div>
       </div>
