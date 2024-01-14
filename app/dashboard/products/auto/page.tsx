@@ -77,7 +77,7 @@ const FileUpload = () => {
       const tag = item.Tag;
       const stok = item.Stok;
 
-      if (tag) {
+      if (tag && stok !== undefined && stok !== null) {
         await handleEditStok(tag, stok);
       } else {
         console.error("format csv tidak valid");
