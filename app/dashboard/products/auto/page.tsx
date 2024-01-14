@@ -5,6 +5,7 @@ import { PatchDataApi } from "@/src/utils";
 import { Notify } from "notiflix";
 import { Button } from "@/src/components";
 import { MdAutoMode } from "react-icons/md";
+import { LuTimerReset } from "react-icons/lu";
 
 const FileUpload = () => {
   const [csvData, setCsvData] = useState<Array<{ Tag: string; Stok: number }>>(
@@ -99,13 +100,21 @@ const FileUpload = () => {
     <div>
       <p className="font-bold text-xl">Automated Update Products</p>
       <input type="file" accept=".csv" onChange={handleFileUpload} />
-      <div className="my-2">
+      <div className="my-2 space-x-2 flex items-center">
         <Button
           onClick={() => processCsvData()}
           icon={<MdAutoMode />}
           loading={processing}
         >
           Proses Data
+        </Button>
+        <Button
+          onClick={() => window.location.reload()}
+          icon={<LuTimerReset />}
+          loading={processing}
+          variant="outlined"
+        >
+          Reset
         </Button>
       </div>
 
