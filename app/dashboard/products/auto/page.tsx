@@ -111,7 +111,7 @@ const FileUpload = () => {
         <Button
           onClick={() => window.location.reload()}
           icon={<LuTimerReset />}
-          loading={processing}
+          disabled={processing}
           variant="outlined"
         >
           Reset
