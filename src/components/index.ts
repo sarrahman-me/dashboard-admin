@@ -31,6 +31,7 @@ import {
   Table,
   InsightCard,
   PieChart,
+  LineChart,
 } from "./molecules/index";
 import {
   Footer,
@@ -82,6 +83,7 @@ export {
   Table,
   InsightCard,
   PieChart,
+  LineChart,
 
   //   organims
   Footer,
