@@ -77,7 +77,13 @@ const FileUpload = () => {
       const tag = item.Tag;
       const stok = item.Stok;
 
-      if (tag && stok !== undefined && stok !== null) {
+      if (
+        tag &&
+        stok !== undefined &&
+        stok !== null &&
+        typeof stok === "number" &&
+        !isNaN(stok)
+      ) {
         await handleEditStok(tag, stok);
       } else {
         console.error("format csv tidak valid");
@@ -99,7 +105,7 @@ const FileUpload = () => {
   return (
     <div>
       <p className="font-bold text-xl">Automated Update Products</p>
-      <input type="file" accept=".csv" onChange={handleFileUpload} />
+      <input className="my-2" type="file" accept=".csv" onChange={handleFileUpload} />
       <div className="my-2 space-x-2 flex items-center">
         <Button
           onClick={() => processCsvData()}
