@@ -95,7 +95,7 @@ export default function DetailMitra({ params }: { params: { slug: string } }) {
       )}
 
       <div className="my-3">
-        <Typography>Produk Populer</Typography>
+        <Typography>Produk dilihat hari ini</Typography>
         <Table
           columns={[
             {
