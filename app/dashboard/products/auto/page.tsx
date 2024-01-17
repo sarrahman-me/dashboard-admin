@@ -29,6 +29,7 @@ const FileUpload = () => {
         header: true,
         dynamicTyping: true,
         complete: (result: any) => {
+          console.log(result.data);
           setCsvData(result.data);
           setProductUpdated([]);
           setTagFailed([]);
@@ -105,7 +106,12 @@ const FileUpload = () => {
   return (
     <div>
       <p className="font-bold text-xl">Automated Update Products</p>
-      <input className="my-2" type="file" accept=".csv" onChange={handleFileUpload} />
+      <input
+        className="my-2"
+        type="file"
+        accept=".csv"
+        onChange={handleFileUpload}
+      />
       <div className="my-2 space-x-2 flex items-center">
         <Button
           onClick={() => processCsvData()}
