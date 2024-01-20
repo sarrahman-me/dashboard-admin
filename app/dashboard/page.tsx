@@ -4,6 +4,7 @@ import {
   LoadingAnimation,
   PieChart,
   Table,
+  LineChart,
   Typography,
 } from "@/src/components";
 import { FaSearch, FaCubes, FaEye } from "react-icons/fa";
@@ -24,6 +25,7 @@ export default function Dashboard() {
     top_search_query_without_result: [],
     top_search_query: [],
     top_brands: [],
+    dailyProductView: [],
   } as {
     total_product: string;
     total_product_view: string;
@@ -36,10 +38,15 @@ export default function Dashboard() {
     top_search_query_without_result: any[];
     top_search_query: any[];
     top_brands: any[];
+    dailyProductView: any[];
   });
 
   useEffect(() => {
     const fetchData = async () => {
+      const responseDailyProductView = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/daily-product-view`
+      );
+
       const responseAdminInsight = await GetDataApi(
         `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-insight`
       );
@@ -70,6 +77,7 @@ export default function Dashboard() {
         total_product_view,
         total_searches_last_period,
         total_searches,
+        dailyProductView: responseDailyProductView.data,
       });
     };
     fetchData();
@@ -144,24 +152,18 @@ export default function Dashboard() {
 
       <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
         <div className="md:w-2/3 w-full">
-          <Typography>Produk Populer</Typography>
-          <Table
-            columns={[
+          <LineChart
+            title={"Aktivitas Harian"}
+            labels={dataInsight.dailyProductView.map((item: any) => item.day)}
+            data={[
               {
-                label: "Nama Barang",
-                renderCell: (item: any) => item.productName,
-              },
-
-              {
-                label: "Brand",
-                renderCell: (item: any) => item.productBrand,
-              },
-              {
-                label: "Jumlah dilihat",
-                renderCell: (item: any) => item.views,
+                label: "dilihat",
+                color: "#32CD32",
+                data: dataInsight.dailyProductView.map(
+                  (item: any) => item.total_data
+                ),
               },
             ]}
-            datas={dataInsight.top_product_view}
           />
         </div>
         <div className="md:w-1/3 w-full">
@@ -171,6 +173,28 @@ export default function Dashboard() {
             data={dataInsight.top_brands.map((item) => item.views)}
           />
         </div>
+      </div>
+
+      <div className="my-3">
+        <Typography>Produk Populer</Typography>
+        <Table
+          columns={[
+            {
+              label: "Nama Barang",
+              renderCell: (item: any) => item.productName,
+            },
+
+            {
+              label: "Brand",
+              renderCell: (item: any) => item.productBrand,
+            },
+            {
+              label: "Jumlah dilihat",
+              renderCell: (item: any) => item.views,
+            },
+          ]}
+          datas={dataInsight.top_product_view}
+        />
       </div>
 
       <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">

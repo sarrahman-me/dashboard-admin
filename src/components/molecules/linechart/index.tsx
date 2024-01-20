@@ -54,7 +54,7 @@ export default function LineChart(props: {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full border rounded bg-white dark:bg-slate-700">
       <Line options={options} data={chartData} />
     </div>
   );
