@@ -22,40 +22,22 @@ export default function DetailWebstore({
 }) {
   const slug = params.slug;
   const [webstore, setWebstore] = useState({} as any);
-  const [productInsight, setProductInsight] = useState({
+  const [dataInsight, setDataInsight] = useState({
     total_product_view: "",
+    total_product_view_last_period: "",
     top_product_view: [],
+    total_searches: "",
+    total_searches_last_period: "",
+    top_search_query: [],
+    top_brands: [],
   } as {
     total_product_view: string;
+    total_product_view_last_period: string;
     top_product_view: any[];
-  });
-  const [searchInsight, setSearchInsight] = useState({
-    total_searches: "",
-    top_search_query: [],
-  } as {
     total_searches: string;
+    total_searches_last_period: string;
     top_search_query: any[];
-  });
-  const [oldProductInsight, setOldProductInsight] = useState({
-    total_product_view: "",
-    top_product_view: [],
-  } as {
-    total_product_view: string;
-    top_product_view: any[];
-  });
-  const [oldsSarchInsight, setOldSearchInsight] = useState({
-    total_searches: "",
-    top_search_query: [],
-  } as {
-    total_searches: string;
-    top_search_query: any[];
-  });
-  const [topBrand, setTopBrand] = useState({
-    brands: [],
-    views: [],
-  } as {
-    brands: string[];
-    views: number[];
+    top_brands: any[];
   });
   const [ProductViewToday, setProductViewToday] = useState({
     totalDataBySource: 0,
@@ -80,17 +62,29 @@ export default function DetailWebstore({
       setWebstore(webstoreResponse.data);
 
       if (webstoreResponse.data?.domain) {
-        const responseWebstoreProductInsight = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight/${webstoreResponse.data?.domain}`
+        const responseWebstoreInsight = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-mitra-insight/${webstoreResponse.data?.domain}`
         );
 
-        const responseWebstoreSearchInsight = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-search-insight/${webstoreResponse.data?.domain}`
-        );
+        const {
+          total_product_view,
+          total_product_view_last_period,
+          top_product_view,
+          total_searches,
+          total_searches_last_period,
+          top_search_query,
+          top_brands,
+        } = responseWebstoreInsight.data;
 
-        const responseBrandInsight = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-brand-insight/${webstoreResponse.data?.domain}`
-        );
+        setDataInsight({
+          top_brands,
+          top_product_view,
+          total_product_view_last_period,
+          top_search_query,
+          total_product_view,
+          total_searches_last_period,
+          total_searches,
+        });
 
         const responseProductViewToday = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight-today/${webstoreResponse.data?.domain}`
@@ -103,60 +97,6 @@ export default function DetailWebstore({
           topProductsBySource,
           totalDataBySource,
         });
-
-        if (
-          responseWebstoreProductInsight?.data[0]?.total_searches !==
-            undefined ||
-          responseWebstoreProductInsight?.data[0]?.total_searches !== null
-        ) {
-          const { total_searches, top_search_query } =
-            responseWebstoreSearchInsight.data[0];
-
-          const { total_product_view, top_product_view } =
-            responseWebstoreProductInsight.data[0];
-
-          const responseBrand = responseBrandInsight.data[0].top_brand_view;
-
-          const brands = responseBrand.map((a: any) => a.brandName);
-          const views = responseBrand.map((a: any) => a.views);
-
-          setTopBrand({
-            brands,
-            views,
-          });
-
-          setSearchInsight({
-            total_searches,
-            top_search_query,
-          });
-
-          setProductInsight({
-            top_product_view,
-            total_product_view,
-          });
-        }
-
-        if (
-          responseWebstoreProductInsight?.data[1]?.total_searches !==
-            undefined ||
-          responseWebstoreProductInsight?.data[1]?.total_searches !== null
-        ) {
-          const { total_searches, top_search_query } =
-            responseWebstoreSearchInsight.data[1];
-
-          const { total_product_view, top_product_view } =
-            responseWebstoreProductInsight.data[1];
-
-          setOldSearchInsight({
-            total_searches,
-            top_search_query,
-          });
-
-          setOldProductInsight({
-            top_product_view,
-            total_product_view,
-          });
-        }
       }
     }
 
@@ -247,19 +187,19 @@ export default function DetailWebstore({
       <div>
         {webstore.isLive && (
           <div>
-            {productInsight.total_product_view !== undefined && (
+            {dataInsight.total_product_view !== undefined && (
               <div>
                 <p className="underline font-semibold m-2">
                   Wawasan {webstore.domain}
                 </p>
                 <div className="grid grid-cols-2 gap-2 md:gap-6">
                   <InsightCard
-                    data={productInsight.total_product_view}
+                    data={dataInsight.total_product_view}
                     percentase={
                       Number(
                         calculatePercentage(
-                          Number(productInsight.total_product_view),
-                          Number(oldProductInsight.total_product_view)
+                          Number(dataInsight.total_product_view),
+                          Number(dataInsight.total_product_view_last_period)
                         )
                       ) || 0
                     }
@@ -269,14 +209,14 @@ export default function DetailWebstore({
                   />
 
                   <InsightCard
-                    data={searchInsight.total_searches}
+                    data={dataInsight.total_searches}
                     title={"Pencarian"}
                     color={"amber"}
                     percentase={
                       Number(
                         calculatePercentage(
-                          Number(searchInsight.total_searches),
-                          Number(oldsSarchInsight.total_searches)
+                          Number(dataInsight.total_searches),
+                          Number(dataInsight.total_searches_last_period)
                         )
                       ) || 0
                     }
@@ -303,14 +243,16 @@ export default function DetailWebstore({
                             renderCell: (item: any) => item.views,
                           },
                         ]}
-                        datas={productInsight.top_product_view}
+                        datas={dataInsight.top_product_view}
                       />
                     </div>
                     <div className="md:w-1/3 w-full">
                       <PieChart
                         title={"Top Brands"}
-                        labels={topBrand.brands}
-                        data={topBrand.views}
+                        labels={dataInsight.top_brands.map(
+                          (item) => item.brandName
+                        )}
+                        data={dataInsight.top_brands.map((item) => item.views)}
                       />
                     </div>
                   </div>
@@ -329,7 +271,7 @@ export default function DetailWebstore({
                         renderCell: (item: any) => item.totalSearch,
                       },
                     ]}
-                    datas={searchInsight.top_search_query}
+                    datas={dataInsight.top_search_query}
                   />
                 </div>
 
