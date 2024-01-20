@@ -88,7 +88,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Typography variant="subtitle">Insight Produk Bulai ini</Typography>
+      <Typography variant="subtitle">Insight Produk Bulan ini</Typography>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
           data={dataInsight.total_product}
@@ -143,7 +143,7 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className="my-3 flex items-center flex-col-reverse md:flex-row gap-2 md:gap-4">
+      <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
         <div className="md:w-2/3 w-full">
           <Typography>Produk Populer</Typography>
           <Table
@@ -174,7 +174,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="my-3 flex items-center flex-col-reverse md:flex-row gap-2 md:gap-4">
+      <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
         <div className="md:w-1/2 w-full">
           <Typography>Pencarian Populer</Typography>
           <Table
