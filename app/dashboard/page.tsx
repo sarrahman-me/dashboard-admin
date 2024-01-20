@@ -118,7 +118,7 @@ export default function Dashboard() {
             Number(
               calculatePercentage(
                 Number(dataInsight.total_searches),
-                Number(dataInsight.total_searches_without_result)
+                Number(dataInsight.total_searches_last_period)
               )
             ) || 0
           }
