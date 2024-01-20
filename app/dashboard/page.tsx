@@ -12,127 +12,65 @@ import { GetDataApi } from "@/utils";
 import React, { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const [productInsight, setProductInsight] = useState({
-    total_product_view: "",
+  const [dataInsight, setDataInsight] = useState({
     total_product: "",
-    total_brand: "",
-    top_product_view: [],
-  } as {
-    total_product_view: string;
-    total_product: string;
-    total_brand: string;
-    top_product_view: any[];
-  });
-  const [searchInsight, setSearchInsight] = useState({
-    total_searches: "",
-    top_search_query: [],
-  } as {
-    total_searches: string;
-    top_search_query: any[];
-  });
-  const [oldProductInsight, setOldProductInsight] = useState({
     total_product_view: "",
-    total_product: "",
-    total_brand: "",
-    top_product_view: [],
-  } as {
-    total_product_view: string;
-    total_product: string;
-    total_brand: string;
-    top_product_view: any[];
-  });
-  const [oldsSarchInsight, setOldSearchInsight] = useState({
+    total_product_view_last_period: "",
     total_searches: "",
+    total_searches_without_result: "",
+    totalSearchesWithoutResultLastPeriod: "",
+    total_searches_last_period: "",
+    top_product_view: [],
+    top_search_query_without_result: [],
     top_search_query: [],
+    top_brands: [],
   } as {
+    total_product: string;
+    total_product_view: string;
+    total_product_view_last_period: string;
     total_searches: string;
+    total_searches_without_result: string;
+    totalSearchesWithoutResultLastPeriod: string;
+    total_searches_last_period: string;
+    top_product_view: any[];
+    top_search_query_without_result: any[];
     top_search_query: any[];
-  });
-  const [topBrand, setTopBrand] = useState({
-    brands: [],
-    views: [],
-  } as {
-    brands: string[];
-    views: number[];
+    top_brands: any[];
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const responseProductInsight = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analytic/product-insight`
+      const responseAdminInsight = await GetDataApi(
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-insight`
       );
 
-      const responseSearchInsight = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analytic/search-insight`
-      );
+      const {
+        total_product,
+        total_product_view,
+        total_product_view_last_period,
+        total_searches,
+        total_searches_without_result,
+        totalSearchesWithoutResultLastPeriod,
+        total_searches_last_period,
+        top_product_view,
+        top_search_query_without_result,
+        top_search_query,
+        top_brands,
+      } = responseAdminInsight.data;
 
-      const responseBrandInsight = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analytic/brand-insight`
-      );
-
-      if (
-        responseProductInsight?.data[0]?.total_searches !== undefined ||
-        responseProductInsight?.data[0]?.total_searches !== null
-      ) {
-        const { total_searches, top_search_query } =
-          responseSearchInsight.data[0];
-
-        const {
-          total_product,
-          total_brand,
-          total_product_view,
-          top_product_view,
-        } = responseProductInsight.data[0];
-
-        setSearchInsight({
-          total_searches,
-          top_search_query,
-        });
-
-        const responseBrand = responseBrandInsight.data[0].top_brand_view;
-
-        const brands = responseBrand.map((a: any) => a.brandName);
-        const views = responseBrand.map((a: any) => a.views);
-
-        setTopBrand({
-          brands,
-          views,
-        });
-
-        setProductInsight({
-          total_product,
-          total_brand,
-          top_product_view,
-          total_product_view,
-        });
-
-        if (
-          responseProductInsight?.data[1]?.total_searches !== undefined ||
-          responseProductInsight?.data[1]?.total_searches !== null
-        ) {
-          const { total_searches, top_search_query } =
-            responseSearchInsight.data[1];
-
-          const {
-            total_product,
-            total_brand,
-            total_product_view,
-            top_product_view,
-          } = responseProductInsight.data[1];
-
-          setOldSearchInsight({
-            total_searches,
-            top_search_query,
-          });
-
-          setOldProductInsight({
-            total_product,
-            total_brand,
-            top_product_view,
-            total_product_view,
-          });
-        }
-      }
+      setDataInsight({
+        top_search_query_without_result,
+        totalSearchesWithoutResultLastPeriod,
+        total_searches_without_result,
+        total_product,
+        top_brands,
+        top_product_view,
+        total_product_view_last_period,
+        top_search_query,
+        total_product_view,
+        total_searches_last_period,
+        total_searches,
+      });
     };
     fetchData();
   }, []);
@@ -143,7 +81,7 @@ export default function Dashboard() {
     return persentasePotongan.toFixed(0);
   };
 
-  if (!productInsight.total_product) {
+  if (!dataInsight.total_product) {
     return <LoadingAnimation />;
   }
 
@@ -152,28 +90,20 @@ export default function Dashboard() {
       <Typography variant="subtitle">Insight Produk (Kemarin)</Typography>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
-          data={productInsight.total_product}
-          title={"Total"}
-          percentase={
-            Number(
-              calculatePercentage(
-                Number(productInsight.total_product),
-                Number(oldProductInsight.total_product)
-              )
-            ) || 0
-          }
+          data={dataInsight.total_product}
+          title={"Barang"}
           color={"blue"}
           icon={<FaCubes />}
         />
 
         <InsightCard
-          data={productInsight.total_brand}
-          title={"Brand"}
+          data={dataInsight.total_product_view}
+          title={"Dilihat"}
           percentase={
             Number(
               calculatePercentage(
-                Number(productInsight.total_brand),
-                Number(oldProductInsight.total_brand)
+                Number(dataInsight.total_product_view),
+                Number(dataInsight.total_product_view_last_period)
               )
             ) || 0
           }
@@ -182,29 +112,29 @@ export default function Dashboard() {
         />
 
         <InsightCard
-          data={productInsight.total_product_view}
+          data={dataInsight.total_searches}
           percentase={
             Number(
               calculatePercentage(
-                Number(productInsight.total_product_view),
-                Number(oldProductInsight.total_product_view)
+                Number(dataInsight.total_searches),
+                Number(dataInsight.total_searches_without_result)
               )
             ) || 0
           }
           color={"violet"}
-          title={"Dilihat"}
+          title={"Pencarian"}
           icon={<FaEye />}
         />
 
         <InsightCard
-          data={searchInsight.total_searches}
-          title={"Pencarian"}
+          data={dataInsight.total_searches_without_result}
+          title={"Pencarian Tanpa Hasil"}
           color={"amber"}
           percentase={
             Number(
               calculatePercentage(
-                Number(searchInsight.total_searches),
-                Number(oldsSarchInsight.total_searches)
+                Number(dataInsight.total_searches_without_result),
+                Number(dataInsight.totalSearchesWithoutResultLastPeriod)
               )
             ) || 0
           }
@@ -214,6 +144,37 @@ export default function Dashboard() {
 
       <div className="my-3 flex items-center flex-col-reverse md:flex-row gap-2 md:gap-4">
         <div className="md:w-2/3 w-full">
+          <Typography>Produk Populer</Typography>
+          <Table
+            columns={[
+              {
+                label: "Nama Barang",
+                renderCell: (item: any) => item.productName,
+              },
+
+              {
+                label: "Brand",
+                renderCell: (item: any) => item.productBrand,
+              },
+              {
+                label: "Jumlah dilihat",
+                renderCell: (item: any) => item.views,
+              },
+            ]}
+            datas={dataInsight.top_product_view}
+          />
+        </div>
+        <div className="md:w-1/3 w-full">
+          <PieChart
+            title={"Top Brands"}
+            labels={dataInsight.top_brands.map((item) => item.brandName)}
+            data={dataInsight.top_brands.map((item) => item.views)}
+          />
+        </div>
+      </div>
+
+      <div className="my-3 flex items-center flex-col-reverse md:flex-row gap-2 md:gap-4">
+        <div className="md:w-1/2 w-full">
           <Typography>Pencarian Populer</Typography>
           <Table
             columns={[
@@ -226,38 +187,25 @@ export default function Dashboard() {
                 renderCell: (item: any) => item.totalSearch,
               },
             ]}
-            datas={searchInsight.top_search_query}
+            datas={dataInsight.top_search_query}
           />
         </div>
-        <div className="md:w-1/3 w-full">
-          <PieChart
-            title={"Top Brands"}
-            labels={topBrand.brands}
-            data={topBrand.views}
+        <div className="md:w-1/2 w-full">
+          <Typography>Pencarian Tanpa Hasil</Typography>
+          <Table
+            columns={[
+              {
+                label: "Kata kunci",
+                renderCell: (item: any) => item.query,
+              },
+              {
+                label: "Jumlah dicari",
+                renderCell: (item: any) => item.totalSearch,
+              },
+            ]}
+            datas={dataInsight.top_search_query_without_result}
           />
         </div>
-      </div>
-
-      <div className="my-3">
-        <Typography>Produk Populer</Typography>
-        <Table
-          columns={[
-            {
-              label: "Nama Barang",
-              renderCell: (item: any) => item.productName,
-            },
-
-            {
-              label: "Brand",
-              renderCell: (item: any) => item.productBrand,
-            },
-            {
-              label: "Jumlah dilihat",
-              renderCell: (item: any) => item.views,
-            },
-          ]}
-          datas={productInsight.top_product_view}
-        />
       </div>
     </div>
   );
