@@ -5,19 +5,11 @@ import { HeaderAndBackIcon } from "@/layouts/components/molecules";
 import { SectionLayout } from "@/layouts/template";
 import { GetDataApi, formatCurrency } from "@/src/utils";
 import moment from "moment";
-import { Table, Typography } from "@/src/components";
 
 export default function DetailMitra({ params }: { params: { slug: string } }) {
   const [mitra, setMitra] = useState({} as any);
   const [membership, setMembership] = useState({} as any);
   const [klasifikasi, setKlasifikasi] = useState({} as any);
-  const [productInsightToday, setProductInsightToday] = useState({
-    total_product_view: "",
-    top_product_view: [],
-  } as {
-    total_product_view: string;
-    top_product_view: any[];
-  });
 
   useEffect(() => {
     async function fetchData() {
@@ -28,17 +20,6 @@ export default function DetailMitra({ params }: { params: { slug: string } }) {
       setMitra(mitraResponse.data);
 
       if (mitraResponse.data.id_membership) {
-        const productInsightResponse = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/product-view/identity/${mitraResponse.data.username}`
-        );
-
-        const { data, totalData } = productInsightResponse.data;
-
-        setProductInsightToday({
-          top_product_view: data,
-          total_product_view: totalData,
-        });
-
         const membershipResponse = await GetDataApi(
           `${process.env.NEXT_PUBLIC_HOST}/membership/member/${mitraResponse.data.id_membership}`
         );
@@ -93,32 +74,6 @@ export default function DetailMitra({ params }: { params: { slug: string } }) {
           </div>
         </SectionLayout>
       )}
-
-      <div className="my-3">
-        <Typography>Produk dilihat hari ini</Typography>
-        <Table
-          columns={[
-            {
-              label: "Nama Barang",
-              renderCell: (item: any) => item.product_name,
-            },
-
-            {
-              label: "Brand",
-              renderCell: (item: any) => item.product_brand,
-            },
-            {
-              label: "Waktu",
-              renderCell: async (item: any) => (
-                <p>
-                  {moment(Number(item.timestamp)).locale("id").format("LT")}
-                </p>
-              ),
-            },
-          ]}
-          datas={productInsightToday.top_product_view}
-        />
-      </div>
     </div>
   );
 }

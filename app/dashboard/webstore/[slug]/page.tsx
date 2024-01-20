@@ -39,13 +39,6 @@ export default function DetailWebstore({
     top_search_query: any[];
     top_brands: any[];
   });
-  const [ProductViewToday, setProductViewToday] = useState({
-    totalDataBySource: 0,
-    topProductsBySource: [],
-  } as {
-    totalDataBySource: number;
-    topProductsBySource: any[];
-  });
 
   const calculatePercentage = (current: number, last: number) => {
     const selisihNilai = current - last;
@@ -84,18 +77,6 @@ export default function DetailWebstore({
           total_product_view,
           total_searches_last_period,
           total_searches,
-        });
-
-        const responseProductViewToday = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-product-insight-today/${webstoreResponse.data?.domain}`
-        );
-
-        const { topProductsBySource, totalDataBySource } =
-          responseProductViewToday.data;
-
-        setProductViewToday({
-          topProductsBySource,
-          totalDataBySource,
         });
       }
     }
@@ -272,27 +253,6 @@ export default function DetailWebstore({
                       },
                     ]}
                     datas={dataInsight.top_search_query}
-                  />
-                </div>
-
-                <div className="my-3">
-                  <Typography>Produk dilihat hari ini</Typography>
-                  <Table
-                    columns={[
-                      {
-                        label: "Nama Barang",
-                        renderCell: (item: any) => item.productName,
-                      },
-                      {
-                        label: "Brand",
-                        renderCell: (item: any) => item.productBrand,
-                      },
-                      {
-                        label: "Jumlah dilihat",
-                        renderCell: (item: any) => item.views,
-                      },
-                    ]}
-                    datas={ProductViewToday.topProductsBySource}
                   />
                 </div>
               </div>
