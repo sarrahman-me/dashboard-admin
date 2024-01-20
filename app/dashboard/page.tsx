@@ -10,6 +10,7 @@ import { FaSearch, FaCubes, FaEye } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import { GetDataApi } from "@/utils";
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 
 export default function Dashboard() {
   const [dataInsight, setDataInsight] = useState({
@@ -87,7 +88,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Typography variant="subtitle">Insight Produk (Kemarin)</Typography>
+      <Typography variant="subtitle">Insight Produk Bulai ini</Typography>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
           data={dataInsight.total_product}
