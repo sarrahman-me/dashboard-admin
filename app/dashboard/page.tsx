@@ -26,6 +26,7 @@ export default function Dashboard() {
     top_search_query: [],
     top_brands: [],
     dailyProductView: [],
+    dailySearchProduct: [],
   } as {
     total_product: string;
     total_product_view: string;
@@ -39,12 +40,13 @@ export default function Dashboard() {
     top_search_query: any[];
     top_brands: any[];
     dailyProductView: any[];
+    dailySearchProduct: any[];
   });
 
   useEffect(() => {
     const fetchData = async () => {
       const responseDailyProductView = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analytic/daily-product-view`
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/daily-activity`
       );
 
       const responseAdminInsight = await GetDataApi(
@@ -77,7 +79,8 @@ export default function Dashboard() {
         total_product_view,
         total_searches_last_period,
         total_searches,
-        dailyProductView: responseDailyProductView.data,
+        dailyProductView: responseDailyProductView.data.product_view,
+        dailySearchProduct: responseDailyProductView.data.search_product,
       });
     };
     fetchData();
@@ -157,9 +160,16 @@ export default function Dashboard() {
             labels={dataInsight.dailyProductView.map((item: any) => item.day)}
             data={[
               {
-                label: "dilihat",
+                label: "view",
                 color: "#32CD32",
                 data: dataInsight.dailyProductView.map(
+                  (item: any) => item.total_data
+                ),
+              },
+              {
+                label: "search",
+                color: "#3949AB",
+                data: dataInsight.dailySearchProduct.map(
                   (item: any) => item.total_data
                 ),
               },
