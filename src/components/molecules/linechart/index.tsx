@@ -51,6 +51,20 @@ export default function LineChart(props: {
         text: props.title,
       },
     },
+    scales: {
+      x: {
+        beginAtZero: true, // Mulai dari 0 pada sumbu x
+      },
+      y: {
+        beginAtZero: true, // Mulai dari 0 pada sumbu y
+        grace: "5%", // Menambahkan ruang pada akhir sumbu y
+      },
+    },
+    elements: {
+      line: {
+        tension: 1, // Menentukan kelembutan garis
+      },
+    },
   };
 
   return (
