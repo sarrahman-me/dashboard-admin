@@ -6,13 +6,15 @@ import {
   Table,
   LineChart,
   Typography,
+  Select,
 } from "@/src/components";
 import { FaSearch, FaCubes, FaEye } from "react-icons/fa";
-import { MdDiscount } from "react-icons/md";
+import { LuSearchX } from "react-icons/lu";
 import { GetDataApi } from "@/utils";
 import React, { useEffect, useState } from "react";
 
 export default function Dashboard() {
+  const [period, setPeriod] = useState("harian");
   const [dataInsight, setDataInsight] = useState({
     total_product: "",
     total_product_view: "",
@@ -50,7 +52,7 @@ export default function Dashboard() {
       );
 
       const responseAdminInsight = await GetDataApi(
-        `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-insight`
+        `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-insight?period=${period}`
       );
 
       const {
@@ -84,7 +86,7 @@ export default function Dashboard() {
       });
     };
     fetchData();
-  }, []);
+  }, [period]);
 
   const calculatePercentage = (current: number, last: number) => {
     const selisihNilai = current - last;
@@ -98,7 +100,25 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Typography variant="subtitle">Insight Produk Bulan ini</Typography>
+      <div className="flex space-x-1">
+        <Typography variant="subtitle">
+          Insight Produk{" "}
+          {period === "harian"
+            ? "hari ini"
+            : period === "mingguan"
+            ? "7 hari terakhir"
+            : "30 hari terakhir"}
+        </Typography>
+        <Select
+          noIcon
+          size="small"
+          value={period}
+          setValue={(value) => {
+            setPeriod(value);
+          }}
+          lists={["bulanan", "mingguan", "harian"]}
+        />
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         <InsightCard
           data={dataInsight.total_product}
@@ -119,7 +139,7 @@ export default function Dashboard() {
             ) || 0
           }
           color={"stone"}
-          icon={<MdDiscount />}
+          icon={<FaEye />}
         />
 
         <InsightCard
@@ -134,7 +154,7 @@ export default function Dashboard() {
           }
           color={"violet"}
           title={"Pencarian"}
-          icon={<FaEye />}
+          icon={<FaSearch />}
         />
 
         <InsightCard
@@ -149,7 +169,7 @@ export default function Dashboard() {
               )
             ) || 0
           }
-          icon={<FaSearch />}
+          icon={<LuSearchX />}
         />
       </div>
 
