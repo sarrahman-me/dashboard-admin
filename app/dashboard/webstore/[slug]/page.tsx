@@ -5,7 +5,9 @@ import { SectionLayout, Timeline } from "@/layouts/template";
 import {
   Button,
   InsightCard,
+  LineChart,
   PieChart,
+  Select,
   Table,
   Typography,
 } from "@/src/components";
@@ -22,6 +24,7 @@ export default function DetailWebstore({
 }) {
   const slug = params.slug;
   const [webstore, setWebstore] = useState({} as any);
+  const [period, setPeriod] = useState("harian");
   const [dataInsight, setDataInsight] = useState({
     total_product_view: "",
     total_product_view_last_period: "",
@@ -30,6 +33,8 @@ export default function DetailWebstore({
     total_searches_last_period: "",
     top_search_query: [],
     top_brands: [],
+    dailyProductView: [],
+    dailySearchProduct: [],
   } as {
     total_product_view: string;
     total_product_view_last_period: string;
@@ -38,6 +43,8 @@ export default function DetailWebstore({
     total_searches_last_period: string;
     top_search_query: any[];
     top_brands: any[];
+    dailyProductView: any[];
+    dailySearchProduct: any[];
   });
 
   const calculatePercentage = (current: number, last: number) => {
@@ -56,7 +63,11 @@ export default function DetailWebstore({
 
       if (webstoreResponse.data?.domain) {
         const responseWebstoreInsight = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-mitra-insight/${webstoreResponse.data?.domain}`
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/dashboard-mitra-insight/${webstoreResponse.data?.domain}?period=${period}`
+        );
+
+        const responseDailyProductView = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/analytic/webstore-daily-activity/${webstoreResponse.data?.domain}`
         );
 
         const {
@@ -77,12 +88,14 @@ export default function DetailWebstore({
           total_product_view,
           total_searches_last_period,
           total_searches,
+          dailyProductView: responseDailyProductView.data.product_view,
+          dailySearchProduct: responseDailyProductView.data.search_product,
         });
       }
     }
 
     fetchData();
-  }, [slug]);
+  }, [period, slug]);
 
   const handleChangeDomain = async () => {
     Confirm.prompt(
@@ -170,9 +183,25 @@ export default function DetailWebstore({
           <div>
             {dataInsight.total_product_view !== undefined && (
               <div>
-                <p className="underline font-semibold m-2">
-                  Wawasan {webstore.domain}
-                </p>
+                <div className="flex space-x-1">
+                  <Typography variant="subtitle">
+                    Insight Produk {webstore.domain}{" "}
+                    {period === "harian"
+                      ? "hari ini"
+                      : period === "mingguan"
+                      ? "7 hari terakhir"
+                      : "30 hari terakhir"}
+                  </Typography>
+                  <Select
+                    noIcon
+                    size="small"
+                    value={period}
+                    setValue={(value) => {
+                      setPeriod(value);
+                    }}
+                    lists={["bulanan", "mingguan", "harian"]}
+                  />
+                </div>
                 <div className="grid grid-cols-2 gap-2 md:gap-6">
                   <InsightCard
                     data={dataInsight.total_product_view}
@@ -205,38 +234,61 @@ export default function DetailWebstore({
                   />
                 </div>
 
+                <div className="my-3 flex items-center flex-col md:flex-row gap-2 md:gap-4">
+                  <div className="md:w-2/3 w-full">
+                    <LineChart
+                      title={"Aktivitas Harian"}
+                      labels={dataInsight.dailyProductView.map(
+                        (item: any) => item.day
+                      )}
+                      data={[
+                        {
+                          label: "view",
+                          color: "#32CD32",
+                          data: dataInsight.dailyProductView.map(
+                            (item: any) => item.total_data
+                          ),
+                        },
+                        {
+                          label: "search",
+                          color: "#3949AB",
+                          data: dataInsight.dailySearchProduct.map(
+                            (item: any) => item.total_data
+                          ),
+                        },
+                      ]}
+                    />
+                  </div>
+                  <div className="md:w-1/3 w-full">
+                    <PieChart
+                      title={"Top Brands"}
+                      labels={dataInsight.top_brands.map(
+                        (item) => item.brandName
+                      )}
+                      data={dataInsight.top_brands.map((item) => item.views)}
+                    />
+                  </div>
+                </div>
+
                 <div className="my-3">
                   <Typography>Produk Populer</Typography>
-                  <div className="flex flex-col-reverse md:flex-row gap-2 md:gap-4">
-                    <div className="md:w-2/3 w-full">
-                      <Table
-                        columns={[
-                          {
-                            label: "Nama Barang",
-                            renderCell: (item: any) => item.productName,
-                          },
-                          {
-                            label: "Brand",
-                            renderCell: (item: any) => item.productBrand,
-                          },
-                          {
-                            label: "Jumlah dilihat",
-                            renderCell: (item: any) => item.views,
-                          },
-                        ]}
-                        datas={dataInsight.top_product_view}
-                      />
-                    </div>
-                    <div className="md:w-1/3 w-full">
-                      <PieChart
-                        title={"Top Brands"}
-                        labels={dataInsight.top_brands.map(
-                          (item) => item.brandName
-                        )}
-                        data={dataInsight.top_brands.map((item) => item.views)}
-                      />
-                    </div>
-                  </div>
+                  <Table
+                    columns={[
+                      {
+                        label: "Nama Barang",
+                        renderCell: (item: any) => item.productName,
+                      },
+                      {
+                        label: "Brand",
+                        renderCell: (item: any) => item.productBrand,
+                      },
+                      {
+                        label: "Jumlah dilihat",
+                        renderCell: (item: any) => item.views,
+                      },
+                    ]}
+                    datas={dataInsight.top_product_view}
+                  />
                 </div>
 
                 <div className="my-3">
