@@ -1,6 +1,6 @@
 "use client";
 import { DataTable } from "@/src/components";
-import moment from "moment";
+import { formatLastLogin } from "@/utils";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { PiArrowSquareUpRightLight } from "react-icons/pi";
@@ -73,7 +73,7 @@ export default function Mitra() {
       renderCell: async (item: any) => (
         <p>
           {item.lastLogin
-            ? moment(item.lastLogin).format("lll")
+            ? formatLastLogin(item.lastLogin)
             : "tidak pernah masuk"}
         </p>
       ),

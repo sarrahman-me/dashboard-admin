@@ -1,7 +1,7 @@
 "use client";
 import { DataTable } from "@/src/components";
 import { formatCurrency } from "@/src/utils";
-import moment from "moment";
+import { formatLastLogin } from "@/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { PiArrowSquareUpRightLight } from "react-icons/pi";
 import { RxCross2 } from "react-icons/rx";
@@ -26,9 +26,7 @@ export default function Transaksi() {
     },
     {
       label: "Tanggal",
-      renderCell: async (item: any) => (
-        <p>{moment(item.createdAt).format("lll")}</p>
-      ),
+      renderCell: async (item: any) => <p>{formatLastLogin(item.createdAt)}</p>,
     },
     {
       label: "Nominal",
