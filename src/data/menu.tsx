@@ -116,6 +116,10 @@ const listFinance = [
     label: "Kategori",
     href: "/dashboard/finance/kategori",
   },
+  {
+    label: "Voucher",
+    href: "/dashboard/finance/voucher",
+  },
 ];
 
 const listMembership = [

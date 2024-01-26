@@ -29,7 +29,7 @@ export const formatLastLogin = (lastLogin: string) => {
   const diffInMinutes = now.diff(lastLoginMoment, "minutes");
 
   if (diffInMinutes < 1) {
-    return "Baru saja masuk";
+    return "Baru saja";
   } else if (diffInMinutes < 60) {
     return `${diffInMinutes} menit yang lalu`;
   } else if (now.isSame(lastLoginMoment, "day")) {
