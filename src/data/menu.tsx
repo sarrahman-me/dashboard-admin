@@ -5,6 +5,7 @@ import { BiCube, BiStore } from "react-icons/bi";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { AiOutlineSetting } from "react-icons/ai";
 import { PiUsersThree, PiMoneyThin } from "react-icons/pi";
+import { BsRobot } from "react-icons/bs";
 
 export const menuItemsMobile = [
   {
@@ -47,6 +48,11 @@ export const menuItems = [
     label: "Dashboard",
     icon: <AiOutlineHome />,
     href: "/dashboard",
+  },
+  {
+    label: "ChatBot",
+    icon: <BsRobot />,
+    href: "/chatbot",
   },
 ];
 
