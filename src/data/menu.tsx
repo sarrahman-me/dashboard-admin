@@ -24,9 +24,14 @@ export const menuItemsMobile = [
     href: "/dashboard/products/barang",
   },
   {
-    label: "Transaksi",
-    icon: <PiMoneyThin />,
-    href: "/dashboard/finance/transaksi",
+    label: "ChatBot",
+    icon: <BsRobot />,
+    href: "/dashboard/chatbot",
+  },
+  {
+    label: "Webstore",
+    icon: <BiStore />,
+    href: "/dashboard/webstore",
   },
   {
     label: "Menu",
@@ -50,9 +55,9 @@ export const menuItems = [
     href: "/dashboard",
   },
   {
-    label: "ChatBot",
+    label: "ChatBot (Uji Coba)",
     icon: <BsRobot />,
-    href: "/chatbot",
+    href: "/dashboard/chatbot",
   },
 ];
 

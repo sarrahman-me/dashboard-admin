@@ -11,7 +11,7 @@ import { ItemTopBar } from "../../atoms";
 const TopBar = () => {
   return (
     <div className="z-50 w-full h-16 sm:hidden border-b border-gray-200 dark:border-gray-600">
-      <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
+      <div className="grid h-full max-w-lg grid-cols-6 mx-auto font-medium">
         {menuItemsMobile.map((item, i) => (
           <ItemTopBar
             label={item.label}

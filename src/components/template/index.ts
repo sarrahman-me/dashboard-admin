@@ -1,3 +1,4 @@
+import ChatbotConversation from "./Chatbot/Conversation";
 import CardProductDetail from "./cardProductDetail";
 import DeskripsiProduk from "./deskripsiProduct";
 import FormData from "./formData";
@@ -10,4 +11,5 @@ export {
   CardProductDetail,
   FormData,
   FormEditData,
+  ChatbotConversation,
 };
