@@ -54,6 +54,19 @@ const ChatbotConversation: React.FC = () => {
     setLoading(false);
   };
 
+  const formatText = (text: string) => {
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    return text.split(boldRegex).map((part, index) => {
+      return index % 2 === 0 ? (
+        <span key={index}>{part}</span>
+      ) : (
+        <strong key={index} className="font-bold">
+          {part}
+        </strong>
+      );
+    });
+  };
+
   return (
     <div>
       {/* conversation */}
@@ -72,7 +85,24 @@ const ChatbotConversation: React.FC = () => {
               } my-5`}
             >
               <div className={`py-2 pl-2 rounded`}>
-                <p>{message.parts}</p>
+                <p>
+                  {message.parts.split("\n\n").map((section, sectionIndex) => (
+                    <div key={sectionIndex} className="mb-4">
+                      {section.split("\n").map((row, rowIndex) => (
+                        <div key={rowIndex} className="mb-2">
+                          {row.trim() &&
+                            (row.includes("**") ? (
+                              // Teks cetak tebal di antara dua **
+                              <>{formatText(row)}</>
+                            ) : (
+                              // Teks biasa
+                              <span>{row}</span>
+                            ))}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </p>
               </div>
             </div>
           ))}
