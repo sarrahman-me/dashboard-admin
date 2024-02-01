@@ -29,6 +29,8 @@ const ChatbotConversation: React.FC = () => {
       }
     );
 
+    const { message, data } = responseApi.data;
+
     setChatHistory((prevHistory) => [
       ...prevHistory,
       {
@@ -41,10 +43,7 @@ const ChatbotConversation: React.FC = () => {
       ...prevHistory,
       {
         role: "model",
-        parts:
-          responseApi?.jawaban !== ""
-            ? responseApi?.jawaban
-            : "Maaf saya tidak mengerti maksud dari perkataan mu",
+        parts: message,
       },
     ]);
 
@@ -73,7 +72,10 @@ const ChatbotConversation: React.FC = () => {
             </div>
           ))}
         </div>
-        <form onSubmit={handleSendMessage} className="mt-4 flex sticky bottom-0">
+        <form
+          onSubmit={handleSendMessage}
+          className="mt-4 flex sticky bottom-0"
+        >
           <input
             type="text"
             value={inputMessage}
