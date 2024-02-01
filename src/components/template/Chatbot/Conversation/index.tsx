@@ -14,6 +14,7 @@ const ChatbotConversation: React.FC = () => {
   const [chatHistory, setChatHistory] = useState<Message[]>(
     [] as { role: string; parts: string }[]
   );
+  const [contextMap, setContextMap] = useState<any>({});
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSendMessage = async (e: any) => {
@@ -26,10 +27,13 @@ const ChatbotConversation: React.FC = () => {
       {
         chatHistory,
         message: inputMessage,
+        context: contextMap,
       }
     );
 
-    const { message, data } = responseApi.data;
+    const { message, data, context } = responseApi.data;
+
+    setContextMap(context);
 
     setChatHistory((prevHistory) => [
       ...prevHistory,
