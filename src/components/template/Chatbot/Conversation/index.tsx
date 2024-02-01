@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/src/components";
+import { Button, CardProduct } from "@/src/components";
 import { PostDataApi } from "@/src/utils";
 import React, { useState } from "react";
 import { FaWandMagicSparkles } from "react-icons/fa6";
@@ -11,6 +11,7 @@ interface Message {
 
 const ChatbotConversation: React.FC = () => {
   const [inputMessage, setInputMessage] = useState<string>("");
+  const [products, setProducts] = useState<any[]>([]);
   const [chatHistory, setChatHistory] = useState<Message[]>(
     [] as { role: string; parts: string }[]
   );
@@ -30,6 +31,8 @@ const ChatbotConversation: React.FC = () => {
     );
 
     const { message, data } = responseApi.data;
+
+    setProducts(data);
 
     setChatHistory((prevHistory) => [
       ...prevHistory,
@@ -68,9 +71,25 @@ const ChatbotConversation: React.FC = () => {
                   : "bg-lime-200 text-gray-700"
               } my-5`}
             >
-              <span className={` py-2 px-4 rounded`}>{message.parts}</span>
+              <div className={`py-2 pl-2 rounded`}>
+                <p>{message.parts}</p>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="my-3">
+          {products.length > 0 && (
+            <div>
+              <p>List Produk</p>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                {products.map((item: any, i: any) => (
+                  <div key={i}>
+                    <CardProduct product={item} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <form
           onSubmit={handleSendMessage}
