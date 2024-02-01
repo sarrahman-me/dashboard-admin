@@ -11,7 +11,6 @@ interface Message {
 
 const ChatbotConversation: React.FC = () => {
   const [inputMessage, setInputMessage] = useState<string>("");
-  const [products, setProducts] = useState<any[]>([]);
   const [chatHistory, setChatHistory] = useState<Message[]>(
     [] as { role: string; parts: string }[]
   );
@@ -32,8 +31,6 @@ const ChatbotConversation: React.FC = () => {
 
     const { message, data } = responseApi.data;
 
-    setProducts(data);
-
     setChatHistory((prevHistory) => [
       ...prevHistory,
       {
@@ -49,6 +46,17 @@ const ChatbotConversation: React.FC = () => {
         parts: message,
       },
     ]);
+
+    // Jika ada data produk, tambahkan data produk ke dalam chatHistory sebagai referensi
+    if (data.length > 0) {
+      setChatHistory((prevHistory) => [
+        ...prevHistory,
+        {
+          role: "model",
+          parts: JSON.stringify(data),
+        },
+      ]);
+    }
 
     setInputMessage("");
     setLoading(false);
@@ -67,6 +75,15 @@ const ChatbotConversation: React.FC = () => {
     });
   };
 
+  function isJSON(str: string) {
+    try {
+      JSON.stringify(JSON.parse(str));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   return (
     <div>
       {/* conversation */}
@@ -80,47 +97,44 @@ const ChatbotConversation: React.FC = () => {
               key={index}
               className={`${
                 message.role === "user"
-                  ? "bg-gray-200 text-gray-700"
-                  : "bg-lime-200 text-gray-700"
+                  ? "bg-gray-300 dark:bg-gray-900 text-gray-700 dark:text-white"
+                  : "bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-white"
               } my-5`}
             >
               <div className={`py-2 pl-2 rounded`}>
                 <p>
-                  {message.parts.split("\n\n").map((section, sectionIndex) => (
-                    <div key={sectionIndex} className="mb-4">
-                      {section.split("\n").map((row, rowIndex) => (
-                        <div key={rowIndex} className="mb-2">
-                          {row.trim() &&
-                            (row.includes("**") ? (
-                              // Teks cetak tebal di antara dua **
-                              <>{formatText(row)}</>
-                            ) : (
-                              // Teks biasa
-                              <span>{row}</span>
-                            ))}
+                  {isJSON(message.parts) ? (
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                      {JSON.parse(message.parts).map((item: any, i: any) => (
+                        <div key={i}>
+                          <CardProduct product={item} />
                         </div>
                       ))}
                     </div>
-                  ))}
+                  ) : (
+                    message.parts.split("\n\n").map((section, sectionIndex) => (
+                      <div key={sectionIndex} className="mb-4">
+                        {section.split("\n").map((row, rowIndex) => (
+                          <div key={rowIndex} className="mb-2">
+                            {row.trim() &&
+                              (row.includes("**") ? (
+                                // Teks cetak tebal di antara dua **
+                                <>{formatText(row)}</>
+                              ) : (
+                                // Teks biasa
+                                <span>{row}</span>
+                              ))}
+                          </div>
+                        ))}
+                      </div>
+                    ))
+                  )}
                 </p>
               </div>
             </div>
           ))}
         </div>
-        <div className="my-3">
-          {products.length > 0 && (
-            <div>
-              <p>List Produk</p>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-                {products.map((item: any, i: any) => (
-                  <div key={i}>
-                    <CardProduct product={item} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+        <div className="my-3"></div>
         <form
           onSubmit={handleSendMessage}
           className="mt-4 flex sticky bottom-0"
