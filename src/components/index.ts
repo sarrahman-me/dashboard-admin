@@ -32,6 +32,7 @@ import {
   InsightCard,
   PieChart,
   LineChart,
+  GaugeChartComp,
 } from "./molecules/index";
 import {
   Footer,
@@ -84,6 +85,7 @@ export {
   InsightCard,
   PieChart,
   LineChart,
+  GaugeChartComp,
 
   //   organims
   Footer,

@@ -7,6 +7,7 @@ import TopBar from "./TopBar";
 import CardMembershipPlan from "./cardMembershipPlan";
 import CardProduct from "./cardProduct";
 import FooterText from "./footerText";
+import GaugeChartComp from "./gaugeChart";
 import LineChart from "./linechart";
 import PieChart from "./pieChart";
 import SearchBar from "./searchBar";
@@ -28,4 +29,5 @@ export {
   InsightCard,
   PieChart,
   LineChart,
+  GaugeChartComp,
 };
