@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { GaugeChartComp } from "@/src/components";
+import { GaugeChartComp, LineChart } from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import moment from "moment";
 import CPUCalculator from "@/src/utils/cpuCalculator";
@@ -9,6 +9,9 @@ export default function Monitoring() {
   const [cpu, setCpu] = useState<any>(0);
   const [memoryUsage, setMemoryUsage] = useState<any>(0);
   const [uptime, setUptime] = useState<any>(0);
+  const [cpuData, setCpuData] = useState<any[]>([]);
+  const [memoryData, setMemoryData] = useState<any[]>([]);
+  const [timeLabels, setTimeLabels] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +37,22 @@ export default function Monitoring() {
 
         setCpu(CPUCalculator(responseCPU));
         setMemoryUsage(memoryUsagePercentage.toFixed(2));
+
+        // Update the data arrays for LineChart
+        setCpuData((prevCpuData) => [
+          ...prevCpuData,
+          CPUCalculator(responseCPU),
+        ]);
+        setMemoryData((prevMemoryData) => [
+          ...prevMemoryData,
+          memoryUsagePercentage.toFixed(2),
+        ]);
+
+        // Update the time labels array
+        setTimeLabels((prevTimeLabels) => [
+          ...prevTimeLabels,
+          Math.floor(uptime),
+        ]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -53,10 +72,14 @@ export default function Monitoring() {
   return (
     <div>
       <p className="font-bold text-center text-lg">Informasi Server</p>
-      <p className="font-semibold text-lg text-center my-3 text-lime-500">
-        {formattedUptime}
-      </p>
-
+      <div className="my-3">
+        <p className="font-semibold text-lg text-center text-lime-500">
+          {formattedUptime}
+        </p>
+        <p className="text-xs text-center">
+          {moment().subtract(uptime, "seconds").format("LLL")}
+        </p>
+      </div>
       <div className="justify-center space-x-3 flex">
         <div>
           <GaugeChartComp data={cpu} />
@@ -66,6 +89,24 @@ export default function Monitoring() {
           <GaugeChartComp data={memoryUsage} />
           <p className="text-xs text-center">Memory Usage</p>
         </div>
+      </div>
+      <div className="my-3">
+        <LineChart
+          title={"Monitor"}
+          labels={timeLabels}
+          data={[
+            {
+              label: "Average Cpu",
+              color: "#32CD32",
+              data: cpuData,
+            },
+            {
+              label: "Average Memory",
+              color: "#3949AB",
+              data: memoryData,
+            },
+          ]}
+        />
       </div>
     </div>
   );

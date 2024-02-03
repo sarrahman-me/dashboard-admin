@@ -1,15 +1,17 @@
 export default function GaugeChartComp({ data }: { data: number }) {
   const getColor = () => {
-    if (data < 40) {
-      return "bg-gradient-to-t from-green-500 to-yellow-100";
-    } else if (data >= 40 && data < 50) {
-      return "bg-gradient-to-t from-green-500 to-yellow-500";
-    } else if (data >= 50 && data < 65) {
-      return "bg-gradient-to-t from-yellow-500 to-red-100";
-    } else if (data >= 65 && data < 75) {
-      return "bg-gradient-to-t from-yellow-500 to-red-500";
-    } else {
+    if (data < 25) {
+      return "bg-gradient-to-t from-green-500 to-lime-400";
+    } else if (data > 25 && data < 50) {
+      return "bg-gradient-to-t from-lime-500 to-yellow-400";
+    } else if (data > 50 && data < 75) {
+      return "bg-gradient-to-t from-yellow-500 to-orange-400";
+    } else if (data > 75 && data < 90) {
+      return "bg-gradient-to-t from-orange-500 to-red-400";
+    } else if (data > 90) {
       return "bg-red-500";
+    } else {
+      return "bg-green-500";
     }
   };
 
