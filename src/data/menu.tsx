@@ -148,10 +148,14 @@ const listMembership = [
   },
 ];
 
-const listConfiguration = [
+const listConSystem = [
   {
-    label: "Domain",
-    href: "/dashboard/configuration/domain",
+    label: "Allowed Domain",
+    href: "/dashboard/system/domain",
+  },
+  {
+    label: "Monitoring",
+    href: "/dashboard/system/monitoring",
   },
 ];
 
@@ -183,7 +187,7 @@ export const menuDropdownItems = [
   },
   {
     icon: <AiOutlineSetting />,
-    title: "Configuration",
-    listMenu: listConfiguration,
+    title: "System",
+    listMenu: listConSystem,
   },
 ];
