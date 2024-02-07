@@ -14,7 +14,7 @@ export default function Monitoring() {
 
   const handleSearch = async () => {
     const responseLogs = await GetDataApi(
-      `${process.env.NEXT_PUBLIC_HOST}/monitor/logs?limit=100&search=${query}`
+      `${process.env.NEXT_PUBLIC_HOST}/monitor/logs?limit=50&search=${query}`
     );
 
     setOnSearch(true);
@@ -29,7 +29,7 @@ export default function Monitoring() {
         );
 
         const responseLogs = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/monitor/logs?limit=100`
+          `${process.env.NEXT_PUBLIC_HOST}/monitor/logs?limit=50`
         );
 
         setLogs(responseLogs.data);
@@ -92,15 +92,23 @@ export default function Monitoring() {
         </div>
       </div>
       {query && onSearch && (
-        <div>
+        <div className="my-2">
           <p className="font-semibold underline my-2 text-sm sm:text-base">
             Pencarian Catatan {query}
           </p>
-          <div className="border bg-gray-900 text-green-500 p-2 rounded-md font-mono text-xs sm:text-sm overflow-auto">
+          <div className="border bg-gray-900 p-2 rounded-md font-mono text-xs sm:text-sm overflow-auto">
             {logsSearches.map((log: any, i: any) => (
               <div
                 key={i}
-                className="flex items-center space-x-2 whitespace-nowrap"
+                className={`flex items-center space-x-2 whitespace-nowrap ${
+                  log.level === "error"
+                    ? "text-red-500"
+                    : log.level === "warn"
+                    ? "text-orange-500"
+                    : log.level === "info"
+                    ? "text-blue-500"
+                    : "text-white"
+                }`}
               >
                 <p>{moment(log.timestamp).format("DD/MM/YYYY HH:mm:ss")}</p>
                 <p>{log.source}</p>
@@ -110,15 +118,23 @@ export default function Monitoring() {
           </div>
         </div>
       )}
-      <div>
+      <div className="my-2">
         <p className="font-semibold underline my-2  text-sm sm:text-base">
           Catatan Server
         </p>
-        <div className="border bg-gray-900 text-green-500 p-2 rounded-md font-mono text-xs sm:text-sm overflow-auto">
+        <div className="border bg-gray-900 p-2 rounded-md font-mono text-xs sm:text-sm overflow-auto">
           {logs.map((log: any, i: any) => (
             <div
               key={i}
-              className="flex items-center space-x-2 whitespace-nowrap"
+              className={`flex items-center space-x-2 whitespace-nowrap ${
+                log.level === "error"
+                  ? "text-red-500"
+                  : log.level === "warn"
+                  ? "text-orange-500"
+                  : log.level === "info"
+                  ? "text-blue-500"
+                  : "text-white"
+              }`}
             >
               <p>{moment(log.timestamp).format("HH:mm:ss")}</p>
               <p>{log.source}</p>
