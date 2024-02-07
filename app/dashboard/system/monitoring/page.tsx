@@ -1,58 +1,30 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { GaugeChartComp, LineChart } from "@/src/components";
+import { GaugeChartComp } from "@/src/components";
 import { GetDataApi } from "@/src/utils";
 import moment from "moment";
-import CPUCalculator from "@/src/utils/cpuCalculator";
 
 export default function Monitoring() {
-  const [cpu, setCpu] = useState<any>(0);
-  const [memoryUsage, setMemoryUsage] = useState<any>(0);
-  const [uptime, setUptime] = useState<any>(0);
-  const [cpuData, setCpuData] = useState<any[]>([]);
-  const [memoryData, setMemoryData] = useState<any[]>([]);
-  const [timeLabels, setTimeLabels] = useState<number[]>([]);
+  const [monitor, setMonitor] = useState({} as any);
+  const [logs, setLogs] = useState([] as any);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseCPU = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/monitoring/cpu`
+        const responseServer = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/monitor/server`
         );
 
-        const responseMemory = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/monitoring/memory`
+        const responseLogs = await GetDataApi(
+          `${process.env.NEXT_PUBLIC_HOST}/monitor/logs?limit=100`
         );
 
-        const { uptime } = await GetDataApi(
-          `${process.env.NEXT_PUBLIC_HOST}/monitoring/uptime`
-        );
+        setLogs(responseLogs.data);
 
-        setUptime(uptime);
+        const { cpu_percentage, memory_usage_percentage, uptime } =
+          responseServer.data;
 
-        const { totalMemory, freeMemory } = responseMemory;
-
-        const memoryUsagePercentage =
-          ((totalMemory - freeMemory) / totalMemory) * 100;
-
-        setCpu(CPUCalculator(responseCPU));
-        setMemoryUsage(memoryUsagePercentage.toFixed(2));
-
-        // Update the data arrays for LineChart
-        setCpuData((prevCpuData) => [
-          ...prevCpuData,
-          CPUCalculator(responseCPU),
-        ]);
-        setMemoryData((prevMemoryData) => [
-          ...prevMemoryData,
-          memoryUsagePercentage.toFixed(2),
-        ]);
-
-        // Update the time labels array
-        setTimeLabels((prevTimeLabels) => [
-          ...prevTimeLabels,
-          Math.floor(uptime),
-        ]);
+        setMonitor({ cpu_percentage, memory_usage_percentage, uptime });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -60,13 +32,13 @@ export default function Monitoring() {
 
     fetchData();
 
-    const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
 
   // Format uptime using Moment.js
-  const duration = moment.duration(uptime, "seconds");
+  const duration = moment.duration(monitor.uptime, "seconds");
   const formattedUptime = `${duration.hours()} jam ${duration.minutes()} menit ${duration.seconds()} detik`;
 
   return (
@@ -77,36 +49,28 @@ export default function Monitoring() {
           {formattedUptime}
         </p>
         <p className="text-xs text-center">
-          {moment().subtract(uptime, "seconds").format("LLL")}
+          {moment().subtract(monitor.uptime, "seconds").format("LLL")}
         </p>
       </div>
       <div className="justify-center space-x-3 flex">
         <div>
-          <GaugeChartComp data={cpu} />
+          <GaugeChartComp data={monitor.cpu_percentage} />
           <p className="text-xs text-center">CPU Usage</p>
         </div>
         <div>
-          <GaugeChartComp data={memoryUsage} />
+          <GaugeChartComp data={monitor.memory_usage_percentage} />
           <p className="text-xs text-center">Memory Usage</p>
         </div>
       </div>
-      <div className="my-3">
-        <LineChart
-          title={"Monitor"}
-          labels={timeLabels}
-          data={[
-            {
-              label: "Average Cpu",
-              color: "#32CD32",
-              data: cpuData,
-            },
-            {
-              label: "Average Memory",
-              color: "#3949AB",
-              data: memoryData,
-            },
-          ]}
-        />
+      <p className="font-semibold underline my-2">Logs</p>
+      <div className="border bg-gray-900 text-green-500 p-2 rounded-md font-mono text-xs sm:text-sm overflow-auto">
+        {logs.map((log: any, i: any) => (
+          <div key={i} className="flex items-center space-x-2 whitespace-nowrap">
+            <p>{moment(log.timestamp).format("DD/MM/YYYY HH:mm:ss")}</p>
+            <p>{log.source}</p>
+            <p> {log.message}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
